@@ -1,15 +1,17 @@
 
 public class TestRunner {
-	BaseTest testList[];
+	Runable testList[];
 	
-	public TestRunner(BaseTest[] testList){
+	public TestRunner(Runable[] testList){
 		this.testList = testList;
 	}
 	
 	public void RunTests() {
 		Output testOutput = new Output();
-		for (BaseTest test : testList) { 
-			testOutput.add(test.run());
+		for (Runable test : testList) { 
+			test.run();
+			TestOutput test_output = test.getOutput();
+			testOutput.add(test_output);
 		}
 		//Sacar Output por pantalla
 	}
