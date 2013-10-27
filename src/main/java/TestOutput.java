@@ -6,7 +6,7 @@ public class TestOutput {
 	private int numTestFailure;
 	private ArrayList<String> testFailure;
 	
-	public TestOutput(){
+	TestOutput(){
 		numTestOK = 0;
 		numTestFailure = 0;
 		testFailure = new ArrayList<String>();
@@ -27,5 +27,11 @@ public class TestOutput {
 	
 	public int getNumTestFailure(){
 		return numTestFailure;
+	}
+	
+	public void printFailureMessage(){
+		for(String item : testFailure){
+			System.out.println(item);
+		}
 	}
 }

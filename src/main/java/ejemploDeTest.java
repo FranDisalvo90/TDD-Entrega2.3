@@ -13,12 +13,7 @@ public class ejemploDeTest extends BaseTest {
 		}
 	}
 
-	public void result(){
-		TestOutput result = this.getOutput();
-		System.out.println("number tests OK:" + result.getNumTestOK());
-		System.out.println("number tests Fail:" + result.getNumTestFailure());
-	}
-	
+		
 	private void Bye() throws TestFailedException {
 		this.assertTrue(false, "Bye");
 	}
