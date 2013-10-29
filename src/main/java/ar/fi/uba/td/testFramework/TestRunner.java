@@ -1,14 +1,13 @@
-package testFramework;
-
+package ar.fi.uba.td.testFramework;
 
 public class TestRunner {
 
-	Runable test;
+	RunnableTest test;
 
-	public TestRunner(Runable test){
+	public TestRunner(RunnableTest test) {
 		this.test = test;
 	}
-	
+
 	public void runTests() {
 
 		TestOutput testOutput = new TestOutput();
