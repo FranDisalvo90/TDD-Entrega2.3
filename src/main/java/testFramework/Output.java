@@ -1,3 +1,5 @@
+package testFramework;
+
 
 public class Output {
 
@@ -14,8 +16,8 @@ public class Output {
 	//TODO calcular los test totales (recursiva en el testRunner)
 	public void showResult(){
 		System.out.println("Total test: ....");
-		System.out.println("Number tests OK:" + testOutput.getNumTestOK());
-		System.out.println("Number tests Fail:" + testOutput.getNumTestFailure());
+		System.out.println("Number tests OK: " + testOutput.getNumTestOK());
+		System.out.println("Number tests Fail: " + testOutput.getNumTestFailure());
 		System.out.println("Failure messages: ");
 		testOutput.printFailureMessage();
 	}

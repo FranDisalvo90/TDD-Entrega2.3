@@ -1,13 +1,13 @@
+package testFramework;
 import java.util.ArrayList;
 
 
 public class TestSuit implements Runable {
-//	private TestOutput output;
+
 	private ArrayList<Runable> testList;
 	
-	TestSuit() {
+	public TestSuit() {
 		testList = new ArrayList<Runable>();
-//		this.setOutput(new TestOutput());
 	}
 	
 	public void add(Runable test) {
@@ -21,15 +21,4 @@ public class TestSuit implements Runable {
 			entity.run(testOutput);
 		}
 	}
-/*
-	public TestOutput getOutput() {
-		return this.output;
-	}
-	public void setOutput(TestOutput test_output) {
-		this.output = test_output;
-		for(Runable entity: this.testList){
-			entity.setOutput(this.output);
-		}
-	}
-*/
 }

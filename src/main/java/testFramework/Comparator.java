@@ -1,3 +1,5 @@
+package testFramework;
+
 /**
  * Comparator implements all asserts comparisons
  */
