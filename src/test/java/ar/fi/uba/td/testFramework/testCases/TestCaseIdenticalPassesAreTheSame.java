@@ -9,7 +9,8 @@ public class TestCaseIdenticalPassesAreTheSame extends BaseTest {
 	@Override
 	public void runTest() throws TestFailedException {
 		BackstagePasses somePasses = new BackstagePasses("someConcert", 1, 2);
-		assertSame(somePasses, somePasses);
+		assertSame(somePasses, somePasses, 
+				"Tests that an instance of a Backstage Passes is the same when compared with itself.");
 	}
 
 }
