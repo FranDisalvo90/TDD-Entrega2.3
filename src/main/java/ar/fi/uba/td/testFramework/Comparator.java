@@ -5,46 +5,46 @@ package ar.fi.uba.td.testFramework;
  */
 
 public class Comparator {
-	public void assertTrue(Object sourse, String message)
+	public void assertTrue(Object source, String message)
 			throws TestFailedException {
-		if ((Boolean) sourse == false) {
+		if ((Boolean) source == false) {
 			throw new TestFailedException(message);
 		}
 	}
 
-	public void assertFalse(Object sourse, String message)
+	public void assertFalse(Object source, String message)
 			throws TestFailedException {
-		if ((Boolean) sourse == true) {
+		if ((Boolean) source == true) {
 			throw new TestFailedException(message);
 		}
 	}
 
-	public void assertEquals(Object sourse, Object expected, String message)
+	public void assertEquals(Object source, Object expected, String message)
 			throws TestFailedException {
-		if (sourse.equals(expected)) {
+		if (!source.equals(expected)) {
 			throw new TestFailedException(message);
 		}
 	}
 
-	public void assertDifferent(Object sourse, Object expected, String message)
+	public void assertDifferent(Object source, Object expected, String message)
 			throws TestFailedException {
-		if (!sourse.equals(expected)) {
+		if (!source.equals(expected)) {
 			throw new TestFailedException(message);
 		}
 	}
 
-	public void assertBigger(Object sourse, Object expected, String message)
+	public void assertBigger(Object source, Object expected, String message)
 			throws TestFailedException {
 		/*
-		 * if ((int)sourse < (int)expected) { throw new
+		 * if ((int)source < (int)expected) { throw new
 		 * TestFailedException(message); }
 		 */
 	}
 
-	public void assertLess(Object sourse, Object expected, String message)
+	public void assertLess(Object source, Object expected, String message)
 			throws TestFailedException {
 		/*
-		 * if ((int)sourse > (int)expected) { throw new
+		 * if ((int)source > (int)expected) { throw new
 		 * TestFailedException(message); }
 		 */
 	}
