@@ -5,6 +5,11 @@ package ar.fi.uba.td.testFramework;
  */
 
 public class Comparator {
+	
+	public void fail(String message) throws TestFailedException {
+		throw new TestFailedException(message);
+	}
+	
 	public void assertTrue(Object source, String message)
 			throws TestFailedException {
 		if ((Boolean) source == false) {
@@ -26,26 +31,35 @@ public class Comparator {
 		}
 	}
 
-	public void assertDifferent(Object source, Object expected, String message)
+	public void assertNotEquals(Object source, Object expected, String message)
 			throws TestFailedException {
-		if (!source.equals(expected)) {
+		if (source.equals(expected)) {
 			throw new TestFailedException(message);
 		}
 	}
 
-	public void assertBigger(Object source, Object expected, String message)
+	public void assertSame(Object source, Object expected, String message)
 			throws TestFailedException {
-		/*
-		 * if ((int)source < (int)expected) { throw new
-		 * TestFailedException(message); }
-		 */
+		if (source != expected)
+			throw new TestFailedException(message);
 	}
 
-	public void assertLess(Object source, Object expected, String message)
+	public void assertNotSame(Object source, Object expected, String message)
 			throws TestFailedException {
-		/*
-		 * if ((int)source > (int)expected) { throw new
-		 * TestFailedException(message); }
-		 */
+		if (source == expected)
+			throw new TestFailedException(message);
 	}
+
+	public void assertNull(Object source, String message)
+			throws TestFailedException {
+		if (source != null)
+			throw new TestFailedException(message);
+	}
+	
+	public void assertNotNull(Object source, String message)
+			throws TestFailedException {
+		if (source == null)
+			throw new TestFailedException(message);
+	}	
+	
 }
