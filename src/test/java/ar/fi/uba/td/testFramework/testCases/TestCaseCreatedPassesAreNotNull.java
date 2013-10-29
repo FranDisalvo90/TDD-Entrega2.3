@@ -1,9 +1,13 @@
 package ar.fi.uba.td.testFramework.testCases;
 
-public class TestCaseCreatedPassesAreNotNull {
+import ar.fi.uba.td.testFramework.*;
 
-	public TestCaseCreatedPassesAreNotNull() {
-		// TODO Auto-generated constructor stub
+public class TestCaseCreatedPassesAreNotNull extends BaseTest {
+
+	@Override
+	public void runTest() throws TestFailedException {
+		
+		
 	}
 
 }

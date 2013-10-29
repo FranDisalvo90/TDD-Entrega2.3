@@ -1,9 +1,14 @@
 package ar.fi.uba.td.testFramework.testCases;
 
-public class TestCaseDifferentPassesForTheSameConcertAreNotTheSame {
+import ar.fi.uba.td.testFramework.BaseTest;
+import ar.fi.uba.td.testFramework.TestFailedException;
 
-	public TestCaseDifferentPassesForTheSameConcertAreNotTheSame() {
-		// TODO Auto-generated constructor stub
+public class TestCaseDifferentPassesForTheSameConcertAreNotTheSame extends BaseTest{
+
+	@Override
+	public void runTest() throws TestFailedException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
