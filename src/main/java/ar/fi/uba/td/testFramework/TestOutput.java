@@ -3,40 +3,27 @@ package ar.fi.uba.td.testFramework;
 import java.util.ArrayList;
 
 /**
- * Class used to store test results.
+ * Class used to display the test results.
  */
 public class TestOutput {
 
-	private int numTestOK;
-	private int numTestFailure;
-	private ArrayList<String> testFailure;
+	private TestResults testResults;
 
-	TestOutput() {
-		numTestOK = 0;
-		numTestFailure = 0;
-		testFailure = new ArrayList<String>();
+	public TestOutput(TestResults testResults) {
+		this.testResults = testResults;
 	}
 
-	public void testOK() {
-		numTestOK++;
+	public void showResults() {
+		System.out.println("Total tests: ....");
+		System.out.println("Tests OK: " + testResults.getNumberOfPassedTests());
+		System.out.println("Tests failed: "
+				+ testResults.getNumberOfFailedTests());
+		System.out.println("Failure messages: ");
+		
+		ArrayList<String> failedTestsMessages = testResults.getFailedTestsMessages();
+		
+		for(String failedTestMessage : failedTestsMessages)
+			System.out.println(failedTestMessage);
 	}
 
-	public void testError(String message) {
-		numTestFailure++;
-		testFailure.add(message);
-	}
-
-	public int getNumTestOK() {
-		return numTestOK;
-	}
-
-	public int getNumTestFailure() {
-		return numTestFailure;
-	}
-
-	public void printFailureMessage() {
-		for (String item : testFailure) {
-			System.out.println(item);
-		}
-	}
 }

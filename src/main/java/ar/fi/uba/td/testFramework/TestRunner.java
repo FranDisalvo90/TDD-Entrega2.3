@@ -13,10 +13,10 @@ public class TestRunner {
 
 	public void runTests() {
 
-		TestOutput testOutput = new TestOutput();
+		TestResults testOutput = new TestResults();
 		test.run(testOutput);
 
-		Output output = new Output(testOutput);
-		output.showResult();
+		TestOutput output = new TestOutput(testOutput);
+		output.showResults();
 	}
 }

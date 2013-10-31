@@ -9,7 +9,7 @@ public interface RunnableTest {
 	/**
 	 * Runs a test or a series of tests storing the results in the TestOutput.
 	 */
-	public void run(TestOutput testOutput);
+	public void run(TestResults testOutput);
 
 	public void add(RunnableTest test);
 

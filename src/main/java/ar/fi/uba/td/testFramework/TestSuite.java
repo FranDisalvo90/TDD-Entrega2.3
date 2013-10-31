@@ -18,7 +18,7 @@ public class TestSuite implements RunnableTest {
 		testList.add(test);
 	}
 
-	public void run(TestOutput testOutput) {
+	public void run(TestResults testOutput) {
 		for (RunnableTest entity : this.testList) {
 			entity.run(testOutput);
 		}
