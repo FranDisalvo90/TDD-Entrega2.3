@@ -121,6 +121,27 @@ Se muestra toda la estructura en la figura 1.
 \end{figure}
 
 \section{Pruebas}
+Se incluyen con la implementación dos sets de pruebas:
 
+	\begin{enumerate}
+	
+	\item Pruebas unitarias: estas pruebas verifican el funcionamiento de 
+	las clases desarrolladas usando jUnit 4. 
+	
+	Se intentó alcanzar una cobertura del 100\% del código con pruebas 
+	unitarias, sin embargo se notó que había varias clases muy simples como 
+	TestResult que probarlas pareció inútil.
+
+	\item Pruebas de entorno: la intención de estas pruebas fue probar una 
+	clase externa como lo haría el usuario.
+	Se creo una clase con un comportamiento trivial y se generaron casos de
+	prueba para después correrlos. 
+	
+	Se insertaron tanto pruebas que corren correctamente como pruebas que
+	fallan, de manera de mostrar el funcionamiento completo del entorno.
+	
+	El mismo de set de pruebas se corrió con jUnit 4 para mostrar que 
+	efectivamente los resultados obtenidos son equivalentes.
+	\end{enumerate}
 
 \end{document}
