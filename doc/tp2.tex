@@ -120,6 +120,31 @@ Se muestra toda la estructura en la figura 1.
 	\caption{diagrama de clases del trabajo práctico.}
 \end{figure}
 
+\subsection{Responsabilidades de las clases}
+Se describe a continuación la responsabilidad de cada clase:
+\begin{itemize}
+	\item \textbf{BaseTest}: es la encargada de correr cada test unitario.
+		Las clases que hereden de ella implementarán el código que 
+		ejecuta las pruebas. 
+		
+	\item \textbf{Comparator}: es la clase que implementa las aserciones.	
+	
+	\item \textbf{TestOutput}: es la encargada de interpretar los resultados
+		y producir una salida legible.		
+			
+	\item \textbf{TestResults}: es una clase almacenadora de información
+		sobre la ejecución de las pruebas.
+	
+	\item \textbf{TestSuite}: es la clase contenedora de todos los tests.
+		Permite agregar tests y correrlos.
+		
+	\item \textbf{TestRunner}: es el cliente en el esquema composite, crea
+		una instancia de TestResults, ejecuta un TestSuite y luego
+		muestra los resultados usando un TestOutput.		
+
+\end{itemize}
+
+
 \section{Pruebas}
 Se incluyen con la implementación dos sets de pruebas:
 
