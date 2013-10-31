@@ -3,7 +3,12 @@
 .project
 .settings/*
 
-# Package Files #
+# LaTeX files #
+.aux
+.log
+.toc
+
+# Package files #
 *.jar
 *.war
 *.ear
