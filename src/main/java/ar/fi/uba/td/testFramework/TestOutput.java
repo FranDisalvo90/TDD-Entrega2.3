@@ -14,15 +14,17 @@ public class TestOutput {
 	}
 
 	public void showResults() {
-		System.out.println("Total tests: "+ testResults.getNumberOfTotalTest());
+		System.out.println("Number of tests run: "
+				+ testResults.getNumberOfTotalTest());
 		System.out.println("Tests OK: " + testResults.getNumberOfPassedTests());
 		System.out.println("Tests failed: "
 				+ testResults.getNumberOfFailedTests());
 		System.out.println("Failure messages: ");
-		
-		ArrayList<String> failedTestsMessages = testResults.getFailedTestsMessages();
-		
-		for(String failedTestMessage : failedTestsMessages)
+
+		ArrayList<String> failedTestsMessages = testResults
+				.getFailedTestsMessages();
+
+		for (String failedTestMessage : failedTestsMessages)
 			System.out.println(failedTestMessage);
 	}
 

@@ -7,7 +7,7 @@ public class TestRunner {
 
 	RunnableTest test;
 	TestResults testOutput;
-	
+
 	public TestRunner(RunnableTest test) {
 		this.test = test;
 	}
@@ -16,18 +16,17 @@ public class TestRunner {
 
 		testOutput = new TestResults();
 		test.run(testOutput);
-		testOutput.setNumberOfTotalTest(test.countTest());	
-		
+		testOutput.setNumberOfTotalTest(test.countTest());
+
 		TestOutput output = new TestOutput(testOutput);
 		output.showResults();
 	}
-	
-	public TestResults getResult()throws Exception{
-		if(testOutput != null){
+
+	public TestResults getResult() throws Exception {
+		if (testOutput != null) {
 			return testOutput;
-		}	
-		else{ 
+		} else {
 			throw new Exception("No tests run.");
-		}	
+		}
 	}
 }

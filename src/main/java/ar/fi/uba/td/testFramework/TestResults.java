@@ -27,9 +27,9 @@ public class TestResults {
 		numberOfFailedTests++;
 		failedTestsMessages.add(message);
 	}
-	
-	public void setNumberOfTotalTest(int totalTest){
-		numberOfTotalTests = totalTest;
+
+	public void setNumberOfTotalTest(int numberOfTotalTests) {
+		this.numberOfTotalTests = numberOfTotalTests;
 	}
 
 	public int getNumberOfPassedTests() {
@@ -39,8 +39,8 @@ public class TestResults {
 	public int getNumberOfFailedTests() {
 		return numberOfFailedTests;
 	}
-	
-	public int getNumberOfTotalTest(){
+
+	public int getNumberOfTotalTest() {
 		return numberOfTotalTests;
 	}
 

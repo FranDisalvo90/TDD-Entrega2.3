@@ -4,9 +4,9 @@
 .settings/*
 
 # LaTeX files #
-.aux
-.log
-.toc
+*.aux
+*.log
+*.toc
 
 # Package files #
 *.jar

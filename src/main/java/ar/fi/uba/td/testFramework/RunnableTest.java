@@ -6,9 +6,6 @@ package ar.fi.uba.td.testFramework;
  */
 public interface RunnableTest {
 
-	/**
-	 * Runs a test or a series of tests storing the results in the TestOutput.
-	 */
 	public void run(TestResults testOutput);
 
 	public void add(RunnableTest test);

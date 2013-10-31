@@ -65,12 +65,12 @@ public class ComparatorTest {
 	}
 	
 	@Test(expected = TestFailedException.class)
-	public void testAssertNotEqualsFailsTheSameInstance() throws TestFailedException {
+	public void testAssertNotEqualsFailsWithTheSameInstance() throws TestFailedException {
 		comparator.assertNotEquals(somePasses, somePasses, "");
 	}
 	
 	@Test
-	public void testAssertNotEqualsAssertUsingEqualsMethod() throws TestFailedException {
+	public void testAssertNotEqualsAssertsUsingEqualsMethod() throws TestFailedException {
 		comparator.assertNotEquals(somePasses, someOtherPasses, "");
 	}
 

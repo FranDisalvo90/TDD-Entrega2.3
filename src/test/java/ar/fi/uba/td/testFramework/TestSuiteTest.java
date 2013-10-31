@@ -7,7 +7,7 @@ import org.junit.Test;
 import ar.fi.uba.td.testFramework.testCases.TestCaseCreatedPassesAreNotNull;
 import ar.fi.uba.td.testFramework.testCases.TestCasePassesForDifferentConcertsAreNotEqual;
 
-public class TestSuitTest {
+public class TestSuiteTest {
 
 	@Test
 	public void testEmptyTestSuiteTotalTest() {

@@ -3,13 +3,13 @@ package ar.fi.uba.td.testFramework;
 import java.util.ArrayList;
 
 /**
- * Class that groups a set of BaseTests, modeling a test suite.
- * This class works as the composite on the composite pattern.
+ * Class that groups a set of BaseTests, modeling a test suite. This class works
+ * as the composite on the composite pattern.
  */
 public class TestSuite implements RunnableTest {
 
 	private ArrayList<RunnableTest> testList;
-		
+
 	public TestSuite() {
 		testList = new ArrayList<RunnableTest>();
 	}
@@ -23,9 +23,9 @@ public class TestSuite implements RunnableTest {
 			entity.run(testOutput);
 		}
 	}
-	
+
 	public int countTest() {
-		int total = 0;	
+		int total = 0;
 		for (RunnableTest entity : this.testList) {
 			total += entity.countTest();
 		}

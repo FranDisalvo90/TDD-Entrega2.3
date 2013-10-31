@@ -7,12 +7,13 @@ package ar.fi.uba.td.testFramework;
 public abstract class BaseTest extends Comparator implements RunnableTest {
 
 	/**
-	 * Abstract class where the user will define the actual test.
+	 * Abstract method where the user will define the actual test.
 	 */
 	public abstract void runTest() throws TestFailedException;
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see ar.fi.uba.td.testFramework.RunnableTest#add(ar.fi.uba.td.testFramework.RunnableTest) 
 	 * Leaf node, unimplemented.
 	 */
@@ -27,8 +28,8 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 			testOutput.addFailedTest(ex.getMessage());
 		}
 	}
-	
-	public int countTest(){
+
+	public int countTest() {
 		return 1;
 	}
 }
