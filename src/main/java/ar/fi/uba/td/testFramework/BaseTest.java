@@ -11,7 +11,7 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 	public void run(TestOutput testOutput) {
 		try {
 			this.runTest();
-			testOutput.testOk();
+			testOutput.testOK();
 		} catch (Exception ex) {
 			// Any type of error
 			testOutput.testError(ex.getMessage());

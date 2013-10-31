@@ -14,7 +14,7 @@ public class TestOutput {
 		testFailure = new ArrayList<String>();
 	}
 
-	public void testOk() {
+	public void testOK() {
 		numTestOK++;
 	}
 

@@ -14,8 +14,6 @@ public class TestSuite implements RunnableTest {
 		testList.add(test);
 	}
 
-	// TODO: TestSuit vacios => exception
-
 	public void run(TestOutput testOutput) {
 		for (RunnableTest entity : this.testList) {
 			entity.run(testOutput);
