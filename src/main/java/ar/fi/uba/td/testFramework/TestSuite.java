@@ -23,4 +23,12 @@ public class TestSuite implements RunnableTest {
 			entity.run(testOutput);
 		}
 	}
+	
+	public int countTest() {
+		int total = 0;
+		for (RunnableTest entity : this.testList) {
+			total += entity.countTest();
+		}
+		return total;
+	}
 }

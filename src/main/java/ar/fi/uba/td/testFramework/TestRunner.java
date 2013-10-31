@@ -6,17 +6,28 @@ package ar.fi.uba.td.testFramework;
 public class TestRunner {
 
 	RunnableTest test;
-
+	TestResults testOutput;
+	
 	public TestRunner(RunnableTest test) {
 		this.test = test;
 	}
 
 	public void runTests() {
 
-		TestResults testOutput = new TestResults();
+		testOutput = new TestResults();
 		test.run(testOutput);
-
+		testOutput.setNumberOfTotalTest(test.countTest());	
+		
 		TestOutput output = new TestOutput(testOutput);
 		output.showResults();
+	}
+	
+	public TestResults getResult()throws Exception{
+		if(testOutput != null){
+			return testOutput;
+		}	
+		else{ 
+			throw new Exception("No tests run.");
+		}	
 	}
 }

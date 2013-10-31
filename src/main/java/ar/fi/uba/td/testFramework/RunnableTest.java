@@ -12,5 +12,7 @@ public interface RunnableTest {
 	public void run(TestResults testOutput);
 
 	public void add(RunnableTest test);
+	
+	public int countTest();
 
 }

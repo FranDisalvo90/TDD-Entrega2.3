@@ -14,7 +14,7 @@ public class TestOutput {
 	}
 
 	public void showResults() {
-		System.out.println("Total tests: ....");
+		System.out.println("Total tests: "+ testResults.getNumberOfTotalTest());
 		System.out.println("Tests OK: " + testResults.getNumberOfPassedTests());
 		System.out.println("Tests failed: "
 				+ testResults.getNumberOfFailedTests());
