@@ -2,7 +2,7 @@ package ar.fi.uba.td.testFramework;
 
 import ar.fi.uba.td.testFramework.testCases.TestCaseCreatedPassesAreNotNull;
 import ar.fi.uba.td.testFramework.testCases.TestCaseDifferentPassesForTheSameConcertAreNotTheSame;
-import ar.fi.uba.td.testFramework.testCases.TestCaseIdenticalPassesAreTheSame;
+import ar.fi.uba.td.testFramework.testCases.TestCaseNotIdenticalPassesAreTheSameFailed;
 import ar.fi.uba.td.testFramework.testCases.TestCasePassesForDifferentConcertsAreNotEqual;
 import ar.fi.uba.td.testFramework.testCases.TestCasePassesForTheSameConcertAreEqual;
 
@@ -12,7 +12,7 @@ public class BackstagePassesTest {
 		RunnableTest mainTest = new TestSuite();
 		RunnableTest createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull();
 		RunnableTest differentPassesForTheSameConcertAreNotTheSame = new TestCaseDifferentPassesForTheSameConcertAreNotTheSame();
-		RunnableTest identicalPassesAreTheSame = new TestCaseIdenticalPassesAreTheSame();
+		RunnableTest identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed();
 		RunnableTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual();
 		RunnableTest passesForTheSameConcertAreEqual = new TestCasePassesForTheSameConcertAreEqual();
 		

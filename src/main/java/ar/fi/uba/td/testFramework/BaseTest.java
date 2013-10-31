@@ -27,4 +27,8 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 			testOutput.addFailedTest(ex.getMessage());
 		}
 	}
+	
+	public int countTest(){
+		return 1;
+	}
 }
