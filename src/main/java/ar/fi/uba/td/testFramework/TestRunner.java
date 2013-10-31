@@ -1,5 +1,8 @@
 package ar.fi.uba.td.testFramework;
 
+/**
+ * Class used to run RunnableTests.
+ */
 public class TestRunner {
 
 	RunnableTest test;

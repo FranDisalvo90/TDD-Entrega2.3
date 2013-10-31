@@ -2,6 +2,9 @@ package ar.fi.uba.td.testFramework;
 
 import java.util.ArrayList;
 
+/**
+ * Class used to store test results.
+ */
 public class TestOutput {
 
 	private int numTestOK;

@@ -2,6 +2,10 @@ package ar.fi.uba.td.testFramework;
 
 import java.util.ArrayList;
 
+/**
+ * Class that groups a set of BaseTests, modeling a test suite.
+ * This class works as the composite on the composite pattern.
+ */
 public class TestSuite implements RunnableTest {
 
 	private ArrayList<RunnableTest> testList;

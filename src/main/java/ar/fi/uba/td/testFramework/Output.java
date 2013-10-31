@@ -1,5 +1,8 @@
 package ar.fi.uba.td.testFramework;
 
+/**
+ * Class used to display the test results.
+ */
 public class Output {
 
 	private TestOutput testOutput;
