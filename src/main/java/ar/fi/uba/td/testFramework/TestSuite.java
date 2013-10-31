@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class TestSuite implements RunnableTest {
 
 	private ArrayList<RunnableTest> testList;
-
+		
 	public TestSuite() {
 		testList = new ArrayList<RunnableTest>();
 	}
@@ -25,7 +25,7 @@ public class TestSuite implements RunnableTest {
 	}
 	
 	public int countTest() {
-		int total = 0;
+		int total = 0;	
 		for (RunnableTest entity : this.testList) {
 			total += entity.countTest();
 		}
