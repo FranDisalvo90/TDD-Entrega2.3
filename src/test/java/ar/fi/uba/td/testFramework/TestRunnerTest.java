@@ -11,16 +11,16 @@ import ar.fi.uba.td.testFramework.testCases.TestCasePassesForDifferentConcertsAr
 
 public class TestRunnerTest {
 
-	RunnableTest mainTestSuite = new TestSuite();
+	RunnableTest mainTestSuite = new TestSuite("mainTest");
 	
 	@Before
 	public void setUp() throws Exception {
 		
-		RunnableTest testSuite1 = new TestSuite();
-		RunnableTest testSuite2 = new TestSuite();
-		RunnableTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual();
-		RunnableTest createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull();
-		RunnableTest identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed();
+		RunnableTest testSuite1 = new TestSuite("testSuite1");
+		RunnableTest testSuite2 = new TestSuite("testSuite2");
+		RunnableTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
+		RunnableTest createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
+		RunnableTest identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCaseAreTheSameFailed");
 		
 		testSuite1.add(passesForDifferentConcertsAreNotEqual);
 		testSuite2.add(createdPassesAreNotNull);

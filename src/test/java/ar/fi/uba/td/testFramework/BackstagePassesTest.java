@@ -1,7 +1,7 @@
 package ar.fi.uba.td.testFramework;
 
 import ar.fi.uba.td.testFramework.testCases.TestCaseCreatedPassesAreNotNull;
-import ar.fi.uba.td.testFramework.testCases.TestCaseDifferentPassesForTheSameConcertAreNotTheSame;
+import ar.fi.uba.td.testFramework.testCases.TestCaseDifferentPassesAreNotTheSame;
 import ar.fi.uba.td.testFramework.testCases.TestCaseNotIdenticalPassesAreTheSameFailed;
 import ar.fi.uba.td.testFramework.testCases.TestCasePassesForDifferentConcertsAreNotEqual;
 import ar.fi.uba.td.testFramework.testCases.TestCasePassesForTheSameConcertAreEqual;
@@ -9,12 +9,12 @@ import ar.fi.uba.td.testFramework.testCases.TestCasePassesForTheSameConcertAreEq
 public class BackstagePassesTest {
 
 	public static void main(String[] args) {
-		RunnableTest mainTest = new TestSuite();
-		RunnableTest createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull();
-		RunnableTest differentPassesForTheSameConcertAreNotTheSame = new TestCaseDifferentPassesForTheSameConcertAreNotTheSame();
-		RunnableTest identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed();
-		RunnableTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual();
-		RunnableTest passesForTheSameConcertAreEqual = new TestCasePassesForTheSameConcertAreEqual();
+		RunnableTest mainTest = new TestSuite("mainTest");
+		RunnableTest createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
+		RunnableTest differentPassesForTheSameConcertAreNotTheSame = new TestCaseDifferentPassesAreNotTheSame("TestCaseAreNotTheSame");
+		RunnableTest identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCaseNotIdenticalPassesAreTheSameFailed");
+		RunnableTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
+		RunnableTest passesForTheSameConcertAreEqual = new TestCasePassesForTheSameConcertAreEqual("TestCasePassesForTheSameConcertAreEqual");
 		
 		mainTest.add(createdPassesAreNotNull);
 		mainTest.add(differentPassesForTheSameConcertAreNotTheSame);

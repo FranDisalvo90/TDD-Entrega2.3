@@ -4,7 +4,11 @@ import ar.fi.uba.td.testFramework.BackstagePasses;
 import ar.fi.uba.td.testFramework.BaseTest;
 import ar.fi.uba.td.testFramework.TestFailedException;
 
-public class TestCaseDifferentPassesForTheSameConcertAreNotTheSame extends BaseTest{
+public class TestCaseDifferentPassesAreNotTheSame extends BaseTest{
+
+	public TestCaseDifferentPassesAreNotTheSame(String nameTest) {
+		super(nameTest);
+	}
 
 	@Override
 	public void runTest() throws TestFailedException {

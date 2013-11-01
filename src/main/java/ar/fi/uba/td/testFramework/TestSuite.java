@@ -9,16 +9,29 @@ import java.util.ArrayList;
 public class TestSuite implements RunnableTest {
 
 	private ArrayList<RunnableTest> testList;
+	String name;
 
-	public TestSuite() {
+	public TestSuite(String name) {
 		testList = new ArrayList<RunnableTest>();
+		this.name = name;
 	}
-
-	public void add(RunnableTest test) {
-		testList.add(test);
+	
+	private boolean repeatedName(String name){
+		for (RunnableTest test: this.testList) {
+			if(test.getName().equals(name))
+				return true;
+		}
+		return false;
 	}
-
+	
+	public void add(RunnableTest test){
+		if(!repeatedName(test.getName())){
+			testList.add(test);
+		}
+	}
+	
 	public void run(TestResults testOutput) {
+		this.setUp();
 		for (RunnableTest entity : this.testList) {
 			entity.run(testOutput);
 		}
@@ -31,4 +44,12 @@ public class TestSuite implements RunnableTest {
 		}
 		return total;
 	}
+	
+	public String getName(){
+		return name;
+	}
+
+	public void setUp() {}
+
+	public void tearDown() {}
 }

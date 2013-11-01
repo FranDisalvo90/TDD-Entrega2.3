@@ -10,22 +10,34 @@ public class TestResults {
 	private int numberOfPassedTests;
 	private int numberOfFailedTests;
 	private int numberOfTotalTests;
-	private ArrayList<String> failedTestsMessages;
+	private int numberOfErrorTests;
+	private ArrayList<String> passedTestsNames;
+	private ArrayList<String> failedTestsNames;
+	private ArrayList<String> errorTestsNames;
 
 	TestResults() {
 		numberOfPassedTests = 0;
 		numberOfFailedTests = 0;
+		numberOfErrorTests = 0;
 		numberOfTotalTests = 0;
-		failedTestsMessages = new ArrayList<String>();
+		failedTestsNames = new ArrayList<String>();
+		passedTestsNames = new ArrayList<String>();
+		errorTestsNames = new ArrayList<String>();
 	}
 
-	public void addPassedTest() {
+	public void addPassedTest(String message) {
 		numberOfPassedTests++;
+		passedTestsNames.add(message);
 	}
 
 	public void addFailedTest(String message) {
 		numberOfFailedTests++;
-		failedTestsMessages.add(message);
+		failedTestsNames.add(message);
+	}
+	
+	public void addErrorTest(String message){
+		numberOfErrorTests++;
+		errorTestsNames.add(message);
 	}
 
 	public void setNumberOfTotalTest(int numberOfTotalTests) {
@@ -40,11 +52,15 @@ public class TestResults {
 		return numberOfFailedTests;
 	}
 
+	public int getNumberOfErrorTests() {
+		return numberOfErrorTests;
+	}
+	
 	public int getNumberOfTotalTest() {
 		return numberOfTotalTests;
 	}
 
 	public ArrayList<String> getFailedTestsMessages() {
-		return failedTestsMessages;
+		return failedTestsNames;
 	}
 }

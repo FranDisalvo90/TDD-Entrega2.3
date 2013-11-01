@@ -10,6 +10,12 @@ public interface RunnableTest {
 
 	public void add(RunnableTest test);
 	
+	public void setUp();
+	
+	public void tearDown();
+	
 	public int countTest();
+	
+	public String getName();
 
 }

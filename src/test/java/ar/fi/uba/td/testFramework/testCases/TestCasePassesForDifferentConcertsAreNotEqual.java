@@ -6,6 +6,10 @@ import ar.fi.uba.td.testFramework.TestFailedException;
 
 public class TestCasePassesForDifferentConcertsAreNotEqual extends BaseTest {
 
+	public TestCasePassesForDifferentConcertsAreNotEqual(String nameTest) {
+		super(nameTest);
+	}
+
 	@Override
 	public void runTest() throws TestFailedException {
 		BackstagePasses somePasses = new BackstagePasses("someConcert", 1, 2);
