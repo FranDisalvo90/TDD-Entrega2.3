@@ -5,6 +5,7 @@ package ar.fi.uba.td.testFramework;
  * composite pattern.
  */
 public abstract class BaseTest extends Comparator implements RunnableTest {
+	private static final String REGULAR_EXPRESSION = "test";
 
 	String nameTest;
 	
@@ -23,23 +24,24 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 	 * @see ar.fi.uba.td.testFramework.RunnableTest#add(ar.fi.uba.td.testFramework.RunnableTest) 
 	 * Leaf node, unimplemented.
 	 */
-	public void add(RunnableTest test) {
-	}
 	
-	public boolean regularExpressionMatches(String regExpression){
-	    return nameTest.matches(regExpression);
+	private boolean regularExpressionMatches(){
+	    return this.nameTest.matches(REGULAR_EXPRESSION);
 	}
 
-	public void run(TestResults testOutput) {
-		this.setUp();
-		try {
-			this.runTest();
-			testOutput.addPassedTest(this.nameTest);
-		} catch (TestFailedException ex) {
-			testOutput.addFailedTest(ex.getMessage());
-		}catch (Exception ex) {
-			testOutput.addErrorTest(ex.getMessage());
-		}	
+	public void run(TestResults testOutput) { 
+		if (this.regularExpressionMatches()){
+			this.setUp();
+			try {
+				this.runTest();
+				testOutput.addPassedTest(this.nameTest);
+			} catch (TestFailedException ex) {
+				testOutput.addFailedTest(ex.getMessage());
+			}catch (Exception ex) {
+				testOutput.addErrorTest(ex.getMessage());
+			}
+			this.tearDown();
+		}
 	}
 
 	public int countTest() {
@@ -47,10 +49,12 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 	}
 	
 	public String getName(){
-		return nameTest;
+		return this.nameTest;
 	}
 	
 	public void setUp(){}
 	
 	public void tearDown(){}
+	
+	public void add(RunnableTest test) {}
 }

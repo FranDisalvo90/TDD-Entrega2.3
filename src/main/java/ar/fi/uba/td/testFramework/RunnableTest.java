@@ -8,7 +8,7 @@ public interface RunnableTest {
 
 	public void run(TestResults testOutput);
 
-	public void add(RunnableTest test);
+	//public void add(RunnableTest test);
 	
 	public void setUp();
 	
@@ -18,6 +18,6 @@ public interface RunnableTest {
 	
 	public String getName();
 	
-	public boolean regularExpressionMatches(String regExpression);
+	//public boolean regularExpressionMatches(String regExpression);
 
 }
