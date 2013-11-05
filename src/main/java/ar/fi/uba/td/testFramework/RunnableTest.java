@@ -17,5 +17,7 @@ public interface RunnableTest {
 	public int countTest();
 	
 	public String getName();
+	
+	public boolean regularExpressionMatches(String regExpression);
 
 }

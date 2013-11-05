@@ -8,48 +8,58 @@ import java.util.ArrayList;
  */
 public class TestSuite implements RunnableTest {
 
-	private ArrayList<RunnableTest> testList;
-	String name;
+    private ArrayList<RunnableTest> testList;
+    String nameTestSuite;
 
-	public TestSuite(String name) {
-		testList = new ArrayList<RunnableTest>();
-		this.name = name;
-	}
-	
-	private boolean repeatedName(String name){
-		for (RunnableTest test: this.testList) {
-			if(test.getName().equals(name))
-				return true;
-		}
-		return false;
-	}
-	
-	public void add(RunnableTest test){
-		if(!repeatedName(test.getName())){
-			testList.add(test);
-		}
-	}
-	
-	public void run(TestResults testOutput) {
-		this.setUp();
-		for (RunnableTest entity : this.testList) {
-			entity.run(testOutput);
-		}
-	}
+    public TestSuite(String name) {
+	testList = new ArrayList<RunnableTest>();
+	this.nameTestSuite = name;
+    }
 
-	public int countTest() {
-		int total = 0;
-		for (RunnableTest entity : this.testList) {
-			total += entity.countTest();
-		}
-		return total;
+    private boolean repeatedName(String name) {
+	for (RunnableTest test : this.testList) {
+	    if (test.getName().equals(name))
+		return true;
 	}
-	
-	public String getName(){
-		return name;
+	return false;
+    }
+    
+    public boolean regularExpressionMatches(String regExpression){
+	    return true;
+    }
+    
+    
+    public void add(RunnableTest test) {
+	if (!repeatedName(test.getName())) {
+	    testList.add(test);
 	}
+    }
 
-	public void setUp() {}
+    public void run(TestResults testOutput) {
+	for (RunnableTest entity : this.testList) {
+//	    if(entity.regularExpressionMatches(regExpression))
+	    	this.setUp();
+	    	entity.run(testOutput);
+	    	this.tearDown();
+	}
+    }
+   
+    public int countTest() {
+	int total = 0;
+	for (RunnableTest entity : this.testList) {
+	    total += entity.countTest();
+	}
+	return total;
+    }
 
-	public void tearDown() {}
+    public String getName() {
+	return nameTestSuite;
+    }
+
+    public void setUp() {
+    }
+
+    public void tearDown() {
+    }
+
 }

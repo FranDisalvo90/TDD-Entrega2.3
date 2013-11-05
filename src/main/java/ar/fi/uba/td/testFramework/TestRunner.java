@@ -7,9 +7,11 @@ public class TestRunner {
 
 	RunnableTest test;
 	TestResults testOutput;
-
+//	String regExpression;
+	
 	public TestRunner(RunnableTest test) {
 		this.test = test;
+//		regExpression= ".*";
 	}
 
 	public void runTests() {

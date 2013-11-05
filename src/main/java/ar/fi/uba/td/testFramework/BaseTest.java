@@ -25,6 +25,10 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 	 */
 	public void add(RunnableTest test) {
 	}
+	
+	public boolean regularExpressionMatches(String regExpression){
+	    return nameTest.matches(regExpression);
+	}
 
 	public void run(TestResults testOutput) {
 		this.setUp();

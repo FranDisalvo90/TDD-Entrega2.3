@@ -1,32 +1,36 @@
 package ar.fi.uba.td.testFramework;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import ar.fi.uba.td.testFramework.testCases.TestCaseCreatedPassesAreNotNull;
+import ar.fi.uba.td.testFramework.testCases.TestCasePassesForTheSameConcertAreEqual;
+
 
 public class FrameworkTest {
 
 	RunnableTest mainTest;
-	RunnableTest testSuite; 
-	RunnableTest createdPasses;
+	RunnableTest testSuiteA; 
+	RunnableTest passesForTheSameConcertA;
+	TestRunner runner;
 	
 	@Before
 	public void setUp() throws Exception {
 		mainTest = new TestSuite("mainTest");
-		testSuite = new TestSuite("testSuite"); 
-		createdPasses = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
-		testSuite.add(createdPasses);
-		mainTest.add(testSuite);
+		testSuiteA = new TestSuite("testSuite"); 
+		passesForTheSameConcertA = new TestCasePassesForTheSameConcertAreEqual("TestCasePassesForTheSameConcertAreEqual");
+		testSuiteA.add(passesForTheSameConcertA);
+		mainTest.add(testSuiteA);
+		TestRunner runner = new TestRunner(mainTest);
 	}	
 	
 	@Test
 	public void unrepeatedTestBaseNames() {
 	
-		RunnableTest createdPasses2 = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
-		testSuite.add(createdPasses2);
+		RunnableTest passesForTheSameConcertB = new TestCasePassesForTheSameConcertAreEqual("TestCasePassesForTheSameConcertAreEqual");
+		testSuiteA.add(passesForTheSameConcertB );
 		
 		assertTrue(mainTest.countTest() == 1);
 	}
@@ -34,14 +38,22 @@ public class FrameworkTest {
 	@Test
 	public void unrepeatedTestSuiteNames() {
 	
-		RunnableTest testSuite2 = new TestSuite("testSuite");
-		testSuite2.add(createdPasses);
-		mainTest.add(testSuite2);
+		RunnableTest testSuiteB = new TestSuite("testSuite");
+		testSuiteB.add(passesForTheSameConcertA);
+		mainTest.add(testSuiteB);
 		
 		assertTrue(mainTest.countTest() == 1);
 	}
 	
 	
-	
-	
+	public void testSetUpTestBase(){
+		
+		RunnableTest createdPasses = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
+		
+	}
+
+	public void testSetUpTestSuite(){
+		
+	}
+		
 }
