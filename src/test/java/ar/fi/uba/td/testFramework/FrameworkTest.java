@@ -11,8 +11,8 @@ import ar.fi.uba.td.testFramework.testCases.TestCasePassesForTheSameConcertAreEq
 
 public class FrameworkTest {
 
-	RunnableTest mainTest;
-	RunnableTest testSuiteA; 
+	TestSuite mainTest;
+	TestSuite testSuiteA; 
 	RunnableTest passesForTheSameConcertA;
 	TestRunner runner;
 	
@@ -38,7 +38,7 @@ public class FrameworkTest {
 	@Test
 	public void unrepeatedTestSuiteNames() {
 	
-		RunnableTest testSuiteB = new TestSuite("testSuite");
+		TestSuite testSuiteB = new TestSuite("testSuite");
 		testSuiteB.add(passesForTheSameConcertA);
 		mainTest.add(testSuiteB);
 		

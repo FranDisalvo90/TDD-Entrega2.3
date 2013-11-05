@@ -5,8 +5,13 @@ package ar.fi.uba.td.testFramework;
  * composite pattern.
  */
 public abstract class BaseTest extends Comparator implements RunnableTest {
-	private static final String REGULAR_EXPRESSION = "test";
-
+	private static String regex = "test";
+	
+	public static void SetRegex(String regex) {
+		BaseTest.regex = regex;
+	}
+	
+	
 	String nameTest;
 	
 	public BaseTest(String nameTest){
@@ -26,7 +31,7 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 	 */
 	
 	private boolean regularExpressionMatches(){
-	    return this.nameTest.matches(REGULAR_EXPRESSION);
+	    return this.nameTest.matches(regex);
 	}
 
 	public void run(TestResults testOutput) { 
