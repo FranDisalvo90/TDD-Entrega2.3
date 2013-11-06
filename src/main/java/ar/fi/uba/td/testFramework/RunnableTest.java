@@ -9,7 +9,7 @@ public interface RunnableTest {
 	public void run(TestResults testOutput);
 
 	public void setUp();
-	
+
 	public void tearDown();
 	
 	public int countTest();

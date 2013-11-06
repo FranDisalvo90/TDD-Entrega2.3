@@ -63,4 +63,5 @@ public class TestResults {
 	public ArrayList<String> getFailedTestsMessages() {
 		return failedTestsNames;
 	}
+
 }

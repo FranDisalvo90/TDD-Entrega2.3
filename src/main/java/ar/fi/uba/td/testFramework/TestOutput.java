@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Class used to display the test results.
  */
-public class TestOutput {
+public class TestOutput{
 
 	private TestResults testResults;
 
