@@ -1,6 +1,6 @@
 package ar.fi.uba.td.testFramework;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,9 +30,7 @@ public class FrameworkTest {
 	public void unrepeatedTestBaseNames() {
 	
 		RunnableTest passesForTheSameConcertB = new TestCasePassesForTheSameConcertAreEqual("TestCasePassesForTheSameConcertAreEqual");
-		testSuiteA.add(passesForTheSameConcertB );
-		
-		assertTrue(mainTest.countTest() == 1);
+		assertEquals(testSuiteA.add(passesForTheSameConcertB ),false);
 	}
 	
 	@Test
@@ -40,9 +38,7 @@ public class FrameworkTest {
 	
 		TestSuite testSuiteB = new TestSuite("testSuite");
 		testSuiteB.add(passesForTheSameConcertA);
-		mainTest.add(testSuiteB);
-		
-		assertTrue(mainTest.countTest() == 1);
+		assertEquals(mainTest.add(testSuiteB),false);
 	}
 	
 	

@@ -8,10 +8,8 @@ public interface RunnableTest {
 
 	public void run();
 
-	//public void add(RunnableTest test);
-	
 	//public void setUp();
-	
+
 	//public void tearDown();
 	
 	public int countTest();
@@ -20,6 +18,5 @@ public interface RunnableTest {
 
 	public void checkOutput(TestSuite testSuite);
 	
-	//public boolean regularExpressionMatches(String regExpression);
 
 }

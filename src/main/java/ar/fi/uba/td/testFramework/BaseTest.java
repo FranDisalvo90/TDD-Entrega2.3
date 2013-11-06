@@ -5,7 +5,7 @@ package ar.fi.uba.td.testFramework;
  * composite pattern.
  */
 public abstract class BaseTest extends Comparator implements RunnableTest {
-	private static String regex;
+	private static String regex = "test";
 	String nameTest;
 	private Output myOutput;
 	
@@ -17,13 +17,6 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 	 * Abstract method where the user will define the actual test.
 	 */
 	public abstract void runTest() throws TestFailedException;
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see ar.fi.uba.td.testFramework.RunnableTest#add(ar.fi.uba.td.testFramework.RunnableTest) 
-	 * Leaf node, unimplemented.
-	 */
 	
 	public static void SetRegex(String regex) {
 		BaseTest.regex = regex;
@@ -49,7 +42,9 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 	}
 
 	public int countTest() {
-		return 1;
+	    	if (this.regularExpressionMatches())
+	    	    return 1;
+	    	return 0;
 	}
 	
 	public String getName(){

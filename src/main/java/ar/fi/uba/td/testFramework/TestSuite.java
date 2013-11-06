@@ -29,12 +29,13 @@ public class TestSuite implements RunnableTest {
 		return this.myOutput;
 	}
 
-	public void add(RunnableTest test) {
+	public boolean add(RunnableTest test) {
 		if (!repeatedName(test.getName())) {
 			testList.add(test);
 			test.checkOutput(this);
-			
+			return true;
 		}
+		return false;
 	}
 
 	public void run() {
@@ -44,7 +45,7 @@ public class TestSuite implements RunnableTest {
 			//this.tearDown();
 		}
 	}
-
+	
 	public int countTest() {
 		int total = 0;
 		for (RunnableTest entity : this.testList) {
@@ -62,10 +63,10 @@ public class TestSuite implements RunnableTest {
 		testSuite.GetOutput().addOutput(this.GetOutput());
 	}
 
-	/*public void setUp() {
+	public void setUp() {
 	}
 
 	public void tearDown() {
 	}
-*/
+	
 }
