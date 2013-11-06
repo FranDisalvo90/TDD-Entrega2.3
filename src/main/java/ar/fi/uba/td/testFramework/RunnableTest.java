@@ -6,7 +6,7 @@ package ar.fi.uba.td.testFramework;
  */
 public interface RunnableTest {
 
-	public void run(TestResults testOutput);
+	public void run();
 
 	//public void add(RunnableTest test);
 	
@@ -17,6 +17,8 @@ public interface RunnableTest {
 	public int countTest();
 	
 	public String getName();
+
+	public void checkOutput(TestSuite testSuite);
 	
 	//public boolean regularExpressionMatches(String regExpression);
 

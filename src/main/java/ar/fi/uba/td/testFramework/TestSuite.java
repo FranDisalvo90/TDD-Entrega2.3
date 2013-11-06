@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class TestSuite implements RunnableTest {
 
 	private ArrayList<RunnableTest> testList;
+	Output myOutput;
 	String nameTestSuite;
 
 	public TestSuite(String name) {
@@ -23,17 +24,23 @@ public class TestSuite implements RunnableTest {
 		}
 		return false;
 	}
+	
+	public Output GetOutput() {
+		return this.myOutput;
+	}
 
 	public void add(RunnableTest test) {
 		if (!repeatedName(test.getName())) {
 			testList.add(test);
+			test.checkOutput(this);
+			
 		}
 	}
 
-	public void run(TestResults testResult) {
+	public void run() {
 		for (RunnableTest entity : this.testList) {
 			//this.setUp();
-			entity.run(testResult);
+			entity.run();
 			//this.tearDown();
 		}
 	}
@@ -48,6 +55,11 @@ public class TestSuite implements RunnableTest {
 
 	public String getName() {
 		return nameTestSuite;
+	}
+
+	@Override
+	public void checkOutput(TestSuite testSuite) {
+		testSuite.GetOutput().addOutput(this.GetOutput());
 	}
 
 	/*public void setUp() {

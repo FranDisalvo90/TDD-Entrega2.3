@@ -5,19 +5,14 @@ package ar.fi.uba.td.testFramework;
  * composite pattern.
  */
 public abstract class BaseTest extends Comparator implements RunnableTest {
-	private static String regex = "test";
-	
-	public static void SetRegex(String regex) {
-		BaseTest.regex = regex;
-	}
-	
-	
+	private static String regex;
 	String nameTest;
+	private Output myOutput;
 	
 	public BaseTest(String nameTest){
 		this.nameTest = nameTest;
 	}
-		
+	
 	/**
 	 * Abstract method where the user will define the actual test.
 	 */
@@ -30,20 +25,24 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 	 * Leaf node, unimplemented.
 	 */
 	
+	public static void SetRegex(String regex) {
+		BaseTest.regex = regex;
+	}
+	
 	private boolean regularExpressionMatches(){
 	    return this.nameTest.matches(regex);
 	}
 
-	public void run(TestResults testResult) { 
+	public void run() { 
 		if (this.regularExpressionMatches()){
 			this.setUp();
 			try {
 				this.runTest();
-				testResult.addPassedTest(this.nameTest);
+				this.myOutput.addPassedTest(this.nameTest);
 			} catch (TestFailedException ex) {
-				testResult.addFailedTest(ex.getMessage());
+				this.myOutput.addFailedTest(this.nameTest, ex.getMessage());
 			}catch (Exception ex) {
-				testResult.addErrorTest(ex.getMessage());
+				this.myOutput.addErrorTest(this.nameTest, ex.getMessage());
 			}
 			this.tearDown();
 		}
@@ -61,5 +60,8 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 	
 	public void tearDown(){}
 	
-	public void add(RunnableTest test) {}
+	public void checkOutput(TestSuite testSuite) {
+		this.myOutput = testSuite.GetOutput();
+	}
+	
 }

@@ -8,7 +8,6 @@ public class Output {
 	private ArrayList<String> passedTestsNames;
 	private ArrayList<String> failedTestsNames;
 	private ArrayList<String> errorTestsNames;
-	private TestResults myresults;
 	
 	private String name;
 	
@@ -45,11 +44,11 @@ public class Output {
 		this.passedTestsNames.add(name);
 	}
 
-	public void addFailedTest(String name) {
+	public void addFailedTest(String name, String string) {
 		this.failedTestsNames.add(name);
 	}
 	
-	public void addErrorTest(String name){
+	public void addErrorTest(String name, String string){
 		this.errorTestsNames.add(name);
 	}
 

@@ -5,26 +5,24 @@ package ar.fi.uba.td.testFramework;
  */
 public class TestRunner {
 
-	RunnableTest test;
-	TestResults testOutput;
+	TestSuite test;
+	Output testOutput;
 //	String regExpression;
 	
-	public TestRunner(RunnableTest test) {
+	public TestRunner(TestSuite test) {
 		this.test = test;
 //		regExpression= ".*";
 	}
 
 	public void runTests() {
-
-		testOutput = new TestResults();
-		test.run(testOutput);
-		testOutput.setNumberOfTotalTest(test.countTest());
-
-		TestOutput output = new TestOutput(testOutput);
-		output.showResults();
+		test.run();
+		//testOutput.setNumberOfTotalTest(test.countTest());
+		testOutput = this.test.GetOutput();
+		//TestOutput output = new TestOutput(testOutput);
+		testOutput.showResults("Main");
 	}
 
-	public TestResults getResult() throws Exception {
+	public Output getResult() throws Exception {
 		if (testOutput != null) {
 			return testOutput;
 		} else {
@@ -32,3 +30,4 @@ public class TestRunner {
 		}
 	}
 }
+
