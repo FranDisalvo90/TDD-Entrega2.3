@@ -8,58 +8,54 @@ import java.util.ArrayList;
  */
 public class TestSuite implements RunnableTest {
 
-    private ArrayList<RunnableTest> testList;
-    String nameTestSuite;
+	private ArrayList<RunnableTest> testList;
+	String nameTestSuite;
 
-    public TestSuite(String name) {
-	testList = new ArrayList<RunnableTest>();
-	this.nameTestSuite = name;
-    }
-
-    private boolean repeatedName(String name) {
-	for (RunnableTest test : this.testList) {
-	    if (test.getName().equals(name))
-		return true;
+	public TestSuite(String name) {
+		testList = new ArrayList<RunnableTest>();
+		this.nameTestSuite = name;
 	}
-	return false;
-    }
-    
-    public boolean regularExpressionMatches(String regExpression){
-	    return true;
-    }
-    
-    
-    public void add(RunnableTest test) {
-	if (!repeatedName(test.getName())) {
-	    testList.add(test);
+
+	private boolean repeatedName(String name) {
+		for (RunnableTest test : this.testList) {
+			if (test.getName().equals(name))
+				return true;
+		}
+		return false;
 	}
-    }
 
-    public void run(TestResults testOutput) {
-	for (RunnableTest entity : this.testList) {
-//	    if(entity.regularExpressionMatches(regExpression))
-	    	this.setUp();
-	    	entity.run(testOutput);
-	    	this.tearDown();
+	public boolean add(RunnableTest test) {
+		if (!repeatedName(test.getName())) {
+			testList.add(test);
+			return true;
+		}
+		return false;
 	}
-    }
-   
-    public int countTest() {
-	int total = 0;
-	for (RunnableTest entity : this.testList) {
-	    total += entity.countTest();
+
+	public void run(TestResults testOutput) {
+		for (RunnableTest entity : this.testList) {
+			this.setUp();
+			entity.run(testOutput);
+			this.tearDown();
+		}
 	}
-	return total;
-    }
+	
+	public int countTest() {
+		int total = 0;
+		for (RunnableTest entity : this.testList) {
+			total += entity.countTest();
+		}
+		return total;
+	}
 
-    public String getName() {
-	return nameTestSuite;
-    }
+	public String getName() {
+		return nameTestSuite;
+	}
 
-    public void setUp() {
-    }
+	public void setUp() {
+	}
 
-    public void tearDown() {
-    }
+	public void tearDown() {
+	}
 
 }

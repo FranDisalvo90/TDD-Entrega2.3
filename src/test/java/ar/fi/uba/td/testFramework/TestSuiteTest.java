@@ -27,7 +27,7 @@ public class TestSuiteTest {
 	
 	@Test
 	public void testTestSuitePassedTest() {
-		RunnableTest testSuite = new TestSuite("testSuite ");
+		TestSuite testSuite = new TestSuite("testSuite ");
 		RunnableTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCaseAreNotTheSame");
 		TestResults testResult = new TestResults();
 		
@@ -38,9 +38,9 @@ public class TestSuiteTest {
 
 	@Test
 	public void testTestSuiteCountTest() {
-		RunnableTest mainTestSuite = new TestSuite("mainTestSuite");
-		RunnableTest testSuite1 = new TestSuite("testSuite1");
-		RunnableTest testSuite2 = new TestSuite("testSuite2");
+		TestSuite mainTestSuite = new TestSuite("mainTestSuite");
+		TestSuite testSuite1 = new TestSuite("testSuite1");
+		TestSuite testSuite2 = new TestSuite("testSuite2");
 		RunnableTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCaseAreNotTheSame");
 		RunnableTest createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
 		

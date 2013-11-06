@@ -9,12 +9,12 @@ import ar.fi.uba.td.testFramework.testCases.TestCasePassesForTheSameConcertAreEq
 public class BackstagePassesTest {
 
 	public static void main(String[] args) {
-		RunnableTest mainTest = new TestSuite("mainTest");
-		RunnableTest createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
-		RunnableTest differentPassesForTheSameConcertAreNotTheSame = new TestCaseDifferentPassesAreNotTheSame("TestCaseAreNotTheSame");
-		RunnableTest identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCaseNotIdenticalPassesAreTheSameFailed");
-		RunnableTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
-		RunnableTest passesForTheSameConcertAreEqual = new TestCasePassesForTheSameConcertAreEqual("TestCasePassesForTheSameConcertAreEqual");
+		TestSuite mainTest = new TestSuite("mainTest");
+		TestCaseCreatedPassesAreNotNull createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
+		TestCaseDifferentPassesAreNotTheSame differentPassesForTheSameConcertAreNotTheSame = new TestCaseDifferentPassesAreNotTheSame("TestCaseAreNotTheSame");
+		TestCaseNotIdenticalPassesAreTheSameFailed identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCaseNotIdenticalPassesAreTheSameFailed");
+		TestCasePassesForDifferentConcertsAreNotEqual passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
+		TestCasePassesForTheSameConcertAreEqual passesForTheSameConcertAreEqual = new TestCasePassesForTheSameConcertAreEqual("TestCasePassesForTheSameConcertAreEqual");
 		
 		mainTest.add(createdPassesAreNotNull);
 		mainTest.add(differentPassesForTheSameConcertAreNotTheSame);
