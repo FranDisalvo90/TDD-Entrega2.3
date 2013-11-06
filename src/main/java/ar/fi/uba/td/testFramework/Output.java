@@ -23,23 +23,43 @@ public class Output {
 		this.otherTest.add(newOutput);
 	}
 	
-	public boolean showResults(String prefix) {
+	public void showResults(String prefix) {
 		for (Output output : otherTest) {
 			output.showResults(prefix+"."+this.name);
 		}
-		this.showMyTest(prefix);
-		return this.getGlobalResult();
+		this.showMyTest(prefix+"."+this.name);
 	}
 
-	private boolean getGlobalResult() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	private void showMyTest(String prefix) {
-		// TODO Auto-generated method stub	
+	private void showMyTest(String name) {
+		System.out.println(name);
+		System.out.println("-------------");
+		this.printOks();
+		this.printError();
+		this.printFail();
+		System.out.println("==============");
+		System.out.println("Tests OK: " + this.getNumberOfPassedTests());
+		System.out.println("Tests ERROR: "+ this.getNumberOfErrorTests());
+		System.out.println("Tests failed: "+ this.getNumberOfFailedTests());
 	}
 	
+	private void printFail() {
+		for(String fail: this.failedTestsNames) {
+			System.out.println(fail + "  [ERROR]");
+		}
+	}
+
+	private void printError() {
+		for(String error: this.errorTestsNames) {
+			System.out.println(error + "  [ERROR]");
+		}		
+	}
+
+	private void printOks() {
+		for(String ok: this.passedTestsNames) {
+			System.out.println(ok + "  [OK]");
+		}
+	}
+
 	public void addPassedTest(String name) {
 		this.passedTestsNames.add(name);
 	}
