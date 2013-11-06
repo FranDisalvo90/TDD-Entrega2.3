@@ -34,16 +34,16 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 	    return this.nameTest.matches(regex);
 	}
 
-	public void run(TestResults testOutput) { 
+	public void run(TestResults testResult) { 
 		if (this.regularExpressionMatches()){
 			this.setUp();
 			try {
 				this.runTest();
-				testOutput.addPassedTest(this.nameTest);
+				testResult.addPassedTest(this.nameTest);
 			} catch (TestFailedException ex) {
-				testOutput.addFailedTest(ex.getMessage());
+				testResult.addFailedTest(ex.getMessage());
 			}catch (Exception ex) {
-				testOutput.addErrorTest(ex.getMessage());
+				testResult.addErrorTest(ex.getMessage());
 			}
 			this.tearDown();
 		}

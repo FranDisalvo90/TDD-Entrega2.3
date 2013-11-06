@@ -30,11 +30,11 @@ public class TestSuite implements RunnableTest {
 		}
 	}
 
-	public void run(TestResults testOutput) {
+	public void run(TestResults testResult) {
 		for (RunnableTest entity : this.testList) {
-			this.setUp();
-			entity.run(testOutput);
-			this.tearDown();
+			//this.setUp();
+			entity.run(testResult);
+			//this.tearDown();
 		}
 	}
 
@@ -50,10 +50,10 @@ public class TestSuite implements RunnableTest {
 		return nameTestSuite;
 	}
 
-	public void setUp() {
+	/*public void setUp() {
 	}
 
 	public void tearDown() {
 	}
-
+*/
 }

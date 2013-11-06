@@ -10,9 +10,9 @@ public interface RunnableTest {
 
 	//public void add(RunnableTest test);
 	
-	public void setUp();
+	//public void setUp();
 	
-	public void tearDown();
+	//public void tearDown();
 	
 	public int countTest();
 	
