@@ -44,7 +44,7 @@ public class Output {
 	
 	private void printFail() {
 		for(String fail: this.failedTestsNames) {
-			System.out.println(fail + "  [ERROR]");
+			System.out.println(fail + "  [FAIL]");
 		}
 	}
 

@@ -9,7 +9,7 @@ import ar.fi.uba.td.testFramework.testCases.TestCasePassesForDifferentConcertsAr
 
 public class TestSuiteTest {
 
-	@Test
+	/*@Test
 	public void testEmptyTestSuiteTotalTest() {
 		RunnableTest emptyTestSuite = new TestSuite("emptyTestSuite");
 		TestResults testResult = new TestResults();
@@ -51,5 +51,5 @@ public class TestSuiteTest {
 			
 		assertTrue(mainTestSuite.countTest() == 2);
 	}
-	
+	*/
 }
