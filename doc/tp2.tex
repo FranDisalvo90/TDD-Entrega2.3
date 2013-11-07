@@ -111,11 +111,6 @@ El cliente de la estructura composite es una clase llamada TestRunner que
 simplemente instancia una nueva clase TestResult y la pasa por parámetro para 
 que se almacene allí la información de la corrida.
 
-Finalmente existe una clase Comparator que es la encargada de implementar las 
-aserciones.
-
-Se muestra toda la estructura de la primera parte de la entrega en la figura 1.
-
 \begin{figure}[h!]
 \begin{center}
 	\includegraphics[scale=0.50,angle=90]{./ClassDiagram}
@@ -123,6 +118,12 @@ Se muestra toda la estructura de la primera parte de la entrega en la figura 1.
 	\caption{diagrama de clases del trabajo práctico (entrega 1).}
 \end{figure}
 
+Finalmente existe una clase Comparator que es la encargada de implementar las 
+aserciones.
+
+Se muestra toda la estructura de la primera parte de la entrega en la figura 1.
+
+\subsection{Segunda entrega}
 Para la segunda entrega se hizo uso del patrón de diseño Template Method para 
 implementar la funcionalidad de fixture de testing. Se conservó la estructura
 de árbol con el patrón Composite para garantizar la jerarquía de suites y cases
@@ -130,6 +131,14 @@ ilimitada.
 
 Se utilizó además el patrón Prototype para clonar instancias de los setUps, de
 manera que los test cases no modifiquen la información de los fixtures.
+Se implementó la clase TestContext para agrupar estas funcionalidades; que a su
+vez está contenida en una llamada TestInformation, que aloja el resultado de los
+tests corridos, la salida, y la expresión regular a aplicar, usando una estrategia
+de tipo Parameter Object.
+
+Pudimos comprobar que el diseño anterior estuvo abierto a modificaciones, dado que
+las funcionalidades requeridas en esta segunda parte fueron agregadas casi sin
+hacer mayores modificaciones a la estructura anterior.
 
 Para esta entrega se implementó el diagrama de clases mostrado en la figura 2.
 
@@ -139,6 +148,7 @@ Para esta entrega se implementó el diagrama de clases mostrado en la figura 2.
 \end{center}
 	\caption{diagrama de clases del trabajo práctico (entrega 2).}
 \end{figure}
+
 
 \subsection{Responsabilidades de las clases}
 Se describe a continuación la responsabilidad de cada clase:
@@ -171,12 +181,10 @@ Se describe a continuación la responsabilidad de cada clase:
 
 \end{itemize}
 
-
 \section{Pruebas}
-Se incluyen con la implementación dos sets de pruebas:
+Se incluyen con la implementación varios sets de pruebas:
 
 	\begin{enumerate}
-	
 	\item Pruebas unitarias: estas pruebas verifican el funcionamiento de 
 	las clases desarrolladas usando jUnit 4. 
 	
@@ -194,6 +202,19 @@ Se incluyen con la implementación dos sets de pruebas:
 	
 	El mismo de set de pruebas se corrió con jUnit 4 para mostrar que 
 	efectivamente los resultados obtenidos son equivalentes.
+		\begin{enumerate}
+		\item Pruebas de comparación: que verifican que funcione 
+		correctamente las aserciones del framework ante diferentes 
+		situaciones.
+		\item Pruebas de anidación: que verifican que se ejecuten todos
+		los casos de prueba en una corrida, anidando varios niveles
+		de suites con casos.
+		\item Pruebas de expresiones regulares: que verifican que se
+		respete que sólo se corran aquéllas pruebas que cumplan con
+		la expresión regular indicada.
+		\item Pruebas de fixture: que verifican que se respeten los setUps
+		y los tearDowns que corresponden para cada corrida.
+		\end{enumerate}
 	\end{enumerate}
 
 \end{document}
