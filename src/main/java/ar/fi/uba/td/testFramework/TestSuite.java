@@ -44,13 +44,14 @@ public class TestSuite implements RunnableTest {
 		
 		information.setParentName(fullTestName);
 		information.getResults().addToOutputTestSuite(fullTestName);
+		
+		/* Sorts the list so that the output is prettier. */
 		Collections.sort(testList);
 
 		this.setUp(information.getContext());
 		for (RunnableTest entity : this.testList) {
 			entity.run(information.clone());
 		}
-
 		this.tearDown(information.getContext());
 	}
 
