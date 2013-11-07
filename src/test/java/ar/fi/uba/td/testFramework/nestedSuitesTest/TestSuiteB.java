@@ -10,13 +10,8 @@ public class TestSuiteB extends TestSuite {
 	}
 	
 	public void setUp(TestContext context) {
-		System.out.println("TestSuiteB is setting up.");
 		MockClass mock = new MockClass("Using TestSuiteB context!");
 		context.addElement("mockB", mock);
 	}
 	
-	public void tearDown() {
-		System.out.println("TestSuiteB is tearing down.");
-	}
-
 }

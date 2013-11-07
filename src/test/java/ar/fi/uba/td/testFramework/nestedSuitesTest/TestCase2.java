@@ -9,10 +9,16 @@ public class TestCase2 extends BaseTest {
 	public TestCase2(String nameTest) {
 		super(nameTest);
 	}
+	
+	public void setUp(TestContext context){
+	    	MockClass mock = (MockClass)context.getElement("mockA");
+	    	mock.setText("Change text");
+	}
 
 	@Override
 	public void runTest(TestContext context) throws TestFailedException {
-		assertTrue(true, "Passing test");
+	    	MockClass mock = (MockClass)context.getElement("mockA");
+	    	assertEquals(mock.getText(),"Change text", "Passing test");
 	}
 
 }

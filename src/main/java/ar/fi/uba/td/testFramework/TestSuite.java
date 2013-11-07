@@ -24,7 +24,8 @@ public class TestSuite implements RunnableTest {
 		}
 		return false;
 	}
-
+	
+	/*Returns true if the test's name isn't repeated, false in the other case*/
 	public boolean add(RunnableTest test) {
 		if (!repeatedName(test.getName())) {
 			testList.add(test);

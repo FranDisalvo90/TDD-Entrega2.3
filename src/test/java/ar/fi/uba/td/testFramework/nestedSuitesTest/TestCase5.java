@@ -14,10 +14,6 @@ public class TestCase5 extends BaseTest {
 	public void runTest(TestContext context) throws TestFailedException {
 		assertTrue(true, "Passing test");
 	}
-	
-	public void setUp(TestContext context) {
-		System.out.println("TestCase5 is setting up.");
 
-	}
 
 }

@@ -12,7 +12,8 @@ public class TestCase3 extends BaseTest {
 
 	@Override
 	public void runTest(TestContext context) throws TestFailedException {
-		assertTrue(true, "Passing test");
+	    	MockClass mock = (MockClass)context.getElement("mockA");
+	    	assertEquals(mock.getText(),"Using TestSuiteA context!", "Passing test");
 	}
 
 }

@@ -30,9 +30,9 @@ public class NestedSuitesTest {
 
 		TestSuite testSuiteA = new TestSuiteA("TestSuiteA");
 		TestSuite testSuiteB = new TestSuiteB("TestSuiteB");
-		TestSuite testSuiteC = new TestSuiteC("TestSuiteC");
-		TestSuite testSuiteD = new TestSuiteD("TestSuiteD");
-		TestSuite testSuiteE = new TestSuiteE("TestSuiteE");
+		TestSuite testSuiteC = new TestSuite("TestSuiteC");
+		TestSuite testSuiteD = new TestSuite("TestSuiteD");
+		TestSuite testSuiteE = new TestSuite("TestSuiteE");
 		
 		testSuiteC.add(testCase7);
 		testSuiteC.add(testCase8);
