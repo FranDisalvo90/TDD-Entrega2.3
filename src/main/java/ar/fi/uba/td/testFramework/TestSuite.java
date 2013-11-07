@@ -34,9 +34,15 @@ public class TestSuite implements RunnableTest {
 	}
 
 	public void run(TestInformation information) {
-		String fullTestName = information.getParentName() + "." + this.name;
+		String parentName = information.getParentName();
+		String fullTestName;
+		
+		if(parentName == null || parentName.isEmpty())
+			fullTestName = this.name;
+		else
+			fullTestName = parentName + "." + this.name;
+		
 		information.setParentName(fullTestName);
-
 		information.getResults().addToOutputTestSuite(fullTestName);
 		Collections.sort(testList);
 

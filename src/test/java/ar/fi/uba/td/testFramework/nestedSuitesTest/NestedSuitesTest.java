@@ -28,7 +28,7 @@ public class NestedSuitesTest {
 		BaseTest  testCase13 = new TestCase13("TestCase13");
 		BaseTest  testCase14 = new TestCase14("TestCase14");
 
-		TestSuite  testSuiteA = new TestSuiteA("TestSuite1");
+		TestSuite  testSuiteA = new TestSuiteA("TestSuiteA");
 		TestSuite  testSuiteB = new TestSuiteB("TestSuiteB");
 		TestSuite  testSuiteC = new TestSuiteC("TestSuiteC");
 		TestSuite testSuiteD = new TestSuiteD("TestSuiteD");
