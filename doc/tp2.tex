@@ -87,6 +87,9 @@ http://junit.sourceforge.net/javadoc/org/junit/Assert.html}
 			referencia nula o no, respectivamente.
 	\end{itemize}
 	
+Para la segunda parte del trabajo se especificó agregar un set de funcionalidades tales como
+ejecución de tests de acuerdo a una expresión regular, implementación de un fixture y permitir
+la carga de test suites en niveles ilimitados.
 	
 \section{Diseño}
 El grupo decidió usar el patrón de diseño composite dado que nos brinda la 
@@ -111,13 +114,30 @@ que se almacene allí la información de la corrida.
 Finalmente existe una clase Comparator que es la encargada de implementar las 
 aserciones.
 
-Se muestra toda la estructura en la figura 1.
+Se muestra toda la estructura de la primera parte de la entrega en la figura 1.
 
-\begin{figure}[h]
+\begin{figure}[h!]
 \begin{center}
 	\includegraphics[scale=0.50,angle=90]{./ClassDiagram}
 \end{center}
-	\caption{diagrama de clases del trabajo práctico.}
+	\caption{diagrama de clases del trabajo práctico (entrega 1).}
+\end{figure}
+
+Para la segunda entrega se hizo uso del patrón de diseño Template Method para 
+implementar la funcionalidad de fixture de testing. Se conservó la estructura
+de árbol con el patrón Composite para garantizar la jerarquía de suites y cases
+ilimitada.
+
+Se utilizó además el patrón Prototype para clonar instancias de los setUps, de
+manera que los test cases no modifiquen la información de los fixtures.
+
+Para esta entrega se implementó el diagrama de clases mostrado en la figura 2.
+
+\begin{figure}[h!]
+\begin{center}
+	\includegraphics[scale=0.50,angle=90]{./ClassDiagram2}
+\end{center}
+	\caption{diagrama de clases del trabajo práctico (entrega 2).}
 \end{figure}
 
 \subsection{Responsabilidades de las clases}
@@ -140,7 +160,14 @@ Se describe a continuación la responsabilidad de cada clase:
 		
 	\item \textbf{TestRunner}: es el cliente en el esquema composite, crea
 		una instancia de TestResults, ejecuta un TestSuite y luego
-		muestra los resultados usando un TestOutput.		
+		muestra los resultados usando un TestOutput.	
+		
+	\item \textbf{TextInformation}: es una clase nueva introducida para 
+		encapsular la información de los test corridos anteriormente
+	
+	\item \textbf{TestContext}: esta clase contiene las instancias creadas
+		por los usuarios a la hora de hacer setUps, y es utilizada
+		a lo largo de toda la ejecución.
 
 \end{itemize}
 
