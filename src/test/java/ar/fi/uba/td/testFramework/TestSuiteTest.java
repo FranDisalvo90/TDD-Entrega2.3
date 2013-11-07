@@ -11,29 +11,29 @@ public class TestSuiteTest {
 
 	@Test
 	public void testEmptyTestSuiteTotalTest() {
-		RunnableTest emptyTestSuite = new TestSuite("emptyTestSuite");
-		TestResults testResult = new TestResults();
-//		emptyTestSuite.run(testResult);
-//		assertTrue(testResult.getNumberOfTotalTest() == 0);
+		TestSuite emptyTestSuite = new TestSuite("emptyTestSuite");
+		TestInformation testInfo = new TestInformation();
+		emptyTestSuite.run(testInfo);
+		assertTrue(testInfo.getResults().getNumberOfTotalTest() == 0);
 	}
 	
 	@Test
 	public void testEmptyTestSuitePassedTest() {
-		RunnableTest emptyTestSuite = new TestSuite("emptyTestSuite");
-		TestResults testResult = new TestResults();
-//		emptyTestSuite.run(testResult);
-//		assertTrue(testResult.getNumberOfPassedTests() == 0);
+		TestSuite emptyTestSuite = new TestSuite("emptyTestSuite");
+		TestInformation testInfo = new TestInformation();
+		emptyTestSuite.run(testInfo);
+		assertTrue(testInfo.getResults().getNumberOfPassedTests() == 0);
 	}
 	
 	@Test
 	public void testTestSuitePassedTest() {
 		TestSuite testSuite = new TestSuite("testSuite ");
 		BaseTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCaseAreNotTheSame");
-		TestResults testResult = new TestResults();
+		TestInformation testInfo = new TestInformation();
 		
 		testSuite.add(passesForDifferentConcertsAreNotEqual);
-//		testSuite.run(testResult);
-//		assertTrue(testResult.getNumberOfPassedTests() == 1);
+		testSuite.run(testInfo);
+		assertTrue(testInfo.getResults().getNumberOfPassedTests() == 1);
 	}
 
 	@Test
@@ -48,7 +48,8 @@ public class TestSuiteTest {
 		testSuite2.add(createdPassesAreNotNull);
 		mainTestSuite.add(testSuite1);
 		mainTestSuite.add(testSuite2);
-			
+		
+		
 		assertTrue(mainTestSuite.countTest() == 2);
 	}
 	

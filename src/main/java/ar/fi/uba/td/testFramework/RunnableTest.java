@@ -7,10 +7,6 @@ package ar.fi.uba.td.testFramework;
 public interface RunnableTest extends Comparable<RunnableTest>{
 
 	public void run(TestInformation information);
-
-//	public void setUp();
-	
-//	public void tearDown();
 	
 	public int countTest();
 	

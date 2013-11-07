@@ -8,11 +8,10 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 
 	private String regExp;
 	private String name;
-	private TestContext context;
 
 	public BaseTest(String nameTest) {
 		this.name = nameTest;
-		this.context = new TestContext();
+		this.regExp = ".*"; 
 	}
 
 	/**
@@ -64,10 +63,6 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 	
 	public int compareTo(RunnableTest test){
 	    return -1;
-	}
-
-	public TestContext getContext() {
-		return this.context;
 	}
 
 }
