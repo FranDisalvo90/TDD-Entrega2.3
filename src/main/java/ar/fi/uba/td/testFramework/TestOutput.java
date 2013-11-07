@@ -2,7 +2,7 @@ package ar.fi.uba.td.testFramework;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.util.ArrayList;
+
 
 /**
  * Class used to display the test results.

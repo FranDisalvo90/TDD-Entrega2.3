@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.fi.uba.td.testFramework.nestedSuitesTest.*;
 import ar.fi.uba.td.testFramework.testCases.TestCaseCreatedPassesAreNotNull;
 
 public class FrameworkTest {
@@ -37,6 +38,21 @@ public class FrameworkTest {
 		assertFalse(mainTest.add(testSuite2));
 	}
 	
+	@Test
+	public void testFailedTest() throws Exception {
 	
+		BaseTest failedTest = new TestCase14("Failed Test");
+		TestRunner testRunner = new TestRunner(failedTest);
+		testRunner.runTests();
+		assertEquals(testRunner.getResult().getNumberOfFailedTests(), 1);
+	}
+	
+	@Test
+	public void testErrorTest() throws Exception {
+	    	BaseTest errorTest = new TestCase13("Error Test");
+		TestRunner testRunner = new TestRunner(errorTest);
+		testRunner.runTests();
+		assertEquals(testRunner.getResult().getNumberOfErrorTests(), 1);
+	}
 	
 }

@@ -1,5 +1,6 @@
 package ar.fi.uba.td.testFramework.nestedSuitesTest;
 
+import ar.fi.uba.td.testFramework.TestContext;
 import ar.fi.uba.td.testFramework.TestSuite;
 
 public class TestSuiteA extends TestSuite {
@@ -8,10 +9,10 @@ public class TestSuiteA extends TestSuite {
 		super(name);
 	}
 	
-	public void setUp() {
-		System.out.println("TestSuiteA is setting up.");
+	public void setUp(TestContext context) {
+		
 		MockClass mock = new MockClass("Using TestSuiteA context!");
-		this.getContext().addElement("mockA", mock);
+		context.addElement("mockA", mock);
 		
 	}
 

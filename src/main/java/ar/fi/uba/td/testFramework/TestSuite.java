@@ -11,12 +11,10 @@ public class TestSuite implements RunnableTest {
 
 	private ArrayList<RunnableTest> testList;
 	private String name;
-	private TestContext context;
-	
+		
 	public TestSuite(String name) {
 		testList = new ArrayList<RunnableTest>();
 		this.name = name;
-		this.context = new TestContext();
 	}
 	
 	private boolean repeatedName(String name){
@@ -40,15 +38,14 @@ public class TestSuite implements RunnableTest {
 		information.setParentName(fullTestName);
 		
 		information.getResults().addToOutputTestSuite(fullTestName);
-//		Collections.sort(testList);
+		Collections.sort(testList);
 		
-		
+		this.setUp(information.getContext());
 		for (RunnableTest entity : this.testList) {
-			this.setUp();
-	//		information.getResults().addToOutput("Results for Test Suite: " + this.name);
 			entity.run(information.clone());
-			this.tearDown();
 		}
+		
+		this.tearDown(information.getContext());
 	}
 
 	public int countTest() {
@@ -62,17 +59,13 @@ public class TestSuite implements RunnableTest {
 	public String getName(){
 		return name;
 	}
-	
-	public TestContext getContext() {
-		return this.context;
-	}
-	
-	public int compareTo(Object test) { 
+
+	public int compareTo(RunnableTest test) { 
 	        return 1;
 	}
 
-	public void setUp() {}
+	public void setUp(TestContext context) {}
 
-	public void tearDown() {}
+	public void tearDown(TestContext context) {}
 
 }

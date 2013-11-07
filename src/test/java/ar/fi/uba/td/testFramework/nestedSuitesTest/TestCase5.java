@@ -1,6 +1,7 @@
 package ar.fi.uba.td.testFramework.nestedSuitesTest;
 
 import ar.fi.uba.td.testFramework.BaseTest;
+import ar.fi.uba.td.testFramework.TestContext;
 import ar.fi.uba.td.testFramework.TestFailedException;
 
 public class TestCase5 extends BaseTest {
@@ -10,14 +11,13 @@ public class TestCase5 extends BaseTest {
 	}
 
 	@Override
-	public void runTest() throws TestFailedException {
+	public void runTest(TestContext context) throws TestFailedException {
 		assertTrue(true, "Passing test");
 	}
 	
-	public void setUp() {
+	public void setUp(TestContext context) {
 		System.out.println("TestCase5 is setting up.");
-		for(Object contextElement : this.getContext().getElements())
-			((MockClass) contextElement).printText();
+
 	}
 
 }

@@ -8,11 +8,11 @@ public class MockClass implements Cloneable {
 		this.text = text;
 	}
 	
-	public void setTest(String text) {
+	public void setText(String text) {
 		this.text = text;
 	}
-
-	public void printText() {
-		System.out.println(text);
+	
+	public String getText(){
+	    return text;
 	}
 }

@@ -3,7 +3,6 @@ package ar.fi.uba.td.testFramework.nestedSuitesTest;
 import java.io.IOException;
 
 import ar.fi.uba.td.testFramework.BaseTest;
-import ar.fi.uba.td.testFramework.RunnableTest;
 import ar.fi.uba.td.testFramework.TestRunner;
 import ar.fi.uba.td.testFramework.TestSuite;
 

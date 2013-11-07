@@ -1,7 +1,5 @@
 package ar.fi.uba.td.testFramework;
 
-import java.io.IOException;
-
 /**
  * Class used to run RunnableTests.
  */

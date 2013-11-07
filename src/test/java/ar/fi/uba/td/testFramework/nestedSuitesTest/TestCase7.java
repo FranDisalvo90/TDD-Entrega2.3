@@ -1,6 +1,7 @@
 package ar.fi.uba.td.testFramework.nestedSuitesTest;
 
 import ar.fi.uba.td.testFramework.BaseTest;
+import ar.fi.uba.td.testFramework.TestContext;
 import ar.fi.uba.td.testFramework.TestFailedException;
 
 public class TestCase7 extends BaseTest {
@@ -10,7 +11,7 @@ public class TestCase7 extends BaseTest {
 	}
 
 	@Override
-	public void runTest() throws TestFailedException {
+	public void runTest(TestContext context) throws TestFailedException {
 		assertTrue(true, "Passing test");
 	}
 

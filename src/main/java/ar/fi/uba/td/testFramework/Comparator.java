@@ -19,7 +19,7 @@ public class Comparator {
 	 */
 	public void assertTrue(Object source, String message)
 			throws TestFailedException {
-		if ((Boolean) source == false) {
+	    	if ((Boolean) source == false) {
 			throw new TestFailedException(message);
 		}
 	}

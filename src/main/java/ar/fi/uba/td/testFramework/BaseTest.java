@@ -18,7 +18,7 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 	/**
 	 * Abstract method where the user will define the actual test.
 	 */
-	public abstract void runTest() throws TestFailedException;
+	public abstract void runTest(TestContext context) throws Exception;
 
 	private boolean regularExpressionMatches() {
 		return this.name.matches(this.regExp);
@@ -29,10 +29,10 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 		if (!regularExpressionMatches())
 			return;
 
-		this.setUp();
+		this.setUp(information.getContext());
 		
 		try {
-			this.runTest();
+			this.runTest(information.getContext());
 			information.getResults().addPassedTest();
 			information.getResults().addToOutput("[ok]" + name);
 		} 
@@ -47,7 +47,7 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 			information.getResults().addToOutput("[error]" + name);    
 		}
 		
-		this.tearDown();
+		this.tearDown(information.getContext());
 	}
 
 	public int countTest() {
@@ -58,11 +58,11 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 		return name;
 	}
 
-	public void setUp() { }
+	public void setUp(TestContext context) { }
 
-	public void tearDown() { }
+	public void tearDown(TestContext context) { }
 	
-	public int compareTo(Object Test){
+	public int compareTo(RunnableTest test){
 	    return -1;
 	}
 
