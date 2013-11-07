@@ -6,50 +6,37 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.fi.uba.td.testFramework.testCases.TestCaseCreatedPassesAreNotNull;
-import ar.fi.uba.td.testFramework.testCases.TestCasePassesForTheSameConcertAreEqual;
-
 
 public class FrameworkTest {
 
-	TestSuite mainTest;
-	TestSuite testSuiteA; 
-	RunnableTest passesForTheSameConcertA;
-	TestRunner runner;
+    	TestSuite mainTest;
+	TestSuite testSuite; 
+	BaseTest createdPasses;
 	
 	@Before
 	public void setUp() throws Exception {
 		mainTest = new TestSuite("mainTest");
-		testSuiteA = new TestSuite("testSuite"); 
-		passesForTheSameConcertA = new TestCasePassesForTheSameConcertAreEqual("TestCasePassesForTheSameConcertAreEqual");
-		testSuiteA.add(passesForTheSameConcertA);
-		mainTest.add(testSuiteA);
-		TestRunner runner = new TestRunner(mainTest);
+		testSuite = new TestSuite("testSuite"); 
+		createdPasses = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
+		testSuite.add(createdPasses);
+		mainTest.add(testSuite);
 	}	
 	
 	@Test
 	public void unrepeatedTestBaseNames() {
 	
-		RunnableTest passesForTheSameConcertB = new TestCasePassesForTheSameConcertAreEqual("TestCasePassesForTheSameConcertAreEqual");
-		assertEquals(testSuiteA.add(passesForTheSameConcertB ),false);
+		BaseTest createdPasses2 = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
+		assertFalse(testSuite.add(createdPasses2));
 	}
 	
 	@Test
 	public void unrepeatedTestSuiteNames() {
 	
-		TestSuite testSuiteB = new TestSuite("testSuite");
-		testSuiteB.add(passesForTheSameConcertA);
-		assertEquals(mainTest.add(testSuiteB),false);
+		TestSuite testSuite2 = new TestSuite("testSuite");
+		testSuite2.add(createdPasses);
+		assertFalse(mainTest.add(testSuite2));
 	}
 	
 	
-	public void testSetUpTestBase(){
-		
-		RunnableTest createdPasses = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
-		
-	}
-
-	public void testSetUpTestSuite(){
-		
-	}
-		
+	
 }

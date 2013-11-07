@@ -1,33 +1,45 @@
 package ar.fi.uba.td.testFramework;
 
+import java.io.IOException;
+
 /**
  * Class used to run RunnableTests.
  */
 public class TestRunner {
 
-	TestSuite test;
-	Output testOutput;
-//	String regExpression;
-	
-	public TestRunner(TestSuite test) {
+	RunnableTest test;
+	TestInformation information;
+
+	public TestRunner(RunnableTest test) {
 		this.test = test;
-//		regExpression= ".*";
 	}
-
+	
 	public void runTests() {
-		test.run();
-		//testOutput.setNumberOfTotalTest(test.countTest());
-		testOutput = this.test.GetOutput();
-		//TestOutput output = new TestOutput(testOutput);
-		testOutput.showResults("Main");
+		information = new TestInformation();
+		run(information);
+		
+	}
+	
+	public void runTests(String regExpression){
+	    	information = new TestInformation(regExpression);
+	    	run(information);
 	}
 
-	public Output getResult() throws Exception {
-		if (testOutput != null) {
-			return testOutput;
+	private void run(TestInformation information){
+	    	test.run(information);
+		information.getResults().setNumberOfTotalTest(test.countTest());
+
+		TestOutput output = new TestOutput(information.getResults());
+		output.showTrace();
+	}
+	
+	
+	public TestResults getResult() throws Exception {
+		TestResults results = information.getResults();
+		if (results != null) {
+			return results;
 		} else {
 			throw new Exception("No tests run.");
 		}
 	}
 }
-

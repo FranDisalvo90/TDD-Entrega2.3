@@ -1,5 +1,7 @@
 package ar.fi.uba.td.testFramework;
 
+import java.io.IOException;
+
 import ar.fi.uba.td.testFramework.testCases.TestCaseCreatedPassesAreNotNull;
 import ar.fi.uba.td.testFramework.testCases.TestCaseDifferentPassesAreNotTheSame;
 import ar.fi.uba.td.testFramework.testCases.TestCaseNotIdenticalPassesAreTheSameFailed;
@@ -8,13 +10,13 @@ import ar.fi.uba.td.testFramework.testCases.TestCasePassesForTheSameConcertAreEq
 
 public class BackstagePassesTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		TestSuite mainTest = new TestSuite("mainTest");
-		TestCaseCreatedPassesAreNotNull createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
-		TestCaseDifferentPassesAreNotTheSame differentPassesForTheSameConcertAreNotTheSame = new TestCaseDifferentPassesAreNotTheSame("TestCaseAreNotTheSame");
-		TestCaseNotIdenticalPassesAreTheSameFailed identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCaseNotIdenticalPassesAreTheSameFailed");
-		TestCasePassesForDifferentConcertsAreNotEqual passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
-		TestCasePassesForTheSameConcertAreEqual passesForTheSameConcertAreEqual = new TestCasePassesForTheSameConcertAreEqual("TestCasePassesForTheSameConcertAreEqual");
+		BaseTest createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
+		BaseTest differentPassesForTheSameConcertAreNotTheSame = new TestCaseDifferentPassesAreNotTheSame("TestCaseAreNotTheSame");
+		BaseTest identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCaseNotIdenticalPassesAreTheSameFailed");
+		BaseTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
+		BaseTest passesForTheSameConcertAreEqual = new TestCasePassesForTheSameConcertAreEqual("TestCasePassesForTheSameConcertAreEqual");
 		
 		mainTest.add(createdPassesAreNotNull);
 		mainTest.add(differentPassesForTheSameConcertAreNotTheSame);
@@ -23,7 +25,7 @@ public class BackstagePassesTest {
 		mainTest.add(passesForDifferentConcertsAreNotEqual);
 		
 		TestRunner runner = new TestRunner(mainTest);
-		runner.runTests();
+		runner.runTests("TestCasePasses.*");
 	}
 
 }

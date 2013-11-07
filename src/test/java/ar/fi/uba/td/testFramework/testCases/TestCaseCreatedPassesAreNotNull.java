@@ -21,4 +21,5 @@ public class TestCaseCreatedPassesAreNotNull extends BaseTest {
 		assertNotNull(somePasses, 
 				"Tests that an initialized Backstage Passes instance isn't null.");
 	}
+
 }

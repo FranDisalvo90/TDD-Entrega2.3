@@ -1,6 +1,7 @@
 package ar.fi.uba.td.testFramework;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Class that groups a set of BaseTests, modeling a test suite. This class works
@@ -9,43 +10,47 @@ import java.util.ArrayList;
 public class TestSuite implements RunnableTest {
 
 	private ArrayList<RunnableTest> testList;
-	Output myOutput;
-	String nameTestSuite;
-
+	private String name;
+	private TestContext context;
+	
 	public TestSuite(String name) {
 		testList = new ArrayList<RunnableTest>();
-		this.nameTestSuite = name;
+		this.name = name;
+		this.context = new TestContext();
 	}
-
-	private boolean repeatedName(String name) {
-		for (RunnableTest test : this.testList) {
-			if (test.getName().equals(name))
+	
+	private boolean repeatedName(String name){
+		for (RunnableTest test: this.testList) {
+			if(test.getName().equals(name))
 				return true;
 		}
 		return false;
 	}
 	
-	public Output GetOutput() {
-		return this.myOutput;
-	}
-
-	public boolean add(RunnableTest test) {
-		if (!repeatedName(test.getName())) {
+	public boolean add(RunnableTest test){
+		if(!repeatedName(test.getName())){
 			testList.add(test);
-			test.checkOutput(this);
 			return true;
 		}
 		return false;
 	}
-
-	public void run() {
+	
+	public void run(TestInformation information) {
+		String fullTestName = information.getParentName() + "." + this.name;
+		information.setParentName(fullTestName);
+		
+		information.getResults().addToOutputTestSuite(fullTestName);
+//		Collections.sort(testList);
+		
+		
 		for (RunnableTest entity : this.testList) {
-			//this.setUp();
-			entity.run();
-			//this.tearDown();
+			this.setUp();
+	//		information.getResults().addToOutput("Results for Test Suite: " + this.name);
+			entity.run(information.clone());
+			this.tearDown();
 		}
 	}
-	
+
 	public int countTest() {
 		int total = 0;
 		for (RunnableTest entity : this.testList) {
@@ -53,20 +58,21 @@ public class TestSuite implements RunnableTest {
 		}
 		return total;
 	}
-
-	public String getName() {
-		return nameTestSuite;
-	}
-
-	@Override
-	public void checkOutput(TestSuite testSuite) {
-		testSuite.GetOutput().addOutput(this.GetOutput());
-	}
-
-	public void setUp() {
-	}
-
-	public void tearDown() {
+	
+	public String getName(){
+		return name;
 	}
 	
+	public TestContext getContext() {
+		return this.context;
+	}
+	
+	public int compareTo(Object test) { 
+	        return 1;
+	}
+
+	public void setUp() {}
+
+	public void tearDown() {}
+
 }

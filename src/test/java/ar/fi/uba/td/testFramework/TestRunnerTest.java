@@ -18,9 +18,9 @@ public class TestRunnerTest {
 		
 		TestSuite testSuite1 = new TestSuite("testSuite1");
 		TestSuite testSuite2 = new TestSuite("testSuite2");
-		RunnableTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
-		RunnableTest createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
-		RunnableTest identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCaseAreTheSameFailed");
+		BaseTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
+		BaseTest  createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
+		BaseTest  identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCaseAreTheSameFailed");
 		
 		testSuite1.add(passesForDifferentConcertsAreNotEqual);
 		testSuite2.add(createdPassesAreNotNull);
