@@ -15,24 +15,24 @@ public class NestedSuitesTest {
 	public static void main(String[] args) throws IOException {
 		BaseTest  testCase1 = new TestCase1("TestCase1");
 		BaseTest  testCase2 = new TestCase2("TestCase2");
-		BaseTest  testCase3 = new TestCase3("testCase3");
-		BaseTest  testCase4 = new TestCase4("testCase4");
-		BaseTest  testCase5 = new TestCase5("testCase5");
-		BaseTest  testCase6 = new TestCase6("testCase6");
-		BaseTest  testCase7 = new TestCase7("testCase7");
-		BaseTest  testCase8 = new TestCase8("testCase8");
-		BaseTest  testCase9 = new TestCase9("testCase9");
-		BaseTest  testCase10 = new TestCase10("testCase10");
-		BaseTest  testCase11 = new TestCase11("testCase11");
-		BaseTest  testCase12 = new TestCase12("testCase12");
-		BaseTest  testCase13 = new TestCase13("testCase13");
-		BaseTest  testCase14 = new TestCase14("testCase14");
+		BaseTest  testCase3 = new TestCase3("TestCase3");
+		BaseTest  testCase4 = new TestCase4("TestCase4");
+		BaseTest  testCase5 = new TestCase5("TestCase5");
+		BaseTest  testCase6 = new TestCase6("TestCase6");
+		BaseTest  testCase7 = new TestCase7("TestCase7");
+		BaseTest  testCase8 = new TestCase8("TestCase8");
+		BaseTest  testCase9 = new TestCase9("TestCase9");
+		BaseTest  testCase10 = new TestCase10("TestCase10");
+		BaseTest  testCase11 = new TestCase11("TestCase11");
+		BaseTest  testCase12 = new TestCase12("TestCase12");
+		BaseTest  testCase13 = new TestCase13("TestCase13");
+		BaseTest  testCase14 = new TestCase14("TestCase14");
 
 		TestSuite  testSuiteA = new TestSuiteA("TestSuite1");
-		TestSuite  testSuiteB = new TestSuiteB("testSuiteB");
-		TestSuite  testSuiteC = new TestSuiteC("testSuiteC");
-		TestSuite testSuiteD = new TestSuiteD("testSuiteD");
-		TestSuite testSuiteE = new TestSuiteE("testSuiteE");
+		TestSuite  testSuiteB = new TestSuiteB("TestSuiteB");
+		TestSuite  testSuiteC = new TestSuiteC("TestSuiteC");
+		TestSuite testSuiteD = new TestSuiteD("TestSuiteD");
+		TestSuite testSuiteE = new TestSuiteE("TestSuiteE");
 		
 		testSuiteC.add(testCase7);
 		testSuiteC.add(testCase8);

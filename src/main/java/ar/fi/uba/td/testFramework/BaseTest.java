@@ -30,23 +30,23 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 			return;
 
 		this.setUp(information.getContext());
-		
+
 		try {
 			this.runTest(information.getContext());
 			information.getResults().addPassedTest();
-			information.getResults().addToOutput("[ok]" + name);
-		} 
-		
+			information.getResults().addToOutput("[ok] " + name);
+		}
+
 		catch (TestFailedException ex) {
 			information.getResults().addFailedTest();
-			information.getResults().addToOutput("[fail]" + name);
-		} 
-		
+			information.getResults().addToOutput("[fail] " + name);
+		}
+
 		catch (Exception ex) {
 			information.getResults().addErrorTest();
-			information.getResults().addToOutput("[error]" + name);    
+			information.getResults().addToOutput("[error] " + name);
 		}
-		
+
 		this.tearDown(information.getContext());
 	}
 
@@ -58,12 +58,14 @@ public abstract class BaseTest extends Comparator implements RunnableTest {
 		return name;
 	}
 
-	public void setUp(TestContext context) { }
+	public void setUp(TestContext context) {
+	}
 
-	public void tearDown(TestContext context) { }
-	
-	public int compareTo(RunnableTest test){
-	    return -1;
+	public void tearDown(TestContext context) {
+	}
+
+	public int compareTo(RunnableTest test) {
+		return -1;
 	}
 
 	public TestContext getContext() {
