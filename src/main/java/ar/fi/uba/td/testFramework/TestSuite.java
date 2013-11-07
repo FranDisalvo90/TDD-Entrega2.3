@@ -11,40 +11,47 @@ public class TestSuite implements RunnableTest {
 
 	private ArrayList<RunnableTest> testList;
 	private String name;
-		
+
 	public TestSuite(String name) {
 		testList = new ArrayList<RunnableTest>();
 		this.name = name;
 	}
-	
-	private boolean repeatedName(String name){
-		for (RunnableTest test: this.testList) {
-			if(test.getName().equals(name))
+
+	private boolean repeatedName(String name) {
+		for (RunnableTest test : this.testList) {
+			if (test.getName().equals(name))
 				return true;
 		}
 		return false;
 	}
-	
-	public boolean add(RunnableTest test){
-		if(!repeatedName(test.getName())){
+
+	public boolean add(RunnableTest test) {
+		if (!repeatedName(test.getName())) {
 			testList.add(test);
 			return true;
 		}
 		return false;
 	}
-	
+
 	public void run(TestInformation information) {
-		String fullTestName = information.getParentName() + "." + this.name;
+		String parentName = information.getParentName();
+		String fullTestName;
+		
+		if(parentName == null || parentName.isEmpty())
+			fullTestName = this.name;
+		else
+			fullTestName = parentName + "." + this.name;
+		
 		information.setParentName(fullTestName);
-		
 		information.getResults().addToOutputTestSuite(fullTestName);
-		Collections.sort(testList);
 		
+		/* Sorts the list so that the output is prettier. */
+		Collections.sort(testList);
+
 		this.setUp(information.getContext());
 		for (RunnableTest entity : this.testList) {
 			entity.run(information.clone());
 		}
-		
 		this.tearDown(information.getContext());
 	}
 
@@ -55,17 +62,19 @@ public class TestSuite implements RunnableTest {
 		}
 		return total;
 	}
-	
-	public String getName(){
+
+	public String getName() {
 		return name;
 	}
 
-	public int compareTo(RunnableTest test) { 
-	        return 1;
+	public int compareTo(RunnableTest test) {
+		return 1;
 	}
 
-	public void setUp(TestContext context) {}
+	public void setUp(TestContext context) {
+	}
 
-	public void tearDown(TestContext context) {}
+	public void tearDown(TestContext context) {
+	}
 
 }
