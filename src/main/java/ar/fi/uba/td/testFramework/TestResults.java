@@ -60,6 +60,7 @@ public class TestResults {
 	    	this.output.add("-----------------------------");
 	    	
 	}
+	
 	public void addToOutput(String string) {
 		this.output.add(string);
 	}
