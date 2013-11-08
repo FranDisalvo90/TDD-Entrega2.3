@@ -1,11 +1,11 @@
 package ar.fi.uba.td.testFramework.testCases;
 
 import ar.fi.uba.td.testFramework.BackstagePasses;
-import ar.fi.uba.td.testFramework.BaseTest;
+import ar.fi.uba.td.testFramework.TestCase;
 import ar.fi.uba.td.testFramework.TestFailedException;
 import ar.fi.uba.td.testFramework.TestContext;
 
-public class TestCasePassesForTheSameConcertAreEqual extends BaseTest {
+public class TestCasePassesForTheSameConcertAreEqual extends TestCase {
 
 	public TestCasePassesForTheSameConcertAreEqual(String nameTest) {
 		super(nameTest);

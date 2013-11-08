@@ -12,7 +12,7 @@ public class FrameworkTest {
 
     	TestSuite mainTest;
 	TestSuite testSuite; 
-	BaseTest createdPasses;
+	TestCase createdPasses;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -26,7 +26,7 @@ public class FrameworkTest {
 	@Test
 	public void unrepeatedTestBaseNames() {
 	
-		BaseTest createdPasses2 = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
+		TestCase createdPasses2 = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
 		assertFalse(testSuite.add(createdPasses2));
 	}
 	
@@ -41,7 +41,7 @@ public class FrameworkTest {
 	@Test
 	public void testFailedTest() throws Exception {
 	
-		BaseTest failedTest = new TestCase14("Failed Test");
+		TestCase failedTest = new TestCase14("Failed Test");
 		TestRunner testRunner = new TestRunner(failedTest);
 		testRunner.runTests();
 		assertEquals(testRunner.getResult().getNumberOfFailedTests(), 1);
@@ -49,7 +49,7 @@ public class FrameworkTest {
 	
 	@Test
 	public void testErrorTest() throws Exception {
-	    	BaseTest errorTest = new TestCase13("Error Test");
+	    	TestCase errorTest = new TestCase13("Error Test");
 		TestRunner testRunner = new TestRunner(errorTest);
 		testRunner.runTests();
 		assertEquals(testRunner.getResult().getNumberOfErrorTests(), 1);
@@ -58,7 +58,7 @@ public class FrameworkTest {
 	@Test
 	public void testSetUpBaseTest() throws Exception {
 	
-		BaseTest test10 = new TestCase10("test10");
+		TestCase test10 = new TestCase10("test10");
 		TestRunner testRunner = new TestRunner(test10);
 		testRunner.runTests();
 		assertEquals(testRunner.getResult().getNumberOfPassedTests(), 1);
@@ -67,7 +67,7 @@ public class FrameworkTest {
 	@Test
 	public void testSetUpTestSuite() throws Exception {
 	
-		BaseTest test1 = new TestCase1("test1");
+		TestCase test1 = new TestCase1("test1");
 		TestSuite testSuiteA = new TestSuiteA("testSuiteA");
 		testSuiteA.add(test1);
 		TestRunner testRunner = new TestRunner(testSuiteA);
@@ -78,8 +78,8 @@ public class FrameworkTest {
 	@Test
 	public void testSetUpBaseTestandSuite() throws Exception {
 	
-		BaseTest test2 = new TestCase2("test2");
-		BaseTest test3 = new TestCase2("test3");
+		TestCase test2 = new TestCase2("test2");
+		TestCase test3 = new TestCase3("test3");
 		TestSuite testSuiteA = new TestSuiteA("testSuiteA");
 		testSuiteA.add(test2);
 		testSuiteA.add(test3);
@@ -92,10 +92,10 @@ public class FrameworkTest {
 	@Test
 	public void testRegularExpression() throws Exception {
 	
-		BaseTest test6 = new TestCase6("my special test case ");
-		BaseTest test7 = new TestCase7("my special test case 1");
-		BaseTest test8 = new TestCase8("my special");
-		BaseTest test9 = new TestCase9("a test");
+		TestCase test6 = new TestCase6("my special test case ");
+		TestCase test7 = new TestCase7("my special test case 1");
+		TestCase test8 = new TestCase8("my special");
+		TestCase test9 = new TestCase9("a test");
 		TestSuite testSuiteA = new TestSuiteA("testSuiteA");
 		testSuiteA.add(test6);
 		testSuiteA.add(test7);
@@ -109,8 +109,8 @@ public class FrameworkTest {
 	@Test
 	public void testNameNotExists() throws Exception {
 	
-		BaseTest test6 = new TestCase6("my special test case ");
-		BaseTest test9 = new TestCase9("a test");
+		TestCase test6 = new TestCase6("my special test case ");
+		TestCase test9 = new TestCase9("a test");
 		TestSuite testSuiteA = new TestSuiteA("testSuiteA");
 		testSuiteA.add(test6);
 		testSuiteA.add(test9);

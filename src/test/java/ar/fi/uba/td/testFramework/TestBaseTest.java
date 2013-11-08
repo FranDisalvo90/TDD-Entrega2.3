@@ -11,7 +11,7 @@ public class TestBaseTest {
 
 	@Test
 	public void testBaseTestRunFailed() {
-		BaseTest identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCasePassesAreTheSameFailed");
+		TestCase identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCasePassesAreTheSameFailed");
 		TestInformation testInfo = new TestInformation();
 		identicalPassesAreTheSame.run(testInfo);
 		
@@ -20,7 +20,7 @@ public class TestBaseTest {
 	
 	@Test
 	public void testBaseTestRunFPassed() {
-		BaseTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
+		TestCase passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
 		TestInformation testInfo = new TestInformation();
 		passesForDifferentConcertsAreNotEqual.run(testInfo);
 		

@@ -1,10 +1,10 @@
 package ar.fi.uba.td.testFramework.nestedSuitesTest;
 
-import ar.fi.uba.td.testFramework.BaseTest;
+import ar.fi.uba.td.testFramework.TestCase;
 import ar.fi.uba.td.testFramework.TestContext;
 import ar.fi.uba.td.testFramework.TestFailedException;
 
-public class TestCase13 extends BaseTest {
+public class TestCase13 extends TestCase {
 
 	public TestCase13(String nameTest) {
 		super(nameTest);

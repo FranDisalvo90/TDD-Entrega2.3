@@ -12,11 +12,11 @@ public class BackstagePassesTest {
 
 	public static void main(String[] args) throws IOException {
 		TestSuite mainTest = new TestSuite("mainTest");
-		BaseTest createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
-		BaseTest differentPassesForTheSameConcertAreNotTheSame = new TestCaseDifferentPassesAreNotTheSame("TestCaseAreNotTheSame");
-		BaseTest identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCaseNotIdenticalPassesAreTheSameFailed");
-		BaseTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
-		BaseTest passesForTheSameConcertAreEqual = new TestCasePassesForTheSameConcertAreEqual("TestCasePassesForTheSameConcertAreEqual");
+		TestCase createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
+		TestCase differentPassesForTheSameConcertAreNotTheSame = new TestCaseDifferentPassesAreNotTheSame("TestCaseAreNotTheSame");
+		TestCase identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCaseNotIdenticalPassesAreTheSameFailed");
+		TestCase passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
+		TestCase passesForTheSameConcertAreEqual = new TestCasePassesForTheSameConcertAreEqual("TestCasePassesForTheSameConcertAreEqual");
 		
 		mainTest.add(createdPassesAreNotNull);
 		mainTest.add(differentPassesForTheSameConcertAreNotTheSame);

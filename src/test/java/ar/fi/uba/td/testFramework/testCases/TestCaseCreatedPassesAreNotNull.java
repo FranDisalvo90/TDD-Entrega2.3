@@ -3,7 +3,7 @@ package ar.fi.uba.td.testFramework.testCases;
 import ar.fi.uba.td.testFramework.*;
 import ar.fi.uba.td.testFramework.TestContext;
 
-public class TestCaseCreatedPassesAreNotNull extends BaseTest {
+public class TestCaseCreatedPassesAreNotNull extends TestCase {
 	
 	public TestCaseCreatedPassesAreNotNull(String nameTest) {
 		super(nameTest);

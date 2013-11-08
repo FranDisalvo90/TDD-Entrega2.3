@@ -28,7 +28,7 @@ public class TestSuiteTest {
 	@Test
 	public void testTestSuitePassedTest() {
 		TestSuite testSuite = new TestSuite("testSuite ");
-		BaseTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCaseAreNotTheSame");
+		TestCase passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCaseAreNotTheSame");
 		TestInformation testInfo = new TestInformation();
 		
 		testSuite.add(passesForDifferentConcertsAreNotEqual);
@@ -41,8 +41,8 @@ public class TestSuiteTest {
 		TestSuite mainTestSuite = new TestSuite("mainTestSuite");
 		TestSuite testSuite1 = new TestSuite("testSuite1");
 		TestSuite testSuite2 = new TestSuite("testSuite2");
-		BaseTest passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCaseAreNotTheSame");
-		BaseTest createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
+		TestCase passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCaseAreNotTheSame");
+		TestCase createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
 		
 		testSuite1.add(passesForDifferentConcertsAreNotEqual);
 		testSuite2.add(createdPassesAreNotNull);
