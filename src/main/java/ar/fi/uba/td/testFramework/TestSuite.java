@@ -58,9 +58,8 @@ public class TestSuite implements RunnableTest {
 
 	public int getTestCount(TestInformation information) {
 		int total = 0;
-		for (RunnableTest entity : this.testList) {
-			total += entity.getTestCount(information);
-		}
+		for (RunnableTest runnableTest : this.testList)
+			total += runnableTest.getTestCount(information);
 		return total;
 	}
 
@@ -76,6 +75,13 @@ public class TestSuite implements RunnableTest {
 	}
 
 	public void tearDown(TestContext context) {
+	}
+
+	public int getTestCount() {
+		int total = 0;
+		for (RunnableTest runnableTest : this.testList)
+			total += runnableTest.getTestCount();
+		return total;
 	}
 
 }

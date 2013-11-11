@@ -51,7 +51,7 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 		this.tearDown(information.getContext());
 
 		information.getResults().addToOutput(
-				status + name + " time: " + String.valueOf(testTime) + " ns");
+				status + name + " time: " + String.valueOf(testTime) + " ns.");
 	}
 
 	private boolean isRunnable(TestInformation information) {
@@ -68,8 +68,8 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 	private boolean tagsMatch(ArrayList<String> tags) {
 		if (tags.isEmpty())
 			return true;
-		for (String element : tags) {
-			if (this.tags.contains(element))
+		for (String tag : tags) {
+			if (this.tags.contains(tag))
 				return true;
 		}
 		return false;
@@ -77,6 +77,10 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 
 	public int getTestCount(TestInformation information) {
 		return this.isRunnable(information) ? 1 : 0;
+	}
+	
+	public int getTestCount() {
+		return 1;
 	}
 
 	public String getName() {
