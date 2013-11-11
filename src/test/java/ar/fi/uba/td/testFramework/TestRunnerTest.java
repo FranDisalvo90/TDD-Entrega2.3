@@ -12,23 +12,26 @@ import ar.fi.uba.td.testFramework.testCases.TestCasePassesForDifferentConcertsAr
 public class TestRunnerTest {
 
 	TestSuite mainTestSuite = new TestSuite("mainTest");
-	
+
 	@Before
 	public void setUp() throws Exception {
-		
+
 		TestSuite testSuite1 = new TestSuite("testSuite1");
 		TestSuite testSuite2 = new TestSuite("testSuite2");
-		TestCase passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
-		TestCase  createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull("TestCaseCreatedPassesAreNotNull");
-		TestCase  identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCaseAreTheSameFailed");
-		
+		TestCase passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual(
+				"TestCasePassesAreNotEqual");
+		TestCase createdPassesAreNotNull = new TestCaseCreatedPassesAreNotNull(
+				"TestCaseCreatedPassesAreNotNull");
+		TestCase identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed(
+				"TestCaseAreTheSameFailed");
+
 		testSuite1.add(passesForDifferentConcertsAreNotEqual);
 		testSuite2.add(createdPassesAreNotNull);
 		testSuite2.add(identicalPassesAreTheSame);
 		mainTestSuite.add(testSuite1);
 		mainTestSuite.add(testSuite2);
 	}
-	
+
 	@Test(expected = Exception.class)
 	public void testTestRunnerNotRun() throws Exception {
 		TestRunner testRunner = new TestRunner(mainTestSuite);
@@ -36,32 +39,30 @@ public class TestRunnerTest {
 	}
 
 	@Test
-	public void testTestRunnerNumberTestPassed() throws Exception{
+	public void testTestRunnerNumberTestPassed() throws Exception {
 		TestRunner testRunner = new TestRunner(mainTestSuite);
 		testRunner.runTests();
 		TestResults result = testRunner.getResult();
-		
+
 		assertTrue(result.getNumberOfPassedTests() == 2);
 	}
 
-
 	@Test
-	public void testTestRunnerNumberTestFailed() throws Exception{
+	public void testTestRunnerNumberTestFailed() throws Exception {
 		TestRunner testRunner = new TestRunner(mainTestSuite);
 		testRunner.runTests();
 		TestResults result = testRunner.getResult();
-		
+
 		assertTrue(result.getNumberOfFailedTests() == 1);
 	}
-	
 
 	@Test
-	public void testTestRunnerNumberTestTotal() throws Exception{
+	public void testTestRunnerNumberTestTotal() throws Exception {
 		TestRunner testRunner = new TestRunner(mainTestSuite);
 		testRunner.runTests();
 		TestResults result = testRunner.getResult();
-		
+
 		assertTrue(result.getNumberOfTotalTest() == 3);
 	}
-	
+
 }

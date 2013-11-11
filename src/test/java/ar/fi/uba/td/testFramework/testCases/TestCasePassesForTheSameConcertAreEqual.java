@@ -14,9 +14,12 @@ public class TestCasePassesForTheSameConcertAreEqual extends TestCase {
 	@Override
 	public void runTest(TestContext context) throws TestFailedException {
 		BackstagePasses somePasses = new BackstagePasses("someConcert", 1, 2);
-		BackstagePasses someMorePasses = new BackstagePasses("someConcert", 1, 3);
-		assertEquals(somePasses, someMorePasses, 
-				"Tests that two created Backstage Passes are equal when their concert names are equal.");		
+		BackstagePasses someMorePasses = new BackstagePasses("someConcert", 1,
+				3);
+		assertEquals(
+				somePasses,
+				someMorePasses,
+				"Tests that two created Backstage Passes are equal when their concert names are equal.");
 	}
 
 }

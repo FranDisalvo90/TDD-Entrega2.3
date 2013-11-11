@@ -11,16 +11,16 @@ public class TestCase10 extends TestCase {
 	}
 
 	public void setUp(TestContext context) {
-		
+
 		MockClass mock = new MockClass("TestCase10");
 		context.addElement("mockTestCase10", mock);
-		
+
 	}
-	
+
 	@Override
 	public void runTest(TestContext context) throws TestFailedException {
-	    	MockClass mock = (MockClass)context.getElement("mockTestCase10");
-	    	assertEquals(mock.getText(),"TestCase10", "Passing test");
+		MockClass mock = (MockClass) context.getElement("mockTestCase10");
+		assertEquals(mock.getText(), "TestCase10", "Passing test");
 	}
 
 }

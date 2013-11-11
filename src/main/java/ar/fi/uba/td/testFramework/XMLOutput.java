@@ -10,27 +10,30 @@ public class XMLOutput {
 	private Document document;
 	private Element rootElement;
 
-	public XMLOutput(){
+	public XMLOutput() {
 		try {
-			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+			DocumentBuilderFactory documentFactory = DocumentBuilderFactory
+					.newInstance();
+			DocumentBuilder documentBuilder = documentFactory
+					.newDocumentBuilder();
 			// define root elements
 			this.document = documentBuilder.newDocument();
 			this.rootElement = document.createElement("tests");
 			this.document.appendChild(this.rootElement);
-		}catch(Exception e) {
-			//TODO
+		} catch (Exception e) {
+			// TODO
 		}
 	}
-	
+
 	public void addTest(String name, String Result, int time) {
-		//TODO
+		// TODO
 	}
-	
+
 	public void openTestSuit(String name) {
-		//TODO
+		// TODO
 	}
+
 	public void closeTestSuit(String name) {
-		//TODO
+		// TODO
 	}
 }

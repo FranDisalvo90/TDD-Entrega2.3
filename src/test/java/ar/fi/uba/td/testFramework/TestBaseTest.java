@@ -11,19 +11,21 @@ public class TestBaseTest {
 
 	@Test
 	public void testBaseTestRunFailed() {
-		TestCase identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCasePassesAreTheSameFailed");
+		TestCase identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed(
+				"TestCasePassesAreTheSameFailed");
 		TestInformation testInfo = new TestInformation();
 		identicalPassesAreTheSame.run(testInfo);
-		
+
 		assertEquals(testInfo.getResults().getNumberOfFailedTests(), 1);
 	}
-	
+
 	@Test
 	public void testBaseTestRunFPassed() {
-		TestCase passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual("TestCasePassesAreNotEqual");
+		TestCase passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual(
+				"TestCasePassesAreNotEqual");
 		TestInformation testInfo = new TestInformation();
 		passesForDifferentConcertsAreNotEqual.run(testInfo);
-		
+
 		assertTrue(testInfo.getResults().getNumberOfPassedTests() == 1);
 	}
 
