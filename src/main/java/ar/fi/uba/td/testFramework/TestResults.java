@@ -18,7 +18,6 @@ public class TestResults {
 		numberOfPassedTests = 0;
 		numberOfFailedTests = 0;
 		numberOfErrorTests = 0;
-		numberOfTotalTests = 0;
 		output = new ArrayList<String>();
 	}
 
@@ -51,7 +50,7 @@ public class TestResults {
 	}
 
 	public int getNumberOfTotalTest() {
-		return numberOfTotalTests;
+		return numberOfPassedTests + numberOfFailedTests + numberOfErrorTests;
 	}
 
 	public void addToOutputTestSuite(String string) {

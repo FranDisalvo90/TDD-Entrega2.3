@@ -8,7 +8,7 @@ public interface RunnableTest extends Comparable<RunnableTest> {
 
 	public void run(TestInformation information);
 
-	public int countTest();
+	public int getTestCount(TestInformation information);
 
 	public String getName();
 

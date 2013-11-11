@@ -39,7 +39,7 @@ public class TestRunner {
 
 	private void run(TestInformation information) {
 		test.run(information);
-		information.getResults().setNumberOfTotalTest(test.countTest());
+		information.getResults().setNumberOfTotalTest(test.getTestCount(information));
 
 		TestOutput output = new TestOutput(information.getResults());
 		output.printResultsToFile("Report.txt");

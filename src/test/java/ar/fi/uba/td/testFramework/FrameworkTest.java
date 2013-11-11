@@ -193,6 +193,8 @@ public class FrameworkTest {
 
 		tags.add("SLOW");
 		TestRunner testRunner = new TestRunner(testSuiteA);
+		
+		testRunner.runTests();
 
 		// TODO
 

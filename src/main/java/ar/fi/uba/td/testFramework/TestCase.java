@@ -75,10 +75,8 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 		return false;
 	}
 
-	public int countTest() {
-		// return regularExpressionMatches() ? 1 : 0;
-		// TODO FIXME
-		return 0;
+	public int getTestCount(TestInformation information) {
+		return this.isRunnable(information) ? 1 : 0;
 	}
 
 	public String getName() {

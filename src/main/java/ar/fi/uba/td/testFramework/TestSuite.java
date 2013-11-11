@@ -56,10 +56,10 @@ public class TestSuite implements RunnableTest {
 		this.tearDown(information.getContext());
 	}
 
-	public int countTest() {
+	public int getTestCount(TestInformation information) {
 		int total = 0;
 		for (RunnableTest entity : this.testList) {
-			total += entity.countTest();
+			total += entity.getTestCount(information);
 		}
 		return total;
 	}
