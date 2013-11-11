@@ -10,10 +10,12 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 
     private String name;
     private ArrayList<String> tags;
+    private long testTime;
 
     public TestCase(String nameTest) {
 	this.name = nameTest;
 	this.tags = new ArrayList<String>();
+	this.testTime = 0;
     }
 
     /**
@@ -26,34 +28,38 @@ public abstract class TestCase extends Comparator implements RunnableTest {
     }
 
     public void run(TestInformation information) {
-	if (isRunnable(information))
+	if (!isRunnable(information))
 	    return;
-
+	
+	String status;
+	Timer timer = new Timer();
 	this.setUp(information.getContext());
-
+	timer.start();
 	try {
 	    this.runTest(information.getContext());
 	    information.getResults().addPassedTest();
-	    information.getResults().addToOutput("[ok] " + name);
+	    status = "[ok] ";
 	}
-
 	catch (TestFailedException ex) {
 	    information.getResults().addFailedTest();
-	    information.getResults().addToOutput("[fail] " + name);
+	    status = "[fail] ";
 	}
-
 	catch (Exception ex) {
 	    information.getResults().addErrorTest();
-	    information.getResults().addToOutput("[error] " + name);
+	    status = "[error] ";
 	}
-
+	finally{
+	    testTime = timer.getTotalTime();
+	}
 	this.tearDown(information.getContext());
+	
+	 information.getResults().addToOutput(status + name + " time: " + String.valueOf(testTime) + " ns");
     }
 
     private boolean isRunnable(TestInformation information) {
 	String regExp = information.getRegExp();
 	ArrayList<String> tags = information.getTags();
-	return !regularExpressionMatches(regExp) && tagsMatch(tags) && !isToSkip();
+	return regularExpressionMatches(regExp) && tagsMatch(tags) && !isToSkip();
     }
 
     private boolean isToSkip() {
@@ -61,8 +67,12 @@ public abstract class TestCase extends Comparator implements RunnableTest {
     }
 
     private boolean tagsMatch(ArrayList<String> tags) {
-	// TODO Auto-generated method stub
-	// TODO FIXME
+	if(tags.isEmpty()) 
+	    return true;
+	for(String element : tags){
+	    if(this.tags.contains(element))
+		return true;
+	}
 	return false;
     }
 

@@ -1,6 +1,8 @@
 package ar.fi.uba.td.testFramework.nestedSuitesTest;
 
-public class MockClass implements Cloneable {
+import ar.fi.uba.td.testFramework.CloneableObject;
+
+public class MockClass implements CloneableObject {
 
 	private String text;
 	
@@ -14,5 +16,9 @@ public class MockClass implements Cloneable {
 	
 	public String getText(){
 	    return text;
+	}
+	
+	public Object clone(){
+	    return new MockClass(this.text);
 	}
 }

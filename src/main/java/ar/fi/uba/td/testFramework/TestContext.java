@@ -4,28 +4,28 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
-public class TestContext implements Cloneable {
+public class TestContext implements CloneableObject {
 	
-	private Hashtable<String, Cloneable> context;
+	private Hashtable<String, CloneableObject> context;
 	
 	public TestContext() {
-		this.context = new Hashtable<String, Cloneable>();
+		this.context = new Hashtable<String, CloneableObject>();
 	}
 	
-	public boolean addElement(String key, Cloneable instance) {
+	public boolean addElement(String key, Object instance) {
 		if(key == null || context.containsKey(key))
 				return false;
-		context.put(key, instance);
+		context.put(key, (CloneableObject) instance);
 		return true;
 	}
 
-	public Cloneable getElement(String key) {
+	public Object getElement(String key) {
 		if(!context.containsKey(key))
 			return null;
 		return context.get(key);
 	}
 	
-	public Collection<Cloneable> getElements() {
+	public Collection<CloneableObject> getElements() {
 		return context.values();
 	}
 	
@@ -35,7 +35,7 @@ public class TestContext implements Cloneable {
 		
 		while(keys.hasMoreElements()) {
 			String key = keys.nextElement();
-			newContext.addElement(key, context.get(key));
+			newContext.addElement(key,  context.get(key).clone());
 		}
 		
 		return newContext;			

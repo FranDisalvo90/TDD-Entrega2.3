@@ -12,8 +12,10 @@ public class TestCase1 extends TestCase {
 
 	@Override
 	public void runTest(TestContext context) throws TestFailedException {
-	    	MockClass mock = (MockClass)context.getElement("mockA");
-	       	assertEquals(mock.getText(),"Using TestSuiteA context!", "Passing test");
+
+		MockClass mock = (MockClass) context.getElement("mockA");
+		assertEquals(mock.getText(), "Using TestSuiteA context!",
+			"Passing test");
 	}
 
 }
