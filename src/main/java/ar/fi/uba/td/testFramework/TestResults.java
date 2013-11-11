@@ -11,14 +11,13 @@ public class TestResults {
 	private int numberOfFailedTests;
 	private int numberOfTotalTests;
 	private int numberOfErrorTests;
-	
+
 	private ArrayList<String> output;
 
 	TestResults() {
 		numberOfPassedTests = 0;
 		numberOfFailedTests = 0;
 		numberOfErrorTests = 0;
-		numberOfTotalTests = 0;
 		output = new ArrayList<String>();
 	}
 
@@ -29,8 +28,8 @@ public class TestResults {
 	public void addFailedTest() {
 		numberOfFailedTests++;
 	}
-	
-	public void addErrorTest(){
+
+	public void addErrorTest() {
 		numberOfErrorTests++;
 	}
 
@@ -49,22 +48,22 @@ public class TestResults {
 	public int getNumberOfErrorTests() {
 		return numberOfErrorTests;
 	}
-	
+
 	public int getNumberOfTotalTest() {
-		return numberOfTotalTests;
+		return numberOfPassedTests + numberOfFailedTests + numberOfErrorTests;
 	}
 
 	public void addToOutputTestSuite(String string) {
-	    	this.output.add("\n");
-	    	this.output.add(string);
-	    	this.output.add("-----------------------------");
-	    	
+		this.output.add("\n");
+		this.output.add(string);
+		this.output.add("-----------------------------");
+
 	}
-	
+
 	public void addToOutput(String string) {
 		this.output.add(string);
 	}
-	
+
 	public ArrayList<String> getOutput() {
 		return this.output;
 	}

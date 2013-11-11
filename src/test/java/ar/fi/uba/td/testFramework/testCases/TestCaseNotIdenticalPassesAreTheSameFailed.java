@@ -15,7 +15,9 @@ public class TestCaseNotIdenticalPassesAreTheSameFailed extends TestCase {
 	public void runTest(TestContext context) throws TestFailedException {
 		BackstagePasses somePasses = new BackstagePasses("someConcert", 1, 2);
 		BackstagePasses notPasses = new BackstagePasses("notConcert", 1, 2);
-		assertSame(somePasses, notPasses, 
+		assertSame(
+				somePasses,
+				notPasses,
 				"Tests that an instance of a Backstage Passes is not the same when compared with other.");
 	}
 

@@ -20,17 +20,17 @@ public class TestOutput {
 		try {
 			file = new FileWriter(fileName);
 			writeBuffer = new BufferedWriter(file);
-			
+
 			/* Writes the report title. */
 			writeBuffer.write("Test results:");
-			
+
 			/* Writes the results for each test in each TestCase. */
 			for (String line : testResults.getOutput()) {
 				writeBuffer.write(line);
 				writeBuffer.newLine();
 				writeBuffer.flush();
 			}
-			
+
 			/* Writes the results of the entire run. */
 			writeBuffer
 					.write("----------------------------------------------\n");
@@ -47,7 +47,7 @@ public class TestOutput {
 			writeBuffer.flush();
 
 			writeBuffer.close();
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		}

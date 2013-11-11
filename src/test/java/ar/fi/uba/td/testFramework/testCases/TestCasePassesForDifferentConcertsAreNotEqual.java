@@ -14,9 +14,12 @@ public class TestCasePassesForDifferentConcertsAreNotEqual extends TestCase {
 	@Override
 	public void runTest(TestContext context) throws TestFailedException {
 		BackstagePasses somePasses = new BackstagePasses("someConcert", 1, 2);
-		BackstagePasses someOtherPasses = new BackstagePasses("someOtherConcert", 1, 2);
-		this.assertNotEquals(somePasses, someOtherPasses, 
-				"Tests that two created Backstage Passes are not equal if their concert names are different.");		
+		BackstagePasses someOtherPasses = new BackstagePasses(
+				"someOtherConcert", 1, 2);
+		this.assertNotEquals(
+				somePasses,
+				someOtherPasses,
+				"Tests that two created Backstage Passes are not equal if their concert names are different.");
 	}
 
 }

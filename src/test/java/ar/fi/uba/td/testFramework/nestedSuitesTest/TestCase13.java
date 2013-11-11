@@ -12,7 +12,7 @@ public class TestCase13 extends TestCase {
 
 	@Override
 	public void runTest(TestContext context) throws TestFailedException {
-		assertEquals(2/0, 0 ,"Passing test");
+		assertEquals(2 / 0, 0, "Passing test");
 	}
 
 }

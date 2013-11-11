@@ -15,7 +15,7 @@ public class TestCase1 extends TestCase {
 
 		MockClass mock = (MockClass) context.getElement("mockA");
 		assertEquals(mock.getText(), "Using TestSuiteA context!",
-			"Passing test");
+				"Passing test");
 	}
 
 }

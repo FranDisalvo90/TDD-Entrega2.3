@@ -18,7 +18,7 @@ public class XMLOutput {
 	private Document document;
 	private Stack<Element> stack;
 
-	public XMLOutput(){
+	public XMLOutput() {
 		try {
 			this.stack = new Stack < Element > ();
 			DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
@@ -47,9 +47,11 @@ public class XMLOutput {
 		this.stack.peek().appendChild(testSuitElement);
 		this.stack.add(testSuitElement);
 	}
+	
 	public void closeTestSuit() {
 		this.stack.pop();
 	}
+	
 	public void writeXml(String filename) {
 		try {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -61,4 +63,5 @@ public class XMLOutput {
 			e.printStackTrace();
 		}
 	}
+
 }

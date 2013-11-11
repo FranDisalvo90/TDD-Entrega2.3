@@ -15,5 +15,4 @@ public class TestCase5 extends TestCase {
 		assertTrue(true, "Passing test");
 	}
 
-
 }
