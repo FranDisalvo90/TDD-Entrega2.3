@@ -33,6 +33,8 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 		if (!isRunnable(information))
 			return;
 
+		information.getResults().startTestCaseOutput(this.name);
+		
 		Timer timer = new Timer();
 		this.setUp(information.getContext());
 		timer.start();
@@ -51,7 +53,7 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 		}
 		this.tearDown(information.getContext());
 
-		information.getResults().addTestCaseResultToOutput(this.name, this.status, testTime);
+		information.getResults().endTestCaseOutput(this.name, this.status, testTime);
 	}
 
 	private boolean isRunnable(TestInformation information) {

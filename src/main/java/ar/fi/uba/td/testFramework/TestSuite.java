@@ -36,7 +36,7 @@ public class TestSuite implements RunnableTest {
 
 	public void run(TestInformation information) {
 		String fullTestName = getFullTestName(information);
-		information.getResults().addTestSuiteNameToOutput(fullTestName);
+		information.getResults().startTestSuiteOutput(fullTestName);
 
 		/* Sorts the list so that the output is prettier. */
 		Collections.sort(testList);
@@ -46,6 +46,8 @@ public class TestSuite implements RunnableTest {
 			entity.run(information.clone());
 		}
 		this.tearDown(information.getContext());
+		
+		information.getResults().endTestSuiteOutput();
 	}
 
 	/* Gets this suite's parent's name and changes it so that the correct name is 

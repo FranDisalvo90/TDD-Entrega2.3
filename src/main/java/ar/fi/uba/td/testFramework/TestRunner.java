@@ -39,8 +39,9 @@ public class TestRunner {
 
 	private void run(TestInformation information) {
 		test.run(information);
+		information.getResults().startTestOutput(information);
 		information.getResults().setNumberOfTotalTest(test.getTestCount(information));
-		information.getResults().endTestRun();
+		information.getResults().endTestOutput();
 	}
 
 	public TestResults getResult() throws Exception {

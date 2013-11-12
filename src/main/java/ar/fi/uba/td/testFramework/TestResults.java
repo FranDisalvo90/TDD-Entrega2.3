@@ -17,7 +17,7 @@ public class TestResults {
 	private List<TestOutput> testOutputs;
 	
 	TestResults() {
-		testOutputs = Arrays.asList(new FileTestOutput(), new RealTimeTestOutput());
+		testOutputs = Arrays.asList(new FileTestOutput(), new RealTimeTestOutput(), new XMLOutput());
 		numberOfPassedTests = 0;
 		numberOfFailedTests = 0;
 		numberOfErrorTests = 0;
@@ -62,18 +62,33 @@ public class TestResults {
 	public int getNumberOfTotalTest() {
 		return numberOfPassedTests + numberOfFailedTests + numberOfErrorTests;
 	}
-
-	public void addTestSuiteNameToOutput(String testSuiteName) {
+	
+	public void startTestOutput(TestInformation testInformation) { 
 		for(TestOutput testOutput : this.testOutputs)
-			testOutput.addTestSuiteName(testSuiteName);
+			testOutput.startTestOutput(testInformation);
+	}
+	
+	public void startTestSuiteOutput(String testSuiteName) {
+		for(TestOutput testOutput : this.testOutputs)
+			testOutput.startTestSuiteOutput(testSuiteName);
+	}
+	
+	public void endTestSuiteOutput() { 
+		for(TestOutput testOutput : this.testOutputs)
+			testOutput.endTestSuiteOutput();		
+	}
+	
+	public void startTestCaseOutput(String testName) { 
+		for(TestOutput testOutput : this.testOutputs)
+			testOutput.startTestCaseOutput(testName);		
+	}	
+	
+	public void endTestCaseOutput(String testName, TestStatus testStatus, long runTime) {
+		for(TestOutput testOutput : this.testOutputs)
+			testOutput.endTestCaseOutput(testName, testStatus, runTime);
 	}
 
-	public void addTestCaseResultToOutput(String testName, TestStatus testStatus, long runTime) {
-		for(TestOutput testOutput : this.testOutputs)
-			testOutput.addTestCaseResult(testName, testStatus, runTime);
-	}
-
-	public void endTestRun() {
+	public void endTestOutput() {
 		for(TestOutput testOutput : this.testOutputs)
 			testOutput.endTestOutput(this);		
 	}

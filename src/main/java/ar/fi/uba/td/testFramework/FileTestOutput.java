@@ -2,30 +2,31 @@ package ar.fi.uba.td.testFramework;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-public class FileTestOutput implements TestOutput {
+public class FileTestOutput extends TestOutput {
 
 	private ArrayList<String> output;
+	private static String FILE_EXTENSION = ".txt";
 
 	public FileTestOutput() {
+		super();
 		output = new ArrayList<String>();
 	}
 
-	public void addTestSuiteName(String testSuiteName) {
+	@Override
+	public void startTestSuiteOutput(String testSuiteName) {
 		this.output.add("\n");
 		this.output.add(testSuiteName);
 		this.output.add("-----------------------------");
 	}
 
-	public void addTestCaseResult(String testName, TestStatus testStatus, long runTime) {
+	@Override
+	public void endTestCaseOutput(String testName, TestStatus testStatus, long runTime) {
 		this.output.add(testStatus.toString() + " " + testName + " time: " + String.valueOf(runTime) + " ns.");
 	}
 
-	public void printResultsToFile(TestResults testResults, String fileName) {
+	private void printResultsToFile(TestResults testResults, String fileName) {
 		FileWriter file;
 		BufferedWriter writeBuffer;
 		try {
@@ -65,17 +66,9 @@ public class FileTestOutput implements TestOutput {
 
 	}
 
-	public void startTestOutput() {	}
-
+	@Override
 	public void endTestOutput(TestResults testResults) {
-		String filename = "Report-" + getCurrentTime() + ".txt";
-		this.printResultsToFile(testResults, filename);
-	}
-
-	private String getCurrentTime() {
-		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd-HHmm");
-		Date date = new Date();
-		return dateFormat.format(date);
+		this.printResultsToFile(testResults, getFileName() + FILE_EXTENSION);
 	}
 
 }
