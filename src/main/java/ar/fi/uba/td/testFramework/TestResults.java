@@ -1,6 +1,7 @@
 package ar.fi.uba.td.testFramework;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Class used to store test results.
@@ -11,14 +12,23 @@ public class TestResults {
 	private int numberOfFailedTests;
 	private int numberOfTotalTests;
 	private int numberOfErrorTests;
-
-	private ArrayList<String> output;
-
+	private int numberOfTestsToRun;
+	
+	private List<TestOutput> testOutputs;
+	
 	TestResults() {
+		testOutputs = Arrays.asList(new FileTestOutput(), new RealTimeTestOutput());
 		numberOfPassedTests = 0;
 		numberOfFailedTests = 0;
 		numberOfErrorTests = 0;
-		output = new ArrayList<String>();
+	}
+
+	public int getNumberOfTestsToRun() {
+		return numberOfTestsToRun;
+	}
+
+	public void setNumberOfTestsToRun(int numberOfTestsToRun) {
+		this.numberOfTestsToRun = numberOfTestsToRun;
 	}
 
 	public void addPassedTest() {
@@ -53,18 +63,18 @@ public class TestResults {
 		return numberOfPassedTests + numberOfFailedTests + numberOfErrorTests;
 	}
 
-	public void addToOutputTestSuite(String string) {
-		this.output.add("\n");
-		this.output.add(string);
-		this.output.add("-----------------------------");
-
+	public void addTestSuiteNameToOutput(String testSuiteName) {
+		for(TestOutput testOutput : this.testOutputs)
+			testOutput.addTestSuiteName(testSuiteName);
 	}
 
-	public void addToOutput(String string) {
-		this.output.add(string);
+	public void addTestCaseResultToOutput(String testName, TestStatus testStatus, long runTime) {
+		for(TestOutput testOutput : this.testOutputs)
+			testOutput.addTestCaseResult(testName, testStatus, runTime);
 	}
 
-	public ArrayList<String> getOutput() {
-		return this.output;
+	public void endTestRun() {
+		for(TestOutput testOutput : this.testOutputs)
+			testOutput.endTestOutput(this);		
 	}
 }

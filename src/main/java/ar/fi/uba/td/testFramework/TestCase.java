@@ -11,9 +11,11 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 	private String name;
 	private ArrayList<String> tags;
 	private long testTime;
+	private TestStatus status;
 
-	public TestCase(String nameTest) {
-		this.name = nameTest;
+	public TestCase(String testName) {
+		this.status = TestStatus.NOT_RUN;
+		this.name = testName;
 		this.tags = new ArrayList<String>();
 		this.testTime = 0;
 	}
@@ -31,27 +33,25 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 		if (!isRunnable(information))
 			return;
 
-		String status;
 		Timer timer = new Timer();
 		this.setUp(information.getContext());
 		timer.start();
 		try {
 			this.runTest(information.getContext());
 			information.getResults().addPassedTest();
-			status = "[ok] ";
+			this.status = TestStatus.OK;
 		} catch (TestFailedException ex) {
 			information.getResults().addFailedTest();
-			status = "[fail] ";
+			this.status = TestStatus.FAILED;
 		} catch (Exception ex) {
 			information.getResults().addErrorTest();
-			status = "[error] ";
+			this.status = TestStatus.ERROR;
 		} finally {
 			testTime = timer.getTotalTime();
 		}
 		this.tearDown(information.getContext());
 
-		information.getResults().addToOutput(
-				status + name + " time: " + String.valueOf(testTime) + " ns.");
+		information.getResults().addTestCaseResultToOutput(this.name, this.status, testTime);
 	}
 
 	private boolean isRunnable(TestInformation information) {

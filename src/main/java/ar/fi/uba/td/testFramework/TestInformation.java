@@ -15,8 +15,10 @@ public class TestInformation implements Cloneable {
 		this.results = new TestResults();
 		this.regExp = ".*";
 		this.tags = new ArrayList<String>();
+		this.parentName = "";
 	}
 
+	/* Private constructor used by the clone() method. */
 	private TestInformation(String regExp, TestContext context,
 			TestResults results, String parentName, ArrayList<String> tags) {
 		this.regExp = regExp;

@@ -25,7 +25,7 @@ public class TestSuite implements RunnableTest {
 		return false;
 	}
 
-	/* Returns true if the test's name isn't repeated, false in the other case */
+	/* Returns true if the test's name isn't repeated, false otherwise. */
 	public boolean add(RunnableTest test) {
 		if (!repeatedName(test.getName())) {
 			testList.add(test);
@@ -35,16 +35,8 @@ public class TestSuite implements RunnableTest {
 	}
 
 	public void run(TestInformation information) {
-		String parentName = information.getParentName();
-		String fullTestName;
-
-		if (parentName == null || parentName.isEmpty())
-			fullTestName = this.name;
-		else
-			fullTestName = parentName + "." + this.name;
-
-		information.setParentName(fullTestName);
-		information.getResults().addToOutputTestSuite(fullTestName);
+		String fullTestName = getFullTestName(information);
+		information.getResults().addTestSuiteNameToOutput(fullTestName);
 
 		/* Sorts the list so that the output is prettier. */
 		Collections.sort(testList);
@@ -54,6 +46,21 @@ public class TestSuite implements RunnableTest {
 			entity.run(information.clone());
 		}
 		this.tearDown(information.getContext());
+	}
+
+	/* Gets this suite's parent's name and changes it so that the correct name is 
+	 * gotten across deeper children in the structure. */
+	private String getFullTestName(TestInformation information) {
+		String parentName = information.getParentName();
+		String fullTestName;
+
+		if (parentName.isEmpty())
+			fullTestName = this.name;
+		else
+			fullTestName = parentName + "." + this.name;
+
+		information.setParentName(fullTestName);
+		return fullTestName;
 	}
 
 	public int getTestCount(TestInformation information) {
