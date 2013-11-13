@@ -1,4 +1,4 @@
-package ar.fi.uba.td.testFramework;
+package ar.fi.uba.td.testFramework.output;
 
 import java.io.File;
 import java.util.Stack;
@@ -13,6 +13,9 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+
+import ar.fi.uba.td.testFramework.TestResults;
+import ar.fi.uba.td.testFramework.TestStatus;
 
 public class XMLOutput extends TestOutput {
 	private Document document;
@@ -46,9 +49,9 @@ public class XMLOutput extends TestOutput {
 	}
 
 	@Override
-	public void startTestSuiteOutput(String name) {
+	public void startTestSuiteOutput(String testName, String testSuiteName) {
 		Element testSuitElement = this.document.createElement("testsuite");
-		testSuitElement.setAttribute("name", name);
+		testSuitElement.setAttribute("name", testName);
 		this.stack.peek().appendChild(testSuitElement);
 		this.stack.add(testSuitElement);
 	}

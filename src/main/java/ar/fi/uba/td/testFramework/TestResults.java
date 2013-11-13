@@ -7,22 +7,14 @@ public class TestResults {
 
 	private int numberOfPassedTests;
 	private int numberOfFailedTests;
-	private int numberOfTotalTests;
 	private int numberOfErrorTests;
-	private int numberOfTestsToRun;
+	private int numberOfSkippedTests;
 	
 	TestResults() {
 		numberOfPassedTests = 0;
 		numberOfFailedTests = 0;
 		numberOfErrorTests = 0;
-	}
-
-	public int getNumberOfTestsToRun() {
-		return numberOfTestsToRun;
-	}
-
-	public void setNumberOfTestsToRun(int numberOfTestsToRun) {
-		this.numberOfTestsToRun = numberOfTestsToRun;
+		numberOfSkippedTests = 0;
 	}
 
 	public void addPassedTest() {
@@ -36,9 +28,9 @@ public class TestResults {
 	public void addErrorTest() {
 		numberOfErrorTests++;
 	}
-
-	public void setNumberOfTotalTest(int numberOfTotalTests) {
-		this.numberOfTotalTests = numberOfTotalTests;
+	
+	public void addSkippedTest() {
+		numberOfSkippedTests++;
 	}
 
 	public int getNumberOfPassedTests() {
@@ -52,9 +44,17 @@ public class TestResults {
 	public int getNumberOfErrorTests() {
 		return numberOfErrorTests;
 	}
+	
+	public int getNumberOfSkippedTests() {
+		return numberOfSkippedTests;
+	}
+	
+	public int getNumberOfTestRun() {
+		return numberOfPassedTests + numberOfFailedTests + numberOfErrorTests;
+	}
 
 	public int getNumberOfTotalTest() {
-		return numberOfPassedTests + numberOfFailedTests + numberOfErrorTests;
+		return numberOfPassedTests + numberOfFailedTests + numberOfErrorTests + numberOfSkippedTests;
 	}
 
 }

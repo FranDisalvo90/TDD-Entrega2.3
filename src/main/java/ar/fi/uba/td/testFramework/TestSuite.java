@@ -3,54 +3,33 @@ package ar.fi.uba.td.testFramework;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import ar.fi.uba.td.testFramework.output.TestLogger;
+
 /**
  * Class that groups a set of BaseTests, modeling a test suite. This class works
  * as the composite on the composite pattern.
  */
 public class TestSuite implements RunnableTest {
 
-	private ArrayList<RunnableTest> testList;
 	private String name;
+	private ArrayList<RunnableTest> testList;
 
 	public TestSuite(String name) {
 		testList = new ArrayList<RunnableTest>();
 		this.name = name;
 	}
 
-	private boolean repeatedName(String name) {
-		for (RunnableTest test : this.testList) {
-			if (test.getName().equals(name))
-				return true;
-		}
-		return false;
-	}
-
 	/* Returns true if the test's name isn't repeated, false otherwise. */
 	public boolean add(RunnableTest test) {
-		if (!repeatedName(test.getName())) {
+		if (!nameIsRepeated(test.getName())) {
 			testList.add(test);
 			return true;
 		}
 		return false;
 	}
 
-	public void run(TestInformation information) {
-		String fullTestName = getFullTestName(information);
-
-		TestLogger logger = information.getLogger();
-
-		logger.startTestSuiteOutput(fullTestName);
-
-		/* Sorts the list so that the output is prettier. */
-		Collections.sort(testList);
-
-		this.setUp(information.getContext());
-		for (RunnableTest entity : this.testList) {
-			entity.run(information.clone());
-		}
-		this.tearDown(information.getContext());
-
-		logger.endTestSuiteOutput();
+	public final int compareTo(RunnableTest test) {
+		return 1;
 	}
 
 	/*
@@ -70,32 +49,53 @@ public class TestSuite implements RunnableTest {
 		return fullTestName;
 	}
 
-	public int getTestCount(TestInformation information) {
+	public String getName() {
+		return name;
+	}
+
+	public final int getTestCount() {
+		int total = 0;
+		for (RunnableTest runnableTest : this.testList)
+			total += runnableTest.getTestCount();
+		return total;
+	}
+
+	public final int getTestCount(TestInformation information) {
 		int total = 0;
 		for (RunnableTest runnableTest : this.testList)
 			total += runnableTest.getTestCount(information);
 		return total;
 	}
 
-	public String getName() {
-		return name;
+	private boolean nameIsRepeated(String name) {
+		for (RunnableTest test : this.testList) {
+			if (test.getName().equals(name))
+				return true;
+		}
+		return false;
 	}
 
-	public int compareTo(RunnableTest test) {
-		return 1;
+	public final void run(TestInformation information) {
+		String fullTestName = getFullTestName(information);
+
+		TestLogger logger = information.getLogger();
+
+		logger.startTestSuiteOutput(this.name, fullTestName);
+
+		/* Sorts the list so that the output is prettier. */
+		Collections.sort(testList);
+
+		this.setUp(information.getContext());
+		for (RunnableTest runnableTest : this.testList) {
+			runnableTest.run(information.clone());
+		}
+		this.tearDown(information.getContext());
+
+		logger.endTestSuiteOutput();
 	}
 
-	public void setUp(TestContext context) {
-	}
+	public void setUp(TestContext context) { }
 
-	public void tearDown(TestContext context) {
-	}
-
-	public int getTestCount() {
-		int total = 0;
-		for (RunnableTest runnableTest : this.testList)
-			total += runnableTest.getTestCount();
-		return total;
-	}
+	public void tearDown(TestContext context) {	}
 
 }

@@ -2,6 +2,8 @@ package ar.fi.uba.td.testFramework;
 
 import java.util.ArrayList;
 
+import ar.fi.uba.td.testFramework.output.TestLogger;
+
 /**
  * Class that models a TestCase. This class works as the leaf node on the
  * composite pattern.
@@ -10,14 +12,12 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 
 	private String name;
 	private ArrayList<String> tags;
-	private long testTime;
 	private TestStatus status;
 
 	public TestCase(String testName) {
 		this.status = TestStatus.NOT_RUN;
 		this.name = testName;
 		this.tags = new ArrayList<String>();
-		this.testTime = 0;
 	}
 
 	/**
@@ -25,19 +25,18 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 	 */
 	public abstract void runTest(TestContext context) throws Exception;
 
-	private boolean regularExpressionMatches(String regExp) {
-		return this.name.matches(regExp);
-	}
-
-	public void run(TestInformation information) {
-		if (!isRunnable(information))
+	public final void run(TestInformation information) {
+		if (!isRunnable(information)) {
+			information.getResults().addSkippedTest();
 			return;
-
+		}
+		
+		Timer timer = new Timer();
+		long time;
 		TestLogger logger = information.getLogger();
 
 		logger.startTestCaseOutput(this.name);
-
-		Timer timer = new Timer();
+		
 		this.setUp(information.getContext());
 		timer.start();
 		try {
@@ -51,11 +50,15 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 			information.getResults().addErrorTest();
 			this.status = TestStatus.ERROR;
 		} finally {
-			testTime = timer.getTotalTime();
+			time = timer.getTotalTime();
 		}
 		this.tearDown(information.getContext());
 
-		logger.endTestCaseOutput(this.name, this.status, testTime);
+		logger.endTestCaseOutput(this.name, this.status, time);
+	}
+	
+	private boolean regularExpressionMatches(String regExp) {
+		return this.name.matches(regExp);
 	}
 
 	private boolean isRunnable(TestInformation information) {
@@ -79,37 +82,35 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 		return false;
 	}
 
-	public int getTestCount(TestInformation information) {
+	public final int getTestCount(TestInformation information) {
 		return this.isRunnable(information) ? 1 : 0;
 	}
 
-	public int getTestCount() {
+	public final int getTestCount() {
 		return 1;
 	}
 
-	public String getName() {
+	public final String getName() {
 		return name;
 	}
 
-	public void setUp(TestContext context) {
-	}
+	public void setUp(TestContext context) { }
 
-	public void tearDown(TestContext context) {
-	}
+	public void tearDown(TestContext context) { }
 
-	public int compareTo(RunnableTest test) {
+	public final int compareTo(RunnableTest test) {
 		return -1;
 	}
 
-	public void addTag(String tag) {
+	public final void addTag(String tag) {
 		this.tags.add(tag);
 	}
 
-	public void addTags(ArrayList<String> tags) {
+	public final void addTags(ArrayList<String> tags) {
 		this.tags.addAll(tags);
 	}
 
-	public boolean removeTag(String tag) {
+	public final boolean removeTag(String tag) {
 		return this.tags.remove(tag);
 	}
 

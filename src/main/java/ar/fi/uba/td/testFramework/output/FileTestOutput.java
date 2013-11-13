@@ -1,13 +1,16 @@
-package ar.fi.uba.td.testFramework;
+package ar.fi.uba.td.testFramework.output;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import ar.fi.uba.td.testFramework.TestResults;
+import ar.fi.uba.td.testFramework.TestStatus;
+
 public class FileTestOutput extends TestOutput {
 
-	private ArrayList<String> output;
 	private static String FILE_EXTENSION = ".txt";
+	private ArrayList<String> output;
 
 	public FileTestOutput() {
 		super();
@@ -15,15 +18,13 @@ public class FileTestOutput extends TestOutput {
 	}
 
 	@Override
-	public void startTestSuiteOutput(String testSuiteName) {
-		this.output.add("\n");
-		this.output.add(testSuiteName);
-		this.output.add("-----------------------------");
+	public void endTestCaseOutput(String testName, TestStatus testStatus, long runTime) {
+		this.output.add(testStatus.toString() + " " + testName + " time: " + String.valueOf(runTime) + " ns.");
 	}
 
 	@Override
-	public void endTestCaseOutput(String testName, TestStatus testStatus, long runTime) {
-		this.output.add(testStatus.toString() + " " + testName + " time: " + String.valueOf(runTime) + " ns.");
+	public void endTestOutput(TestResults testResults) {
+		this.printResultsToFile(testResults, getFileName() + FILE_EXTENSION);
 	}
 
 	private void printResultsToFile(TestResults testResults, String fileName) {
@@ -67,8 +68,14 @@ public class FileTestOutput extends TestOutput {
 	}
 
 	@Override
-	public void endTestOutput(TestResults testResults) {
-		this.printResultsToFile(testResults, getFileName() + FILE_EXTENSION);
+	public void startTestSuiteOutput(String testName, String testSuiteName) {
+		this.output.add(testSuiteName);
+		this.output.add("-----------------------------");
+	}
+	
+	@Override
+	public void endTestSuiteOutput() { 
+		this.output.add("\n");
 	}
 
 }

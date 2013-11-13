@@ -2,18 +2,16 @@ package ar.fi.uba.td.testFramework;
 
 import java.util.ArrayList;
 
+import ar.fi.uba.td.testFramework.output.TestLogger;
+
 public class TestInformation implements Cloneable {
 
 	private TestContext context;
+	private TestLogger logger;
+	private String parentName;
 	private String regExp;
 	private TestResults results;
-	private String parentName;
 	private ArrayList<String> tags;
-	private TestLogger logger;
-
-	public TestLogger getLogger() {
-		return logger;
-	}
 
 	public TestInformation() {
 		this.context = new TestContext();
@@ -26,7 +24,8 @@ public class TestInformation implements Cloneable {
 
 	/* Private constructor used by the clone() method. */
 	private TestInformation(String regExp, TestContext context,
-			TestResults results, String parentName, ArrayList<String> tags, TestLogger logger) {
+			TestResults results, String parentName, ArrayList<String> tags,
+			TestLogger logger) {
 		this.regExp = regExp;
 		this.context = context;
 		this.results = results;
@@ -40,20 +39,16 @@ public class TestInformation implements Cloneable {
 				this.parentName, this.tags, this.logger);
 	}
 
-	public String getParentName() {
-		return parentName;
-	}
-
-	public void setParentName(String parentName) {
-		this.parentName = parentName;
-	}
-
 	public TestContext getContext() {
 		return context;
 	}
+	
+	public TestLogger getLogger() {
+		return logger;
+	}
 
-	public void setContext(TestContext context) {
-		this.context = context;
+	public String getParentName() {
+		return parentName;
 	}
 
 	public String getRegExp() {
@@ -64,16 +59,24 @@ public class TestInformation implements Cloneable {
 		return results;
 	}
 
+	public ArrayList<String> getTags() {
+		return this.tags;
+	}
+
+	public void setContext(TestContext context) {
+		this.context = context;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+
 	public void setRegExp(String regExpression) {
 		this.regExp = regExpression;
 	}
 
 	public void setTags(ArrayList<String> tags) {
 		this.tags = tags;
-	}
-
-	public ArrayList<String> getTags() {
-		return this.tags;
 	}
 
 }
