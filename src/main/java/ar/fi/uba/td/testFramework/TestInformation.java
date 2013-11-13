@@ -9,6 +9,11 @@ public class TestInformation implements Cloneable {
 	private TestResults results;
 	private String parentName;
 	private ArrayList<String> tags;
+	private TestLogger logger;
+
+	public TestLogger getLogger() {
+		return logger;
+	}
 
 	public TestInformation() {
 		this.context = new TestContext();
@@ -16,21 +21,23 @@ public class TestInformation implements Cloneable {
 		this.regExp = ".*";
 		this.tags = new ArrayList<String>();
 		this.parentName = "";
+		this.logger = new TestLogger();
 	}
 
 	/* Private constructor used by the clone() method. */
 	private TestInformation(String regExp, TestContext context,
-			TestResults results, String parentName, ArrayList<String> tags) {
+			TestResults results, String parentName, ArrayList<String> tags, TestLogger logger) {
 		this.regExp = regExp;
 		this.context = context;
 		this.results = results;
 		this.parentName = parentName;
 		this.tags = tags;
+		this.logger = logger;
 	}
 
 	public TestInformation clone() {
 		return new TestInformation(this.regExp, this.context.clone(), results,
-				this.parentName, this.tags);
+				this.parentName, this.tags, this.logger);
 	}
 
 	public String getParentName() {

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class TestRunner {
 	RunnableTest test;
 	TestInformation information;
+	TestLogger logger;
 
 	public TestRunner(RunnableTest test) {
 		this.test = test;
@@ -15,33 +16,34 @@ public class TestRunner {
 
 	public void runTests() {
 		information = new TestInformation();
-		run(information);
+		run();
 	}
 
 	public void runTests(String regExpression) {
 		information = new TestInformation();
 		information.setRegExp(regExpression);
-		run(information);
+		run();
 	}
 
 	public void runTests(ArrayList<String> tags) {
 		information = new TestInformation();
 		information.setTags(tags);
-		run(information);
+		run();
 	}
 
 	public void runTests(String regExpression, ArrayList<String> tags) {
 		information = new TestInformation();
 		information.setTags(tags);
 		information.setRegExp(regExpression);
-		run(information);
+		run();
 	}
 
-	private void run(TestInformation information) {
+	private void run() {
 		test.run(information);
-		information.getResults().startTestOutput(information);
+		TestLogger logger = information.getLogger();
+		logger.startTestOutput(information);
 		information.getResults().setNumberOfTotalTest(test.getTestCount(information));
-		information.getResults().endTestOutput();
+		logger.endTestOutput(information.getResults());
 	}
 
 	public TestResults getResult() throws Exception {

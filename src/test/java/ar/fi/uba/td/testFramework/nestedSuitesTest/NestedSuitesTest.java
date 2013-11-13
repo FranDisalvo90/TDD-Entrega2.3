@@ -8,10 +8,6 @@ import ar.fi.uba.td.testFramework.TestSuite;
 
 public class NestedSuitesTest {
 
-	/**
-	 * @param args
-	 * @throws IOException
-	 */
 	public static void main(String[] args) throws IOException {
 		TestCase testCase1 = new TestCase1("TestCase1");
 		TestCase testCase2 = new TestCase2("TestCase2");
