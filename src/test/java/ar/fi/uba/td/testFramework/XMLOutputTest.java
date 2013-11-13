@@ -8,6 +8,8 @@ import java.io.IOException;
 
 import org.junit.Test;
 
+import ar.fi.uba.td.testFramework.output.XMLOutput;
+
 
 
 public class XMLOutputTest {
@@ -16,10 +18,10 @@ public class XMLOutputTest {
 	@Test
 	public void testSimpleXMLStructure() {
 		XMLOutput xml = new XMLOutput();
-		xml.openTestSuit("testsuitbase");
-		xml.addTest("test1", "OK", "0.123");
-		xml.closeTestSuit();
-		xml.writeXml("resultado.xml");
+		xml.startTestSuiteOutput("testsuitbase",null);
+		xml.endTestCaseOutput("test1", TestStatus.OK, (long) 0.123);
+		xml.endTestSuiteOutput();
+		xml.endTestOutput(null);
 		try {
 			BufferedReader bf = new BufferedReader(new FileReader("resultado.xml"));
 			assertEquals(EXPECTED_XML_BASIC, bf.readLine());
@@ -31,22 +33,22 @@ public class XMLOutputTest {
 	@Test
 	public void testComplexXMLStructure() {
 		XMLOutput xml = new XMLOutput();
-		xml.openTestSuit("testsuitbase");
-		xml.addTest("test1", "OK", "0.123");
-		xml.addTest("test2", "ERROR", "0.123");
-		xml.openTestSuit("testsuitbase2");
-		xml.addTest("test3", "OK", "0.123");
-		xml.addTest("test4", "OK", "0.123");
-		xml.openTestSuit("testsuitbase3");
-		xml.addTest("test5", "FAIL", "0.123");
-		xml.addTest("test6", "ERROR", "0.123");
-		xml.addTest("test7", "ERROR", "0.123");
-		xml.addTest("test8", "OK", "0.123");
-		xml.addTest("test9", "OK", "0.123");
-		xml.closeTestSuit();
-		xml.closeTestSuit();
-		xml.closeTestSuit();
-		xml.writeXml("resultado2.xml");
+		xml.startTestSuiteOutput("testsuitbase",null);
+		xml.endTestCaseOutput("test1", TestStatus.OK, (long) 0.123);
+		xml.endTestCaseOutput("test3", TestStatus.ERROR, (long) 0.123);
+		xml.startTestSuiteOutput("testsuitbase2",null);
+		xml.endTestCaseOutput("test3", TestStatus.OK, (long) 0.123);
+		xml.endTestCaseOutput("test4", TestStatus.OK, (long) 0.123);
+		xml.startTestSuiteOutput("testsuitbase3",null);
+		xml.endTestCaseOutput("test5", TestStatus.FAILED, (long) 0.123);
+		xml.endTestCaseOutput("test6", TestStatus.ERROR, (long) 0.123);
+		xml.endTestCaseOutput("test7", TestStatus.ERROR, (long) 0.123);
+		xml.endTestCaseOutput("test8", TestStatus.OK, (long) 0.123);
+		xml.endTestCaseOutput("test9", TestStatus.OK, (long) 0.123);
+		xml.endTestSuiteOutput();
+		xml.endTestSuiteOutput();
+		xml.endTestSuiteOutput();
+		xml.endTestOutput(null);
 		try {
 			BufferedReader bf = new BufferedReader(new FileReader("resultado2.xml"));
 			assertEquals(EXPECTED_XML_COMPLEX, bf.readLine());
