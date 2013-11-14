@@ -13,11 +13,13 @@ public abstract class TestCase implements RunnableTest {
     private String name;
     private ArrayList<String> tags;
     private TestStatus status;
+    private long time;
 
     public TestCase(String testName) {
 	this.status = TestStatus.NOT_RUN;
 	this.name = testName;
 	this.tags = new ArrayList<String>();
+	this.time = 0;
     }
 
     /**
@@ -32,7 +34,6 @@ public abstract class TestCase implements RunnableTest {
 	}
 
 	Timer timer = new Timer();
-	long time;
 	TestLogger logger = information.getLogger();
 
 	logger.startTestCaseOutput(this.name);
@@ -50,11 +51,11 @@ public abstract class TestCase implements RunnableTest {
 	    information.getResults().addErrorTest();
 	    this.status = TestStatus.ERROR;
 	} finally {
-	    time = timer.getTotalTime();
+	    this.time = timer.getTotalTime();
 	}
 	this.tearDown(information.getContext());
 
-	logger.endTestCaseOutput(this.name, this.status, time);
+	logger.endTestCaseOutput(this.name, this.status, this.time);
     }
 
     private boolean regularExpressionMatches(String regExp) {
@@ -112,4 +113,7 @@ public abstract class TestCase implements RunnableTest {
 	return this.tags.remove(tag);
     }
 
+    public long getTime() {
+	return time;
+    }
 }
