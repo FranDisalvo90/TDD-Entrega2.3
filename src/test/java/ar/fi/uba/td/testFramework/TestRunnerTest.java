@@ -2,6 +2,8 @@ package ar.fi.uba.td.testFramework;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -63,6 +65,35 @@ public class TestRunnerTest {
 		TestResults result = testRunner.getResult();
 
 		assertTrue(result.getNumberOfTotalTest() == 3);
+	}
+	
+	@Test
+	public void testTestRunnerNumberTestTaged() throws Exception {
+		TestCase tagedTest = new TestCasePassesForDifferentConcertsAreNotEqual(
+				"TestCasePassesAreNotEqual");
+		tagedTest.addTag("SKIP");
+		mainTestSuite.add(tagedTest);
+		TestRunner testRunner = new TestRunner(mainTestSuite);
+		testRunner.runTests();
+		TestResults result = testRunner.getResult();
+
+		assertTrue(result.getNumberOfSkippedTests() == 1);
+		assertTrue(result.getNumberOfTestRun() == 3);
+	}
+	
+	@Test
+	public void testTestRunnerNumberTestOneTagged() throws Exception {
+		TestCase tagedTest = new TestCasePassesForDifferentConcertsAreNotEqual(
+				"TestCasePassesAreNotEqual");
+		tagedTest.addTag("THISMUSTRUN");
+		mainTestSuite.add(tagedTest);
+		TestRunner testRunner = new TestRunner(mainTestSuite);
+		ArrayList<String> lista = new ArrayList<String>();
+		lista.add("THISMUSTRUN");
+		testRunner.runTests(lista);
+		TestResults result = testRunner.getResult();
+
+		assertTrue(result.getNumberOfTestRun() == 1);
 	}
 
 }
