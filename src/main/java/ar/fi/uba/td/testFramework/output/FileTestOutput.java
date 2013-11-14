@@ -49,7 +49,7 @@ public class FileTestOutput extends TestOutput {
 					.write("----------------------------------------------\n");
 			writeBuffer
 					.write("----------------------------------------------\n");
-			writeBuffer.write("Run: " + testResults.getNumberOfTotalTest()
+			writeBuffer.write("Run: " + testResults.getNumberOfTestRun()
 					+ "\n");
 			writeBuffer.write("Passed: " + testResults.getNumberOfPassedTests()
 					+ "\n");

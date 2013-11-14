@@ -8,110 +8,112 @@ import ar.fi.uba.td.testFramework.output.TestLogger;
  * Class that models a TestCase. This class works as the leaf node on the
  * composite pattern.
  */
-public abstract class TestCase extends Comparator implements RunnableTest {
+public abstract class TestCase implements RunnableTest {
 
-	private String name;
-	private ArrayList<String> tags;
-	private TestStatus status;
+    private String name;
+    private ArrayList<String> tags;
+    private TestStatus status;
 
-	public TestCase(String testName) {
-		this.status = TestStatus.NOT_RUN;
-		this.name = testName;
-		this.tags = new ArrayList<String>();
+    public TestCase(String testName) {
+	this.status = TestStatus.NOT_RUN;
+	this.name = testName;
+	this.tags = new ArrayList<String>();
+    }
+
+    /**
+     * Abstract method where the user will define the actual test.
+     */
+    public abstract void runTest(TestContext context) throws Exception;
+
+    public final void run(TestInformation information) {
+	if (!isRunnable(information)) {
+	    information.getResults().addSkippedTest();
+	    return;
 	}
 
-	/**
-	 * Abstract method where the user will define the actual test.
-	 */
-	public abstract void runTest(TestContext context) throws Exception;
+	Timer timer = new Timer();
+	long time;
+	TestLogger logger = information.getLogger();
 
-	public final void run(TestInformation information) {
-		if (!isRunnable(information)) {
-			information.getResults().addSkippedTest();
-			return;
-		}
-		
-		Timer timer = new Timer();
-		long time;
-		TestLogger logger = information.getLogger();
+	logger.startTestCaseOutput(this.name);
 
-		logger.startTestCaseOutput(this.name);
-		
-		this.setUp(information.getContext());
-		timer.start();
-		try {
-			this.runTest(information.getContext());
-			information.getResults().addPassedTest();
-			this.status = TestStatus.OK;
-		} catch (TestFailedException ex) {
-			information.getResults().addFailedTest();
-			this.status = TestStatus.FAILED;
-		} catch (Exception ex) {
-			information.getResults().addErrorTest();
-			this.status = TestStatus.ERROR;
-		} finally {
-			time = timer.getTotalTime();
-		}
-		this.tearDown(information.getContext());
-
-		logger.endTestCaseOutput(this.name, this.status, time);
+	this.setUp(information.getContext());
+	timer.start();
+	try {
+	    this.runTest(information.getContext());
+	    information.getResults().addPassedTest();
+	    this.status = TestStatus.OK;
+	} catch (TestFailedException ex) {
+	    information.getResults().addFailedTest();
+	    this.status = TestStatus.FAILED;
+	} catch (Exception ex) {
+	    information.getResults().addErrorTest();
+	    this.status = TestStatus.ERROR;
+	} finally {
+	    time = timer.getTotalTime();
 	}
-	
-	private boolean regularExpressionMatches(String regExp) {
-		return this.name.matches(regExp);
+	this.tearDown(information.getContext());
+
+	logger.endTestCaseOutput(this.name, this.status, time);
+    }
+
+    private boolean regularExpressionMatches(String regExp) {
+	return this.name.matches(regExp);
+    }
+
+    private boolean isRunnable(TestInformation information) {
+	String regExp = information.getRegExp();
+	ArrayList<String> tags = information.getTags();
+	return regularExpressionMatches(regExp) && tagsMatch(tags)
+		&& !isToSkip();
+    }
+
+    private boolean isToSkip() {
+	return this.tags.contains("SKIP");
+    }
+
+    private boolean tagsMatch(ArrayList<String> tags) {
+	if (tags.isEmpty())
+	    return true;
+	for (String tag : tags) {
+	    if (this.tags.contains(tag))
+		return true;
 	}
+	return false;
+    }
 
-	private boolean isRunnable(TestInformation information) {
-		String regExp = information.getRegExp();
-		ArrayList<String> tags = information.getTags();
-		return regularExpressionMatches(regExp) && tagsMatch(tags)
-				&& !isToSkip();
-	}
+    public final int getTestCount(TestInformation information) {
+	return this.isRunnable(information) ? 1 : 0;
+    }
 
-	private boolean isToSkip() {
-		return this.tags.contains("SKIP");
-	}
+    public final int getTestCount() {
+	return 1;
+    }
 
-	private boolean tagsMatch(ArrayList<String> tags) {
-		if (tags.isEmpty())
-			return true;
-		for (String tag : tags) {
-			if (this.tags.contains(tag))
-				return true;
-		}
-		return false;
-	}
+    public final String getName() {
+	return name;
+    }
 
-	public final int getTestCount(TestInformation information) {
-		return this.isRunnable(information) ? 1 : 0;
-	}
+    public void setUp(TestContext context) {
+    }
 
-	public final int getTestCount() {
-		return 1;
-	}
+    public void tearDown(TestContext context) {
+    }
 
-	public final String getName() {
-		return name;
-	}
+    public final int compareTo(RunnableTest test) {
+	return -1;
+    }
 
-	public void setUp(TestContext context) { }
+    public final void addTag(String tag) {
+	this.tags.add(tag);
+    }
 
-	public void tearDown(TestContext context) { }
+    public final void addTags(ArrayList<String> tags) {
+	this.tags.addAll(tags);
+    }
 
-	public final int compareTo(RunnableTest test) {
-		return -1;
-	}
-
-	public final void addTag(String tag) {
-		this.tags.add(tag);
-	}
-
-	public final void addTags(ArrayList<String> tags) {
-		this.tags.addAll(tags);
-	}
-
-	public final boolean removeTag(String tag) {
-		return this.tags.remove(tag);
-	}
+    public final boolean removeTag(String tag) {
+	return this.tags.remove(tag);
+    }
 
 }

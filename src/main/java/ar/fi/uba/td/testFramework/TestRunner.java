@@ -29,7 +29,7 @@ public class TestRunner {
 		logger.startTestOutput(information);
 		test.run(information);
 		logger.endTestOutput(information.getResults());
-		// information.getResults().setNumberOfTotalTest(test.getTestCount(information));
+		//information.getResults().setNumberOfTotalTest(test.getTestCount(information));
 	}
 
 	public void runTests() {
