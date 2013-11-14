@@ -5,21 +5,21 @@ import ar.fi.uba.td.testFramework.TestContext;
 
 public class TestCaseCreatedPassesAreNotNull extends TestCase {
 
-	public TestCaseCreatedPassesAreNotNull(String nameTest) {
-		super(nameTest);
-	}
+    public TestCaseCreatedPassesAreNotNull(String nameTest) {
+	super(nameTest);
+    }
 
-	BackstagePasses somePasses;
+    BackstagePasses somePasses;
 
-	public void setUp(TestContext context) {
-		somePasses = new BackstagePasses("someConcert", 1, 2);
-	}
+    public void setUp(TestContext context) {
+	somePasses = new BackstagePasses("someConcert", 1, 2);
+    }
 
-	@Override
-	public void runTest(TestContext context) throws TestFailedException {
+    @Override
+    public void runTest(TestContext context) throws TestFailedException {
 
-		assertNotNull(somePasses,
-				"Tests that an initialized Backstage Passes instance isn't null.");
-	}
+	Assert.assertNotNull(somePasses,
+		"Tests that an initialized Backstage Passes instance isn't null.");
+    }
 
 }

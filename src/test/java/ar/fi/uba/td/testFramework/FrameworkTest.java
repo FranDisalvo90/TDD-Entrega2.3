@@ -110,7 +110,7 @@ public class FrameworkTest {
 		testSuiteA.add(test9);
 		TestRunner testRunner = new TestRunner(testSuiteA);
 		testRunner.runTests(".*special.*");
-		assertEquals(testRunner.getResult().getNumberOfTotalTest(), 3);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 3);
 	}
 
 	@Test
@@ -123,7 +123,7 @@ public class FrameworkTest {
 		testSuiteA.add(test9);
 		TestRunner testRunner = new TestRunner(testSuiteA);
 		testRunner.runTests(".*notExists.*");
-		assertEquals(testRunner.getResult().getNumberOfTotalTest(), 0);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 0);
 	}
 
 	@Test
@@ -136,7 +136,7 @@ public class FrameworkTest {
 		tags.add("SLOW");
 		TestRunner testRunner = new TestRunner(testSuiteA);
 		testRunner.runTests(tags);
-		assertEquals(testRunner.getResult().getNumberOfTotalTest(), 2);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
 	}
 
 	@Test
@@ -150,7 +150,7 @@ public class FrameworkTest {
 		tags.add("SLOW");
 		TestRunner testRunner = new TestRunner(testSuiteA);
 		testRunner.runTests(tags);
-		assertEquals(testRunner.getResult().getNumberOfTotalTest(), 1);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
 	}
 
 	@Test
@@ -176,7 +176,7 @@ public class FrameworkTest {
 		tags.add("SMOKE");
 		TestRunner testRunner = new TestRunner(testSuiteA);
 		testRunner.runTests(tags);
-		assertEquals(testRunner.getResult().getNumberOfTotalTest(), 4);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 4);
 	}
 
 	@Test
@@ -199,7 +199,7 @@ public class FrameworkTest {
 		// TODO
 
 		// testRunner.runTests(...............,tags);
-		assertEquals(testRunner.getResult().getNumberOfTotalTest(), 2);
+//		assertEquals(testRunner.getResult().getNumberOfTotalTest(), 2);
 	}
 
 	@Test
@@ -221,7 +221,7 @@ public class FrameworkTest {
 		tags.add("DB");
 		TestRunner testRunner = new TestRunner(testSuiteA);
 		testRunner.runTests(".*mySql.*", tags);
-		assertEquals(testRunner.getResult().getNumberOfTotalTest(), 2);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
 	}
 
 	// TODO tests de tiempo y generacion del reporte de forma prograsiva

@@ -34,27 +34,27 @@ public class TestBaseTest {
 	public void testBaseTestRunTimeFast() {
 		TestCase fastTest = new TestCase15("SLEEP1");
 		TestInformation testInfo = new TestInformation();
-		long time = fastTest.run(testInfo);
+		fastTest.run(testInfo);
 		
-		assertTrue((time/1000000) < 1050);
+		assertTrue((fastTest.getTime()/1000000) < 1050);
 	}
 	
 	@Test
 	public void testBaseTestRunTimeSlow() {
 		TestCase fastTest = new TestCase15("SLEEP5");
 		TestInformation testInfo = new TestInformation();
-		long time = fastTest.run(testInfo);
+		fastTest.run(testInfo);
 		
-		assertTrue((time/1000000) > 5000);
+		assertTrue((fastTest.getTime()/1000000) > 5000);
 	}
 	
 	@Test
 	public void testBaseTestRunTime() {
 		TestCase fastTest = new TestCase15("OTHERNAME");
 		TestInformation testInfo = new TestInformation();
-		long time = fastTest.run(testInfo);
+		fastTest.run(testInfo);
 		
-		assertTrue((time/1000000) < 1000);
+		assertTrue((fastTest.getTime()/1000000) < 1000);
 	}
 
 }

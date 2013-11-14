@@ -75,7 +75,7 @@ public class TestSuite implements RunnableTest {
 		return false;
 	}
 
-	public final long run(TestInformation information) {
+	public final void run(TestInformation information) {
 		String fullTestName = getFullTestName(information);
 
 		TestLogger logger = information.getLogger();
@@ -92,7 +92,6 @@ public class TestSuite implements RunnableTest {
 		this.tearDown(information.getContext());
 
 		logger.endTestSuiteOutput();
-		return 0;
 	}
 
 	public void setUp(TestContext context) { }

@@ -8,13 +8,19 @@ import ar.fi.uba.td.testFramework.output.TestLogger;
  * Class that models a TestCase. This class works as the leaf node on the
  * composite pattern.
  */
-public abstract class TestCase extends Comparator implements RunnableTest {
+public abstract class TestCase implements RunnableTest {
 
 	private String name;
 	private ArrayList<String> tags;
 	private TestStatus status;
+	private long time;
+
+	public long getTime() {
+		return time;
+	}
 
 	public TestCase(String testName) {
+		this.time = 0;
 		this.status = TestStatus.NOT_RUN;
 		this.name = testName;
 		this.tags = new ArrayList<String>();
@@ -25,18 +31,16 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 	 */
 	public abstract void runTest(TestContext context) throws Exception;
 
-	public final long run(TestInformation information) {
+	public final void run(TestInformation information) {
 		if (!isRunnable(information)) {
 			information.getResults().addSkippedTest();
-			return 0;
+			return;
 		}
-		
 		Timer timer = new Timer();
-		long time;
 		TestLogger logger = information.getLogger();
 
 		logger.startTestCaseOutput(this.name);
-		
+
 		this.setUp(information.getContext());
 		timer.start();
 		try {
@@ -50,14 +54,13 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 			information.getResults().addErrorTest();
 			this.status = TestStatus.ERROR;
 		} finally {
-			time = timer.getTotalTime();
+			this.time = timer.getTotalTime();
 		}
 		this.tearDown(information.getContext());
 
-		logger.endTestCaseOutput(this.name, this.status, time);
-		return time;
+		logger.endTestCaseOutput(this.name, this.status, this.time);
 	}
-	
+
 	private boolean regularExpressionMatches(String regExp) {
 		return this.name.matches(regExp);
 	}
@@ -95,9 +98,11 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 		return name;
 	}
 
-	public void setUp(TestContext context) { }
+	public void setUp(TestContext context) {
+	}
 
-	public void tearDown(TestContext context) { }
+	public void tearDown(TestContext context) {
+	}
 
 	public final int compareTo(RunnableTest test) {
 		return -1;
