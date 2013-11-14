@@ -4,6 +4,10 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+/**
+ * Class that models the context in which the test is run.
+ */
+
 public class TestContext implements CloneableObject {
 
 	private Hashtable<String, CloneableObject> context;

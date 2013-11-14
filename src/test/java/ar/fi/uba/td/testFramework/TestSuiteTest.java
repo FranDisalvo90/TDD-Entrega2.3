@@ -52,7 +52,7 @@ public class TestSuiteTest {
 		mainTestSuite.add(testSuite1);
 		mainTestSuite.add(testSuite2);
 
-		assertTrue(mainTestSuite.getTestCount(new TestInformation()) == 2);
+		assertTrue(mainTestSuite.getTestCount() == 2);
 	}
 
 }

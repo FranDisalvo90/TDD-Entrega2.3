@@ -82,10 +82,6 @@ public abstract class TestCase implements RunnableTest {
 	return false;
     }
 
-    public final int getTestCount(TestInformation information) {
-	return this.isRunnable(information) ? 1 : 0;
-    }
-
     public final int getTestCount() {
 	return 1;
     }

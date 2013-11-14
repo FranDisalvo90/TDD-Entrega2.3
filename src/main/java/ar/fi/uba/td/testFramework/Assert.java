@@ -121,7 +121,7 @@ public class Assert {
     static public void assertNotNull(Object source, String message)
 	    throws TestFailedException {
 	if (source == null)
-	    throw new TestFailedException(message);
+	    fail(message);
     }
 
 }
