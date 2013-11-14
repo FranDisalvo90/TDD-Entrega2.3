@@ -5,62 +5,62 @@ package ar.fi.uba.td.testFramework;
  */
 public class TestResults {
 
-    private int numberOfPassedTests;
-    private int numberOfFailedTests;
-    private int numberOfErrorTests;
-    private int numberOfSkippedTests;
-    private int totalTest;
+	private int numberOfPassedTests;
+	private int numberOfFailedTests;
+	private int numberOfErrorTests;
+	private int numberOfSkippedTests;
+	private int numberOfTotalTests;
 
-    TestResults() {
-	numberOfPassedTests = 0;
-	numberOfFailedTests = 0;
-	numberOfErrorTests = 0;
-	numberOfSkippedTests = 0;
-	totalTest = 0;
-    }
+	TestResults() {
+		numberOfPassedTests = 0;
+		numberOfFailedTests = 0;
+		numberOfErrorTests = 0;
+		numberOfSkippedTests = 0;
+		numberOfTotalTests = 0;
+	}
 
-    public void addPassedTest() {
-	numberOfPassedTests++;
-    }
+	public void addPassedTest() {
+		numberOfPassedTests++;
+	}
 
-    public void addFailedTest() {
-	numberOfFailedTests++;
-    }
+	public void addFailedTest() {
+		numberOfFailedTests++;
+	}
 
-    public void addErrorTest() {
-	numberOfErrorTests++;
-    }
+	public void addErrorTest() {
+		numberOfErrorTests++;
+	}
 
-    public void addSkippedTest() {
-	numberOfSkippedTests++;
-    }
+	public void addSkippedTest() {
+		numberOfSkippedTests++;
+	}
 
-    public void addTotalTest(int numberOfTests) {
-	totalTest = numberOfTests;
-    }
+	public void addTotalTest(int numberOfTests) {
+		numberOfTotalTests = numberOfTests;
+	}
 
-    public int getNumberOfPassedTests() {
-	return numberOfPassedTests;
-    }
+	public int getNumberOfPassedTests() {
+		return numberOfPassedTests;
+	}
 
-    public int getNumberOfFailedTests() {
-	return numberOfFailedTests;
-    }
+	public int getNumberOfFailedTests() {
+		return numberOfFailedTests;
+	}
 
-    public int getNumberOfErrorTests() {
-	return numberOfErrorTests;
-    }
+	public int getNumberOfErrorTests() {
+		return numberOfErrorTests;
+	}
 
-    public int getNumberOfSkippedTests() {
-	return numberOfSkippedTests;
-    }
+	public int getNumberOfSkippedTests() {
+		return numberOfSkippedTests;
+	}
 
-    public int getNumberOfTestRun() {
-	return numberOfPassedTests + numberOfFailedTests + numberOfErrorTests;
-    }
+	public int getNumberOfTestRun() {
+		return numberOfPassedTests + numberOfFailedTests + numberOfErrorTests;
+	}
 
-    public int getNumberOfTotalTest() {
-	return totalTest;
-    }
+	public int getNumberOfTotalTest() {
+		return numberOfTotalTests;
+	}
 
 }
