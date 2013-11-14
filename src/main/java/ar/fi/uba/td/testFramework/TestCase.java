@@ -25,10 +25,10 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 	 */
 	public abstract void runTest(TestContext context) throws Exception;
 
-	public final void run(TestInformation information) {
+	public final long run(TestInformation information) {
 		if (!isRunnable(information)) {
 			information.getResults().addSkippedTest();
-			return;
+			return 0;
 		}
 		
 		Timer timer = new Timer();
@@ -55,6 +55,7 @@ public abstract class TestCase extends Comparator implements RunnableTest {
 		this.tearDown(information.getContext());
 
 		logger.endTestCaseOutput(this.name, this.status, time);
+		return time;
 	}
 	
 	private boolean regularExpressionMatches(String regExp) {
