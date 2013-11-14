@@ -143,9 +143,9 @@ Se muestra en la figura 1 el diagrama de clases final del trabajo práctico.
 
 \begin{figure}[h!]
 \begin{center}
-	\includegraphics[scale=0.50,angle=90]{./ClassDiagram3}
+	\includegraphics[scale=0.50,angle=90]{./ClassDiagram}
 \end{center}
-	\caption{diagrama de clases del trabajo práctico (entrega 3).}
+	\caption{diagrama de clases del trabajo práctico (entrega 1).}
 \end{figure}
 
 \subsection{Responsabilidades de las clases}
@@ -219,12 +219,6 @@ Se incluyen con la implementación varios sets de pruebas:
 		y los tearDowns que corresponden para cada corrida.
 		\end{enumerate}
 	\end{enumerate}
-
-	Se realizaron pruebas sobre las nuevas funcionalidades del framework, como
-	 es la ejecución de tests con filtro de TAGS y nombre que cumplan con una expresión 
-	regular, tests que poseen el TAG SKIP, y casos de pruebas verificando el tiempo de
-	 los tests. Estos casos de prueba se encuentran en la clase FrameworkTest, intentando
-	 alcanzar en la misma una cobertura del 100\% del framework.
 	
 \section{Conclusiones}
 Durante el desarrollo del trabajo pudimos aplicar los conceptos adquiridos a lo

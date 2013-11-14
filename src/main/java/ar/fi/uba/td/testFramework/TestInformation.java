@@ -6,7 +6,7 @@ import ar.fi.uba.td.testFramework.output.TestLogger;
 
 /**
  * Class that contains all the information about the context of the test and the
- *  conditions that must have to be run. 
+ * conditions that must have to be run.
  */
 
 public class TestInformation implements Cloneable {

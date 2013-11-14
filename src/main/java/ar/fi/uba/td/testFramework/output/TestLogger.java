@@ -9,42 +9,42 @@ import ar.fi.uba.td.testFramework.TestStatus;
 
 public class TestLogger {
 
-	private List<TestOutput> testOutputs;
+    private List<TestOutput> testOutputs;
 
-	public TestLogger() {
-		testOutputs = Arrays.asList(new FileTestOutput(),
-				new RealTimeTestOutput(), new XMLOutput());
-	}
+    public TestLogger() {
+	testOutputs = Arrays.asList(new FileTestOutput(),
+		new RealTimeTestOutput(), new XMLOutput());
+    }
 
-	public void startTestOutput(TestInformation testInformation) {
-		for (TestOutput testOutput : this.testOutputs)
-			testOutput.startTestOutput(testInformation);
-	}
+    public void startTestOutput(TestInformation testInformation) {
+	for (TestOutput testOutput : this.testOutputs)
+	    testOutput.startTestOutput(testInformation);
+    }
 
-	public void startTestSuiteOutput(String testName, String testSuiteName) {
-		for (TestOutput testOutput : this.testOutputs)
-			testOutput.startTestSuiteOutput(testName, testSuiteName);
-	}
+    public void startTestSuiteOutput(String testName, String testSuiteName) {
+	for (TestOutput testOutput : this.testOutputs)
+	    testOutput.startTestSuiteOutput(testName, testSuiteName);
+    }
 
-	public void endTestSuiteOutput() {
-		for (TestOutput testOutput : this.testOutputs)
-			testOutput.endTestSuiteOutput();
-	}
+    public void endTestSuiteOutput() {
+	for (TestOutput testOutput : this.testOutputs)
+	    testOutput.endTestSuiteOutput();
+    }
 
-	public void startTestCaseOutput(String testName) {
-		for (TestOutput testOutput : this.testOutputs)
-			testOutput.startTestCaseOutput(testName);
-	}
+    public void startTestCaseOutput(String testName) {
+	for (TestOutput testOutput : this.testOutputs)
+	    testOutput.startTestCaseOutput(testName);
+    }
 
-	public void endTestCaseOutput(String testName, TestStatus testStatus,
-			long runTime) {
-		for (TestOutput testOutput : this.testOutputs)
-			testOutput.endTestCaseOutput(testName, testStatus, runTime);
-	}
+    public void endTestCaseOutput(String testName, TestStatus testStatus,
+	    long runTime) {
+	for (TestOutput testOutput : this.testOutputs)
+	    testOutput.endTestCaseOutput(testName, testStatus, runTime);
+    }
 
-	public void endTestOutput(TestResults testResults) {
-		for (TestOutput testOutput : this.testOutputs)
-			testOutput.endTestOutput(testResults);
-	}
+    public void endTestOutput(TestResults testResults) {
+	for (TestOutput testOutput : this.testOutputs)
+	    testOutput.endTestOutput(testResults);
+    }
 
 }
