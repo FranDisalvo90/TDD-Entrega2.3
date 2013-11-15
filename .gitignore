@@ -13,3 +13,6 @@
 *.war
 *.ear
 /target
+
+# Linux files
+*~
