@@ -11,5 +11,7 @@ public interface RunnableTest extends Comparable<RunnableTest> {
 	public int getTestCount();
 
 	public String getName();
+	
+	public String getStatus();
 
 }

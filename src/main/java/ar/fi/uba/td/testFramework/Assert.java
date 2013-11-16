@@ -123,5 +123,11 @@ public class Assert {
 	if (source == null)
 	    fail(message);
     }
-
+    
+    static public void assertPerformance(long timeTest, long expectedTime, String message) 
+    	throws TestFailedException{
+    if (timeTest > expectedTime) 
+    	fail(message);
+    }
+    
 }

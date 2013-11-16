@@ -69,7 +69,7 @@ public class TestSuite implements RunnableTest {
     }
 
     public final void run(TestInformation information) {
-	String fullTestName = getFullTestName(information);
+    String fullTestName = getFullTestName(information);
 
 	TestLogger logger = information.getLogger();
 
@@ -92,5 +92,10 @@ public class TestSuite implements RunnableTest {
 
     public void tearDown(TestContext context) {
     }
+
+	@Override
+	public String getStatus() {
+		return "NOT_RUN";
+	}
 
 }

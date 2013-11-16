@@ -10,7 +10,7 @@ import ar.fi.uba.td.testFramework.output.TestLogger;
 public class TestRunner {
     TestInformation information;
     RunnableTest test;
-
+    
     public TestRunner(RunnableTest test) {
 	this.test = test;
     }
@@ -24,35 +24,42 @@ public class TestRunner {
 	}
     }
 
-    private void run() {
-	TestLogger logger = information.getLogger();
-	logger.startTestOutput(information);
-	test.run(information);
-	logger.endTestOutput(information.getResults());
-	information.getResults().addTotalTest(test.getTestCount());
+    private void run(boolean runOnlyFailures) {
+		if (testShouldRun(runOnlyFailures, test.getStatus())) {
+			TestLogger logger = information.getLogger();
+			logger.startTestOutput(information);
+			test.run(information);
+			logger.endTestOutput(information.getResults());
+			information.getResults().addTotalTest(test.getTestCount());
+		}
     }
 
-    public void runTests() {
+    public void runTests(boolean runFailures) {
 	information = new TestInformation();
-	run();
+	run(runFailures);
     }
 
-    public void runTests(ArrayList<String> tags) {
-	information = new TestInformation();
-	information.setTags(tags);
-	run();
-    }
-
-    public void runTests(String regExpression) {
-	information = new TestInformation();
-	information.setRegExp(regExpression);
-	run();
-    }
-
-    public void runTests(String regExpression, ArrayList<String> tags) {
+    public void runTests(ArrayList<String> tags, boolean runFailures) {
 	information = new TestInformation();
 	information.setTags(tags);
-	information.setRegExp(regExpression);
-	run();
+	run(runFailures);
     }
+
+    public void runTests(String regExpression, boolean runFailures) {
+	information = new TestInformation();
+	information.setRegExp(regExpression);
+	run(runFailures);
+    }
+
+    public void runTests(String regExpression, ArrayList<String> tags, boolean runFailures) {
+	information = new TestInformation();
+	information.setTags(tags);
+	information.setRegExp(regExpression);
+	run(runFailures);
+    }
+    
+    private boolean testShouldRun(boolean runFailures, String status){
+    	return (runFailures && status != "OK") || runFailures == false;
+    }
+    
 }

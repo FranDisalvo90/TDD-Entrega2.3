@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import ar.fi.uba.td.testFramework.BackstagePasses;
 
+
 public class BackstagePassesJUnitTest {
 
     @Test
@@ -13,10 +14,10 @@ public class BackstagePassesJUnitTest {
 	BackstagePasses somePasses = new BackstagePasses("someConcert", 1, 2);
 	BackstagePasses someOtherPasses = new BackstagePasses(
 		"someOtherConcert", 1, 2);
-	assertNotEquals(somePasses, someOtherPasses);
+	assertFalse(somePasses.equals(someOtherPasses));
     }
 
-    @Test
+	@Test
     public void testPassesForTheSameConcertAreEqual() {
 	BackstagePasses somePasses = new BackstagePasses("someConcert", 1, 2);
 	BackstagePasses someMorePasses = new BackstagePasses("someConcert", 1,

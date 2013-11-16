@@ -54,6 +54,6 @@ public class NestedSuitesTest {
 	testSuiteA.add(testCase3);
 
 	TestRunner runner = new TestRunner(testSuiteA);
-	runner.runTests();
+	runner.runTests(false);
     }
 }

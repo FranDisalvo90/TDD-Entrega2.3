@@ -32,6 +32,7 @@ public abstract class TestCase implements RunnableTest {
 	    information.getResults().addSkippedTest();
 	    return;
 	}
+	
 
 	Timer timer = new Timer();
 	TestLogger logger = information.getLogger();
@@ -111,6 +112,10 @@ public abstract class TestCase implements RunnableTest {
 
     public final boolean removeTag(String tag) {
 	return this.tags.remove(tag);
+    }
+    
+    public String getStatus() {
+    	return status.toString();
     }
 
     public long getTime() {

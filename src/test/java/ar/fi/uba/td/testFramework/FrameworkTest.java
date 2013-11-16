@@ -57,7 +57,7 @@ public class FrameworkTest {
 
 		TestCase failedTest = new TestCase14("Failed Test");
 		TestRunner testRunner = new TestRunner(failedTest);
-		testRunner.runTests();
+		testRunner.runTests(false);
 		assertEquals(testRunner.getResult().getNumberOfFailedTests(), 1);
 	}
 
@@ -65,7 +65,7 @@ public class FrameworkTest {
 	public void testErrorTest() throws Exception {
 		TestCase errorTest = new TestCase13("Error Test");
 		TestRunner testRunner = new TestRunner(errorTest);
-		testRunner.runTests();
+		testRunner.runTests(false);
 		assertEquals(testRunner.getResult().getNumberOfErrorTests(), 1);
 	}
 
@@ -74,7 +74,7 @@ public class FrameworkTest {
 
 		TestCase test10 = new TestCase10("test10");
 		TestRunner testRunner = new TestRunner(test10);
-		testRunner.runTests();
+		testRunner.runTests(false);
 		assertEquals(testRunner.getResult().getNumberOfPassedTests(), 1);
 	}
 
@@ -82,7 +82,7 @@ public class FrameworkTest {
 	public void testSetUpTestSuite() throws Exception {
 		testSuiteA.add(test1);
 		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests();
+		testRunner.runTests(false);
 		assertEquals(testRunner.getResult().getNumberOfPassedTests(), 1);
 	}
 
@@ -92,7 +92,7 @@ public class FrameworkTest {
 		testSuiteA.add(test2);
 		testSuiteA.add(test1);
 		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests();
+		testRunner.runTests(false);
 		assertEquals(testRunner.getResult().getNumberOfPassedTests(), 3);
 	}
 
@@ -109,7 +109,7 @@ public class FrameworkTest {
 		testSuiteA.add(test8);
 		testSuiteA.add(test9);
 		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests(".*special.*");
+		testRunner.runTests(".*special.*",false);
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 3);
 	}
 
@@ -122,7 +122,7 @@ public class FrameworkTest {
 		testSuiteA.add(test6);
 		testSuiteA.add(test9);
 		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests(".*notExists.*");
+		testRunner.runTests(".*notExists.*",false);
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 0);
 	}
 
@@ -135,7 +135,7 @@ public class FrameworkTest {
 		testSuiteA.add(test3);
 		tags.add("SLOW");
 		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests(tags);
+		testRunner.runTests(tags,false);
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
 	}
 
@@ -149,7 +149,7 @@ public class FrameworkTest {
 		test1.addTag("SKIP");
 		tags.add("SLOW");
 		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests(tags);
+		testRunner.runTests(tags,false);
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
 	}
 
@@ -175,7 +175,7 @@ public class FrameworkTest {
 		tags.add("FAST");
 		tags.add("SMOKE");
 		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests(tags);
+		testRunner.runTests(tags,false);
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 4);
 	}
 
@@ -197,7 +197,7 @@ public class FrameworkTest {
 		testSuiteA.add(test6);
 		tags.add("DB");
 		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests(".*mySql.*", tags);
+		testRunner.runTests(".*mySql.*", tags, false);
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
 	}
 
@@ -205,7 +205,7 @@ public class FrameworkTest {
 	public void testBaseTestRunTimeFast() {
 		TestCase fastTest = new TestCase15("SLEEP1");
 		TestRunner runner = new TestRunner(fastTest);
-		runner.runTests();
+		runner.runTests(false);
 		assertTrue((fastTest.getTime() / 1000000) < 1050);
 	}
 
@@ -217,7 +217,7 @@ public class FrameworkTest {
 		testSuite.add(slowTest);
 		testSuite.add(fastTest);
 		TestRunner runner = new TestRunner(testSuite);
-		runner.runTests();
+		runner.runTests(false);
 		assertTrue(fastTest.getTime() < slowTest.getTime());
 	}
 
@@ -228,6 +228,22 @@ public class FrameworkTest {
 		fastTest.run(testInfo);
 
 		assertTrue((fastTest.getTime() / 1000000) < 1000);
+	}
+	
+	@Test(expected = TestFailedException.class)
+	public void performanceTestFail() throws TestFailedException{
+		TestCase performanceTest = new TestCase1("PERFORMANCE");
+		TestInformation testInfo = new TestInformation();
+		performanceTest.run(testInfo);
+		Assert.assertPerformance(performanceTest.getTime(),1, "");
+	}
+	
+	@Test
+	public void performanceTestSuccess() throws TestFailedException{
+		TestCase performanceTest = new TestCase1("PERFORMANCE");
+		TestInformation testInfo = new TestInformation();
+		performanceTest.run(testInfo);
+		Assert.assertPerformance(performanceTest.getTime(),324234234, "");
 	}
 
 }

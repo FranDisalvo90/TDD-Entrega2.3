@@ -30,7 +30,7 @@ public class BackstagePassesTest {
 	mainTest.add(passesForDifferentConcertsAreNotEqual);
 
 	TestRunner runner = new TestRunner(mainTest);
-	runner.runTests("TestCasePasses.*");
+	runner.runTests("TestCasePasses.*",false);
     }
 
 }
