@@ -338,4 +338,22 @@ public class FrameworkTest {
 		
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
 	}
+	
+	@Test
+	public void runWhen() throws Exception{
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestCase test14 = new TestCase14("testCase14");
+		RAMStore store = new RAMStore();
+		testSuiteA.add(test5);
+		
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testSuiteA.add(test14);
+		testRunner.runTests(true);
+		testSuiteA.add(test6);
+		testRunner.runTests(true);
+		
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
+	}
 }
