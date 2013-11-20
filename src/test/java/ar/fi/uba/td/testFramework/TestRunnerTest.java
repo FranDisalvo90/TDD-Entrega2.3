@@ -14,7 +14,7 @@ import ar.fi.uba.td.testFramework.testCases.TestCasePassesForDifferentConcertsAr
 public class TestRunnerTest {
 
     TestSuite mainTestSuite = new TestSuite("mainTest");
-    RAMStore store;
+    RAMStore store = new RAMStore();
 
     @Before
     public void setUp() throws Exception {
@@ -27,8 +27,6 @@ public class TestRunnerTest {
 		"TestCaseCreatedPassesAreNotNull");
 	TestCase identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed(
 		"TestCaseAreTheSameFailed");
-	
-	RAMStore store = new RAMStore();
 
 	passesForDifferentConcertsAreNotEqual.addTag("SLOW");
 	createdPassesAreNotNull.addTag("FAST");

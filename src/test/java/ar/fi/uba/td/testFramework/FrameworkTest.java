@@ -20,7 +20,7 @@ public class FrameworkTest {
 	TestCase test3;
 	TestSuite testSuiteA;
 	ArrayList<String> tags;
-	RAMStore store;
+	RAMStore store = new RAMStore();
 
 	@Before
 	public void setUp() throws Exception {
@@ -35,7 +35,6 @@ public class FrameworkTest {
 		test2 = new TestCase2("test2");
 		test3 = new TestCase3("test3");
 		testSuiteA = new TestSuiteA("testSuiteA");
-		RAMStore store = new RAMStore();
 	}
 
 	@Test
