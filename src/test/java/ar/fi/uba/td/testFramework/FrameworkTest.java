@@ -246,5 +246,96 @@ public class FrameworkTest {
 		performanceTest.run(testInfo,store);
 		Assert.assertPerformance(performanceTest.getTime(),324234234, "");
 	}
-
+	
+	@Test
+	public void RAMStoreSaveTestCase() {
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		testSuiteA.add(test5);
+		testSuiteA.add(test6);
+		RAMStore store = new RAMStore();
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		
+		assertEquals(store.getStore().size(),2);
+	}
+		
+	@Test
+	public void testRunWhenStoreRamAreEmpty() throws Exception {
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		testSuiteA.add(test5);
+		testSuiteA.add(test6);
+		RAMStore store = new RAMStore();
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
+	}
+	
+	@Test
+	public void testRunNotRunTestBecauseAllOk() throws Exception {
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		RAMStore store = new RAMStore();
+		testSuiteA.add(test5);
+		testSuiteA.add(test6);
+		
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testRunner.runTests(true);
+		
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 0);
+	}
+	
+	@Test
+	public void testRunOnlyRunFails() throws Exception{
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestCase test14 = new TestCase6("testCase14");
+		RAMStore store = new RAMStore();
+		testSuiteA.add(test5);
+		testSuiteA.add(test6);
+		
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testSuiteA.add(test14);
+		testRunner.runTests(true);
+		
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
+	}
+	
+	@Test
+	public void testRunOnlyRunNews() throws Exception{
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestCase test4 = new TestCase6("testCase4");
+		RAMStore store = new RAMStore();
+		testSuiteA.add(test5);
+		testSuiteA.add(test6);
+		
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testSuiteA.add(test4);
+		testRunner.runTests(true);
+		
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
+	}
+	
+	@Test
+	public void testRunOnlyRunNewsInTwoRuns() throws Exception{
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestCase test4 = new TestCase6("testCase4");
+		RAMStore store = new RAMStore();
+		testSuiteA.add(test5);
+		
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testSuiteA.add(test4);
+		testRunner.runTests(true);
+		testSuiteA.add(test6);
+		
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
+	}
 }

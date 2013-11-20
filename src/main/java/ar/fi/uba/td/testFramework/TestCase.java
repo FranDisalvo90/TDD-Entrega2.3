@@ -34,10 +34,10 @@ public abstract class TestCase implements RunnableTest {
 	}
 	
 	if (!isRunnable(store)){
+		information.getResults().addSkippedTest();
 		return;
 	}
 	
-
 	Timer timer = new Timer();
 	TestLogger logger = information.getLogger();
 
@@ -83,11 +83,11 @@ public abstract class TestCase implements RunnableTest {
     	if(!store.isActive())
     		return true;
     	else
-    		return store.notOnStore(this);
+    		return !store.onStore(this);
     }
 
     private boolean isToSkip() {
-	return this.tags.contains("SKIP");
+    	return this.tags.contains("SKIP");
     }
 
     private boolean tagsMatch(ArrayList<String> tags) {

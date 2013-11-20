@@ -36,6 +36,7 @@ public class TestRunner {
 		TestLogger logger = information.getLogger();
 		logger.startTestOutput(information);
 		test.run(information,store);
+		store.refresh();
 		logger.endTestOutput(information.getResults());
 		information.getResults().addTotalTest(test.getTestCount());	
     }

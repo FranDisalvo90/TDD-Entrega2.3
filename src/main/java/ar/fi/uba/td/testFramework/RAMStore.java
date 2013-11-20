@@ -6,24 +6,38 @@ import java.util.ArrayList;
 public class RAMStore extends Store {
 	
 	private ArrayList<StoreObject> store;
+	private ArrayList<StoreObject> storeAuxiliar;
 	
 	public RAMStore(){
 		super();
 		store = new ArrayList<StoreObject>();
+		storeAuxiliar = new ArrayList<StoreObject>();
 	}
 	
 	public void saveInformationRun(RunnableTest test) {
 		StoreObject storeElement = new StoreObject(test.getName(),test.getStatus(),test.getTime());
-		store.add(storeElement);
+		storeAuxiliar.add(storeElement);
 	}
 	
-	public boolean notOnStore(RunnableTest test){
-		StoreObject toCompareElement = new StoreObject(test.getName(),test.getStatus(),test.getTime());
+	
+	
+	public boolean onStore(RunnableTest test){
 		for (StoreObject element : store) {
-			if (toCompareElement.equals(element))
-				return false;
+			if (test.getName() == element.getName())
+				return true;
 		}
-		return true;
+		return false;
 	}
+	
+	public void refresh() {
+		store = storeAuxiliar;
+		storeAuxiliar = new ArrayList<StoreObject>();
+	}
+
+	@Override
+	public ArrayList<StoreObject> getStore() {
+		return store;
+	}
+	
 
 }

@@ -1,5 +1,7 @@
 package ar.fi.uba.td.testFramework;
 
+import java.util.ArrayList;
+
 public abstract class Store {
 	
 	private boolean state;
@@ -10,7 +12,11 @@ public abstract class Store {
 	
 	public abstract void saveInformationRun(RunnableTest test);
 	
-	public abstract boolean notOnStore(RunnableTest test);
+	public abstract boolean onStore(RunnableTest test);
+	
+	public abstract void refresh();
+	
+	public abstract ArrayList<StoreObject> getStore();
 	
 	public void active() {
 		state = true;

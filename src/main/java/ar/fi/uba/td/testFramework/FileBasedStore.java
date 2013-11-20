@@ -1,5 +1,7 @@
 package ar.fi.uba.td.testFramework;
 
+import java.util.ArrayList;
+
 public class FileBasedStore extends Store{
 
 	@Override
@@ -9,9 +11,21 @@ public class FileBasedStore extends Store{
 	}
 
 	@Override
-	public boolean notOnStore(RunnableTest test) {
+	public boolean onStore(RunnableTest test) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<StoreObject> getStore() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
