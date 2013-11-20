@@ -17,13 +17,13 @@ public class RAMStore extends Store {
 		store.add(storeElement);
 	}
 	
-	public boolean matchOnStore(RunnableTest test){
+	public boolean notOnStore(RunnableTest test){
 		StoreObject toCompareElement = new StoreObject(test.getName(),test.getStatus(),test.getTime());
 		for (StoreObject element : store) {
 			if (toCompareElement.equals(element))
-				return true;
+				return false;
 		}
-		return false;
+		return true;
 	}
 
 }

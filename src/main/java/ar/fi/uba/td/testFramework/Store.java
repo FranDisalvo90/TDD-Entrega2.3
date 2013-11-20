@@ -10,7 +10,7 @@ public abstract class Store {
 	
 	public abstract void saveInformationRun(RunnableTest test);
 	
-	public abstract boolean matchOnStore(RunnableTest test);
+	public abstract boolean notOnStore(RunnableTest test);
 	
 	public void active() {
 		state = true;

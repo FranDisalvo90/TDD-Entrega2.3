@@ -33,6 +33,10 @@ public abstract class TestCase implements RunnableTest {
 	    return;
 	}
 	
+	if (!isRunnable(store)){
+		return;
+	}
+	
 
 	Timer timer = new Timer();
 	TestLogger logger = information.getLogger();
@@ -73,6 +77,13 @@ public abstract class TestCase implements RunnableTest {
 	ArrayList<String> tags = information.getTags();
 	return regularExpressionMatches(regExp) && tagsMatch(tags)
 		&& !isToSkip();
+    }
+    
+    private boolean isRunnable(Store store) {
+    	if(!store.isActive())
+    		return true;
+    	else
+    		return store.notOnStore(this);
     }
 
     private boolean isToSkip() {

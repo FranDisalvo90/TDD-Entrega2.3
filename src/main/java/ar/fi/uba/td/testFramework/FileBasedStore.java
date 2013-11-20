@@ -9,7 +9,7 @@ public class FileBasedStore extends Store{
 	}
 
 	@Override
-	public boolean matchOnStore(RunnableTest test) {
+	public boolean notOnStore(RunnableTest test) {
 		// TODO Auto-generated method stub
 		return false;
 	}
