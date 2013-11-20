@@ -18,6 +18,7 @@ public class TestInformation implements Cloneable {
     private TestResults results;
     private ArrayList<String> tags;
     private TestStatus status;
+    
 
     public TestInformation() {
 	this.context = new TestContext();

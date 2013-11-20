@@ -54,10 +54,13 @@ public abstract class TestCase implements RunnableTest {
 	} finally {
 	    this.time = timer.getTotalTime();
 	}
+	
 	this.tearDown(information.getContext());
-
+	
 	logger.endTestCaseOutput(this.name, this.status, this.time);
     }
+    
+    
 
     private boolean regularExpressionMatches(String regExp) {
 	return this.name.matches(regExp);

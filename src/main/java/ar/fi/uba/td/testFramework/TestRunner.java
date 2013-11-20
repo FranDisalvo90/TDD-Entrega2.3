@@ -8,55 +8,55 @@ import ar.fi.uba.td.testFramework.output.TestLogger;
  * Class used to run RunnableTests.
  */
 public class TestRunner {
+	
     TestInformation information;
     RunnableTest test;
-    
+	    
     public TestRunner(RunnableTest test) {
-	this.test = test;
+    	this.test = test;
     }
 
     public TestResults getResult() throws Exception {
-	TestResults results = information.getResults();
-	if (results != null) {
-	    return results;
-	} else {
-	    throw new Exception("No tests run.");
-	}
-    }
-
-    private void run(boolean runOnlyFailures) {
-		if (testShouldRun(runOnlyFailures, test.getStatus())) {
-			TestLogger logger = information.getLogger();
-			logger.startTestOutput(information);
-			test.run(information);
-			logger.endTestOutput(information.getResults());
-			information.getResults().addTotalTest(test.getTestCount());
+		TestResults results = information.getResults();
+		if (results != null) {
+		    return results;
+		} else {
+		    throw new Exception("No tests run.");
 		}
     }
 
-    public void runTests(boolean runFailures) {
-	information = new TestInformation();
-	run(runFailures);
+    private void run() {
+		TestLogger logger = information.getLogger();
+		logger.startTestOutput(information);
+		test.run(information);
+		logger.endTestOutput(information.getResults());
+		information.getResults().addTotalTest(test.getTestCount());
+    }
+    
+    public void runTests() {
+		information = new TestInformation();
+		run();
     }
 
-    public void runTests(ArrayList<String> tags, boolean runFailures) {
-	information = new TestInformation();
-	information.setTags(tags);
-	run(runFailures);
+    public void runTests(ArrayList<String> tags) {
+		information = new TestInformation();
+		information.setTags(tags);
+		run();
     }
 
-    public void runTests(String regExpression, boolean runFailures) {
-	information = new TestInformation();
-	information.setRegExp(regExpression);
-	run(runFailures);
+    public void runTests(String regExpression) {
+		information = new TestInformation();
+		information.setRegExp(regExpression);
+		run();
     }
 
-    public void runTests(String regExpression, ArrayList<String> tags, boolean runFailures) {
-	information = new TestInformation();
-	information.setTags(tags);
-	information.setRegExp(regExpression);
-	run(runFailures);
+    public void runTests(String regExpression, ArrayList<String> tags) {
+		information = new TestInformation();
+		information.setTags(tags);
+		information.setRegExp(regExpression);
+		run();
     }
+    
     
     private boolean testShouldRun(boolean runFailures, String status){
     	return (runFailures && status != "OK") || runFailures == false;

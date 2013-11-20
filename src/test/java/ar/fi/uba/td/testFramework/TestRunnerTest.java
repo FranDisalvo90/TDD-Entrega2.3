@@ -46,7 +46,7 @@ public class TestRunnerTest {
     @Test
     public void testTestRunnerNumberTestPassed() throws Exception {
 	TestRunner testRunner = new TestRunner(mainTestSuite);
-	testRunner.runTests(false);
+	testRunner.runTests();
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfPassedTests() == 2);
@@ -55,7 +55,7 @@ public class TestRunnerTest {
     @Test
     public void testTestRunnerNumberTestFailed() throws Exception {
 	TestRunner testRunner = new TestRunner(mainTestSuite);
-	testRunner.runTests(false);
+	testRunner.runTests();
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfFailedTests() == 1);
@@ -64,7 +64,7 @@ public class TestRunnerTest {
     @Test
     public void testTestRunnerNumberTestTotal() throws Exception {
 	TestRunner testRunner = new TestRunner(mainTestSuite);
-	testRunner.runTests(false);
+	testRunner.runTests();
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfTotalTest() == 3);
@@ -77,7 +77,7 @@ public class TestRunnerTest {
 	tagedTest.addTag("SKIP");
 	mainTestSuite.add(tagedTest);
 	TestRunner testRunner = new TestRunner(mainTestSuite);
-	testRunner.runTests(false);
+	testRunner.runTests();
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfSkippedTests() == 1);
@@ -93,7 +93,7 @@ public class TestRunnerTest {
 	TestRunner testRunner = new TestRunner(mainTestSuite);
 	ArrayList<String> list = new ArrayList<String>();
 	list.add("THISMUSTRUN");
-	testRunner.runTests(list,false);
+	testRunner.runTests(list);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfTestRun() == 1);
@@ -104,7 +104,7 @@ public class TestRunnerTest {
 	TestRunner testRunner = new TestRunner(mainTestSuite);
 	ArrayList<String> list = new ArrayList<String>();
 	list.add("FAST");
-	testRunner.runTests(list, false);
+	testRunner.runTests(list);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfTestRun() == 2);
@@ -120,7 +120,7 @@ public class TestRunnerTest {
 	TestRunner testRunner = new TestRunner(mainTestSuite);
 	ArrayList<String> list = new ArrayList<String>();
 	list.add("THISMUSTRUN");
-	testRunner.runTests(list,false);
+	testRunner.runTests(list);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfTestRun() == 0);
@@ -131,7 +131,7 @@ public class TestRunnerTest {
 	TestRunner testRunner = new TestRunner(mainTestSuite);
 	ArrayList<String> list = new ArrayList<String>();
 	list.add("FAST");
-	testRunner.runTests("TestCaseAreTheSameFailed", list, false);
+	testRunner.runTests("TestCaseAreTheSameFailed", list);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfTestRun() == 1);
@@ -142,7 +142,7 @@ public class TestRunnerTest {
 	TestRunner testRunner = new TestRunner(mainTestSuite);
 	ArrayList<String> list = new ArrayList<String>();
 	list.add("FAST");
-	testRunner.runTests(".*", list, false);
+	testRunner.runTests(".*", list);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfTestRun() == 2);
