@@ -14,6 +14,7 @@ import ar.fi.uba.td.testFramework.testCases.TestCasePassesForDifferentConcertsAr
 public class TestRunnerTest {
 
     TestSuite mainTestSuite = new TestSuite("mainTest");
+    RAMStore store;
 
     @Before
     public void setUp() throws Exception {
@@ -26,6 +27,8 @@ public class TestRunnerTest {
 		"TestCaseCreatedPassesAreNotNull");
 	TestCase identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed(
 		"TestCaseAreTheSameFailed");
+	
+	RAMStore store = new RAMStore();
 
 	passesForDifferentConcertsAreNotEqual.addTag("SLOW");
 	createdPassesAreNotNull.addTag("FAST");
@@ -39,14 +42,14 @@ public class TestRunnerTest {
 
     @Test(expected = Exception.class)
     public void testTestRunnerNotRun() throws Exception {
-	TestRunner testRunner = new TestRunner(mainTestSuite);
+	TestRunner testRunner = new TestRunner(mainTestSuite,store);
 	testRunner.getResult();
     }
 
     @Test
     public void testTestRunnerNumberTestPassed() throws Exception {
-	TestRunner testRunner = new TestRunner(mainTestSuite);
-	testRunner.runTests();
+	TestRunner testRunner = new TestRunner(mainTestSuite,store);
+	testRunner.runTests(false);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfPassedTests() == 2);
@@ -54,8 +57,8 @@ public class TestRunnerTest {
 
     @Test
     public void testTestRunnerNumberTestFailed() throws Exception {
-	TestRunner testRunner = new TestRunner(mainTestSuite);
-	testRunner.runTests();
+	TestRunner testRunner = new TestRunner(mainTestSuite,store);
+	testRunner.runTests(false);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfFailedTests() == 1);
@@ -63,8 +66,8 @@ public class TestRunnerTest {
 
     @Test
     public void testTestRunnerNumberTestTotal() throws Exception {
-	TestRunner testRunner = new TestRunner(mainTestSuite);
-	testRunner.runTests();
+	TestRunner testRunner = new TestRunner(mainTestSuite,store);
+	testRunner.runTests(false);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfTotalTest() == 3);
@@ -76,8 +79,8 @@ public class TestRunnerTest {
 		"TestCasePassesAreNotEqual");
 	tagedTest.addTag("SKIP");
 	mainTestSuite.add(tagedTest);
-	TestRunner testRunner = new TestRunner(mainTestSuite);
-	testRunner.runTests();
+	TestRunner testRunner = new TestRunner(mainTestSuite,store);
+	testRunner.runTests(false);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfSkippedTests() == 1);
@@ -90,10 +93,10 @@ public class TestRunnerTest {
 		"TestCasePassesAreNotEqual");
 	tagedTest.addTag("THISMUSTRUN");
 	mainTestSuite.add(tagedTest);
-	TestRunner testRunner = new TestRunner(mainTestSuite);
+	TestRunner testRunner = new TestRunner(mainTestSuite,store);
 	ArrayList<String> list = new ArrayList<String>();
 	list.add("THISMUSTRUN");
-	testRunner.runTests(list);
+	testRunner.runTests(list,false);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfTestRun() == 1);
@@ -101,10 +104,10 @@ public class TestRunnerTest {
 
     @Test
     public void testTestRunnerNumberTestTagged() throws Exception {
-	TestRunner testRunner = new TestRunner(mainTestSuite);
+	TestRunner testRunner = new TestRunner(mainTestSuite,store);
 	ArrayList<String> list = new ArrayList<String>();
 	list.add("FAST");
-	testRunner.runTests(list);
+	testRunner.runTests(list,false);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfTestRun() == 2);
@@ -117,10 +120,10 @@ public class TestRunnerTest {
 	tagedTest.addTag("THISMUSTRUN");
 	tagedTest.addTag("SKIP");
 	mainTestSuite.add(tagedTest);
-	TestRunner testRunner = new TestRunner(mainTestSuite);
+	TestRunner testRunner = new TestRunner(mainTestSuite,store);
 	ArrayList<String> list = new ArrayList<String>();
 	list.add("THISMUSTRUN");
-	testRunner.runTests(list);
+	testRunner.runTests(list,false);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfTestRun() == 0);
@@ -128,10 +131,10 @@ public class TestRunnerTest {
 
     @Test
     public void testTestRunnerNumberTestTagRegex() throws Exception {
-	TestRunner testRunner = new TestRunner(mainTestSuite);
+	TestRunner testRunner = new TestRunner(mainTestSuite,store);
 	ArrayList<String> list = new ArrayList<String>();
 	list.add("FAST");
-	testRunner.runTests("TestCaseAreTheSameFailed", list);
+	testRunner.runTests("TestCaseAreTheSameFailed", list,false);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfTestRun() == 1);
@@ -139,10 +142,10 @@ public class TestRunnerTest {
 
     @Test
     public void testTestRunnerNumberTestTagRegexAll() throws Exception {
-	TestRunner testRunner = new TestRunner(mainTestSuite);
+	TestRunner testRunner = new TestRunner(mainTestSuite,store);
 	ArrayList<String> list = new ArrayList<String>();
 	list.add("FAST");
-	testRunner.runTests(".*", list);
+	testRunner.runTests(".*", list,false);
 	TestResults result = testRunner.getResult();
 
 	assertTrue(result.getNumberOfTestRun() == 2);

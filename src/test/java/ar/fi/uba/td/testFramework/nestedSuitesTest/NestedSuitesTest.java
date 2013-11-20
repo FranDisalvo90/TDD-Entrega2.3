@@ -2,6 +2,7 @@ package ar.fi.uba.td.testFramework.nestedSuitesTest;
 
 import java.io.IOException;
 
+import ar.fi.uba.td.testFramework.RAMStore;
 import ar.fi.uba.td.testFramework.TestCase;
 import ar.fi.uba.td.testFramework.TestRunner;
 import ar.fi.uba.td.testFramework.TestSuite;
@@ -29,6 +30,8 @@ public class NestedSuitesTest {
 	TestSuite testSuiteC = new TestSuite("TestSuiteC");
 	TestSuite testSuiteD = new TestSuite("TestSuiteD");
 	TestSuite testSuiteE = new TestSuite("TestSuiteE");
+	
+	RAMStore store = new RAMStore();
 
 	testSuiteC.add(testCase7);
 	testSuiteC.add(testCase8);
@@ -53,7 +56,7 @@ public class NestedSuitesTest {
 	testSuiteA.add(testSuiteB);
 	testSuiteA.add(testCase3);
 
-	TestRunner runner = new TestRunner(testSuiteA);
+	TestRunner runner = new TestRunner(testSuiteA,store);
 	runner.runTests();
     }
 }

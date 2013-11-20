@@ -98,4 +98,9 @@ public class TestSuite implements RunnableTest {
 		return "NOT_RUN";
 	}
 
+	@Override
+	public long getTime() {
+		return 0;
+	}
+
 }

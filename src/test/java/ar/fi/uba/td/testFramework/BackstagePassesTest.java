@@ -22,6 +22,7 @@ public class BackstagePassesTest {
 		"TestCasePassesAreNotEqual");
 	TestCase passesForTheSameConcertAreEqual = new TestCasePassesForTheSameConcertAreEqual(
 		"TestCasePassesForTheSameConcertAreEqual");
+	RAMStore store = new RAMStore();
 
 	mainTest.add(createdPassesAreNotNull);
 	mainTest.add(differentPassesForTheSameConcertAreNotTheSame);
@@ -29,8 +30,8 @@ public class BackstagePassesTest {
 	mainTest.add(passesForTheSameConcertAreEqual);
 	mainTest.add(passesForDifferentConcertsAreNotEqual);
 
-	TestRunner runner = new TestRunner(mainTest);
-	runner.runTests("TestCasePasses.*");
+	TestRunner runner = new TestRunner(mainTest,store);
+	runner.runTests("TestCasePasses.*",false);
     }
 
 }

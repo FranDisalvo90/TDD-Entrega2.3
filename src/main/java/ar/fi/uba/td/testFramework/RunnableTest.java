@@ -14,4 +14,6 @@ public interface RunnableTest extends Comparable<RunnableTest> {
 	
 	public String getStatus();
 
+	public long getTime();
+
 }

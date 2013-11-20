@@ -11,12 +11,12 @@ public class RAMStore extends Store {
 		store = new ArrayList<StoreObject>();
 	}
 	
-	public void saveInformationRun(TestCase test) {
+	public void saveInformationRun(RunnableTest test) {
 		StoreObject storeElement = new StoreObject(test.getName(),test.getStatus(),test.getTime());
 		store.add(storeElement);
 	}
 	
-	public boolean matchOnStore(TestCase test){
+	public boolean matchOnStore(RunnableTest test){
 		StoreObject toCompareElement = new StoreObject(test.getName(),test.getStatus(),test.getTime());
 		for (StoreObject element : store) {
 			if (toCompareElement.equals(element))

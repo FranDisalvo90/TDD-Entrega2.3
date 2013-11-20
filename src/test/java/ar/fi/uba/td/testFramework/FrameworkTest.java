@@ -20,6 +20,7 @@ public class FrameworkTest {
 	TestCase test3;
 	TestSuite testSuiteA;
 	ArrayList<String> tags;
+	RAMStore store;
 
 	@Before
 	public void setUp() throws Exception {
@@ -34,6 +35,7 @@ public class FrameworkTest {
 		test2 = new TestCase2("test2");
 		test3 = new TestCase3("test3");
 		testSuiteA = new TestSuiteA("testSuiteA");
+		RAMStore store = new RAMStore();
 	}
 
 	@Test
@@ -56,16 +58,16 @@ public class FrameworkTest {
 	public void testFailedTest() throws Exception {
 
 		TestCase failedTest = new TestCase14("Failed Test");
-		TestRunner testRunner = new TestRunner(failedTest);
-		testRunner.runTests();
+		TestRunner testRunner = new TestRunner(failedTest,store);
+		testRunner.runTests(false);
 		assertEquals(testRunner.getResult().getNumberOfFailedTests(), 1);
 	}
 
 	@Test
 	public void testErrorTest() throws Exception {
 		TestCase errorTest = new TestCase13("Error Test");
-		TestRunner testRunner = new TestRunner(errorTest);
-		testRunner.runTests();
+		TestRunner testRunner = new TestRunner(errorTest,store);
+		testRunner.runTests(false);
 		assertEquals(testRunner.getResult().getNumberOfErrorTests(), 1);
 	}
 
@@ -73,16 +75,16 @@ public class FrameworkTest {
 	public void testSetUpBaseTest() throws Exception {
 
 		TestCase test10 = new TestCase10("test10");
-		TestRunner testRunner = new TestRunner(test10);
-		testRunner.runTests();
+		TestRunner testRunner = new TestRunner(test10,store);
+		testRunner.runTests(false);
 		assertEquals(testRunner.getResult().getNumberOfPassedTests(), 1);
 	}
 
 	@Test
 	public void testSetUpTestSuite() throws Exception {
 		testSuiteA.add(test1);
-		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests();
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(false);
 		assertEquals(testRunner.getResult().getNumberOfPassedTests(), 1);
 	}
 
@@ -91,8 +93,8 @@ public class FrameworkTest {
 		testSuiteA.add(test3);
 		testSuiteA.add(test2);
 		testSuiteA.add(test1);
-		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests();
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(false);
 		assertEquals(testRunner.getResult().getNumberOfPassedTests(), 3);
 	}
 
@@ -108,8 +110,8 @@ public class FrameworkTest {
 		testSuiteA.add(test7);
 		testSuiteA.add(test8);
 		testSuiteA.add(test9);
-		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests(".*special.*");
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(".*special.*",false);
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 3);
 	}
 
@@ -121,8 +123,8 @@ public class FrameworkTest {
 		TestSuite testSuiteA = new TestSuiteA("testSuiteA");
 		testSuiteA.add(test6);
 		testSuiteA.add(test9);
-		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests(".*notExists.*");
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(".*notExists.*",false);
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 0);
 	}
 
@@ -134,8 +136,8 @@ public class FrameworkTest {
 		testSuiteA.add(test2);
 		testSuiteA.add(test3);
 		tags.add("SLOW");
-		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests(tags);
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(tags,false);
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
 	}
 
@@ -148,8 +150,8 @@ public class FrameworkTest {
 		testSuiteA.add(test3);
 		test1.addTag("SKIP");
 		tags.add("SLOW");
-		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests(tags);
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(tags,false);
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
 	}
 
@@ -174,8 +176,8 @@ public class FrameworkTest {
 		tags.add("DB");
 		tags.add("FAST");
 		tags.add("SMOKE");
-		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests(tags);
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(tags,false);
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 4);
 	}
 
@@ -196,16 +198,16 @@ public class FrameworkTest {
 		testSuiteA.add(test5);
 		testSuiteA.add(test6);
 		tags.add("DB");
-		TestRunner testRunner = new TestRunner(testSuiteA);
-		testRunner.runTests(".*mySql.*", tags);
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(".*mySql.*", tags,false);
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
 	}
 
 	@Test
 	public void testBaseTestRunTimeFast() {
 		TestCase fastTest = new TestCase15("SLEEP1");
-		TestRunner runner = new TestRunner(fastTest);
-		runner.runTests();
+		TestRunner runner = new TestRunner(fastTest,store);
+		runner.runTests(false);
 		assertTrue((fastTest.getTime() / 1000000) < 1050);
 	}
 
@@ -216,8 +218,8 @@ public class FrameworkTest {
 		TestSuite testSuite = new TestSuite("mainTestSuite");
 		testSuite.add(slowTest);
 		testSuite.add(fastTest);
-		TestRunner runner = new TestRunner(testSuite);
-		runner.runTests();
+		TestRunner runner = new TestRunner(testSuite,store);
+		runner.runTests(false);
 		assertTrue(fastTest.getTime() < slowTest.getTime());
 	}
 

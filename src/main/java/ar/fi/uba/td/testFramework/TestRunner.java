@@ -11,9 +11,11 @@ public class TestRunner {
 	
     TestInformation information;
     RunnableTest test;
+    Store store;
 	    
-    public TestRunner(RunnableTest test) {
+    public TestRunner(RunnableTest test, Store store) {
     	this.test = test;
+    	this.store = store;
     }
 
     public TestResults getResult() throws Exception {
@@ -25,36 +27,37 @@ public class TestRunner {
 		}
     }
 
-    private void run() {
+    private void run(boolean searchOnStored) {
 		TestLogger logger = information.getLogger();
 		logger.startTestOutput(information);
 		test.run(information);
+		store.saveInformationRun(test);
 		logger.endTestOutput(information.getResults());
 		information.getResults().addTotalTest(test.getTestCount());
     }
     
-    public void runTests() {
+    public void runTests(boolean searchOnStored) {
 		information = new TestInformation();
-		run();
+		run(searchOnStored);
     }
 
-    public void runTests(ArrayList<String> tags) {
+    public void runTests(ArrayList<String> tags,boolean searchOnStored) {
 		information = new TestInformation();
 		information.setTags(tags);
-		run();
+		run(searchOnStored);
     }
 
-    public void runTests(String regExpression) {
+    public void runTests(String regExpression,boolean searchOnStored) {
 		information = new TestInformation();
 		information.setRegExp(regExpression);
-		run();
+		run(searchOnStored);
     }
 
-    public void runTests(String regExpression, ArrayList<String> tags) {
+    public void runTests(String regExpression, ArrayList<String> tags,boolean searchOnStored) {
 		information = new TestInformation();
 		information.setTags(tags);
 		information.setRegExp(regExpression);
-		run();
+		run(searchOnStored);
     }
     
     
