@@ -17,7 +17,8 @@ public class TestPerformanceTest {
 		TestCase test = new TestCasePassesForDifferentConcertsAreNotEqual("TestCaseThatPasses");
 		TestPerformance testPerformance = new TestPerformance("TestPerformanceTestCase1", test, 1000000000);
 		TestInformation testInfo = new TestInformation();
-		testPerformance.run(testInfo);		
+		RAMStore store = new RAMStore();
+		testPerformance.run(testInfo,store);		
 		assertEquals(testInfo.getResults().getNumberOfPassedTests(), 1);
 	}
 	
@@ -26,7 +27,8 @@ public class TestPerformanceTest {
 		TestCase test = new TestCaseNotIdenticalPassesAreTheSameFailed("TestCaseThatFails");
 		TestPerformance testPerformance = new TestPerformance("TestPerformanceTestCase1", test, 1000000000);
 		TestInformation testInfo = new TestInformation();
-		testPerformance.run(testInfo);
+		RAMStore store = new RAMStore();
+		testPerformance.run(testInfo,store);
 		assertEquals(testInfo.getResults().getNumberOfFailedTests(), 1);
 	}
 	
@@ -35,7 +37,8 @@ public class TestPerformanceTest {
 		TestCase test = new TestCasePassesForDifferentConcertsAreNotEqual("TestCaseThatPasses");
 		TestPerformance testPerformance = new TestPerformance("TestPerformanceTestCase1", test, 1);
 		TestInformation testInfo = new TestInformation();
-		testPerformance.run(testInfo);		
+		RAMStore store = new RAMStore();
+		testPerformance.run(testInfo,store);		
 		assertEquals(testInfo.getResults().getNumberOfFailedTests(), 1);
 	}
 

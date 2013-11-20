@@ -28,12 +28,16 @@ public class TestRunner {
     }
 
     private void run(boolean searchOnStored) {
+    	if (searchOnStored)
+    		store.active();
+    	else
+    		store.desactive();
+    		
 		TestLogger logger = information.getLogger();
 		logger.startTestOutput(information);
-		test.run(information);
-		store.saveInformationRun(test);
+		test.run(information,store);
 		logger.endTestOutput(information.getResults());
-		information.getResults().addTotalTest(test.getTestCount());
+		information.getResults().addTotalTest(test.getTestCount());	
     }
     
     public void runTests(boolean searchOnStored) {
@@ -58,11 +62,6 @@ public class TestRunner {
 		information.setTags(tags);
 		information.setRegExp(regExpression);
 		run(searchOnStored);
-    }
-    
-    
-    private boolean testShouldRun(boolean runFailures, String status){
-    	return (runFailures && status != "OK") || runFailures == false;
     }
     
 }

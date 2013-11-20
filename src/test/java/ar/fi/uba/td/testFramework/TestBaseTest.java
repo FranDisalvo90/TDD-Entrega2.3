@@ -14,7 +14,8 @@ public class TestBaseTest {
 	TestCase identicalPassesAreTheSame = new TestCaseNotIdenticalPassesAreTheSameFailed(
 		"TestCasePassesAreTheSameFailed");
 	TestInformation testInfo = new TestInformation();
-	identicalPassesAreTheSame.run(testInfo);
+	RAMStore store = new RAMStore();
+	identicalPassesAreTheSame.run(testInfo,store);
 
 	assertEquals(testInfo.getResults().getNumberOfFailedTests(), 1);
     }
@@ -24,7 +25,8 @@ public class TestBaseTest {
 	TestCase passesForDifferentConcertsAreNotEqual = new TestCasePassesForDifferentConcertsAreNotEqual(
 		"TestCasePassesAreNotEqual");
 	TestInformation testInfo = new TestInformation();
-	passesForDifferentConcertsAreNotEqual.run(testInfo);
+	RAMStore store = new RAMStore();
+	passesForDifferentConcertsAreNotEqual.run(testInfo,store);
 
 	assertTrue(testInfo.getResults().getNumberOfPassedTests() == 1);
     }

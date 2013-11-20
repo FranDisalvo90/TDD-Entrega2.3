@@ -24,7 +24,7 @@ public class TestPerformance extends TestCase {
 		HashMap<String, Integer> resultsMap = new HashMap<String, Integer>();
 		TestResults previousResults = testInformation.getResults();
 		addResultsToHash(previousResultsMap, previousResults);
-		test.run(testInformation);
+		//test.run(testInformation);
 		long totalTimeTaken = test.getTime();
 		TestResults results = testInformation.getResults();
 		addResultsToHash(resultsMap, results);

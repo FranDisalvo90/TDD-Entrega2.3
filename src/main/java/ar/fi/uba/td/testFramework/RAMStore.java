@@ -8,6 +8,7 @@ public class RAMStore extends Store {
 	private ArrayList<StoreObject> store;
 	
 	public RAMStore(){
+		super();
 		store = new ArrayList<StoreObject>();
 	}
 	

@@ -13,7 +13,8 @@ public class TestSuiteTest {
     public void testEmptyTestSuiteTotalTest() {
 	TestSuite emptyTestSuite = new TestSuite("emptyTestSuite");
 	TestInformation testInfo = new TestInformation();
-	emptyTestSuite.run(testInfo);
+	RAMStore store = new RAMStore();
+	emptyTestSuite.run(testInfo,store);
 	assertTrue(testInfo.getResults().getNumberOfTotalTest() == 0);
     }
 
@@ -21,7 +22,8 @@ public class TestSuiteTest {
     public void testEmptyTestSuitePassedTest() {
 	TestSuite emptyTestSuite = new TestSuite("emptyTestSuite");
 	TestInformation testInfo = new TestInformation();
-	emptyTestSuite.run(testInfo);
+	RAMStore store = new RAMStore();
+	emptyTestSuite.run(testInfo,store);
 	assertTrue(testInfo.getResults().getNumberOfPassedTests() == 0);
     }
 
@@ -33,7 +35,8 @@ public class TestSuiteTest {
 	TestInformation testInfo = new TestInformation();
 
 	testSuite.add(passesForDifferentConcertsAreNotEqual);
-	testSuite.run(testInfo);
+	RAMStore store = new RAMStore();
+	testSuite.run(testInfo,store);
 	assertTrue(testInfo.getResults().getNumberOfPassedTests() == 1);
     }
 

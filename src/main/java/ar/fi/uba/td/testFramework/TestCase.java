@@ -27,7 +27,7 @@ public abstract class TestCase implements RunnableTest {
      */
     public abstract void runTest(TestContext context) throws Exception;
 
-    public final void run(TestInformation information) {
+    public void run(TestInformation information, Store store) {
 	if (!isRunnable(information)) {
 	    information.getResults().addSkippedTest();
 	    return;
@@ -54,6 +54,8 @@ public abstract class TestCase implements RunnableTest {
 	} finally {
 	    this.time = timer.getTotalTime();
 	}
+	
+	store.saveInformationRun(this);
 	
 	this.tearDown(information.getContext());
 	

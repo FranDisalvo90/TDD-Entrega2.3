@@ -68,23 +68,24 @@ public class TestSuite implements RunnableTest {
 	return false;
     }
 
-    public final void run(TestInformation information) {
-    String fullTestName = getFullTestName(information);
-
-	TestLogger logger = information.getLogger();
-
-	logger.startTestSuiteOutput(this.name, fullTestName);
-
-	/* Sorts the list so that the output is prettier. */
-	Collections.sort(testList);
-
-	this.setUp(information.getContext());
-	for (RunnableTest runnableTest : this.testList) {
-	    runnableTest.run(information.clone());
-	}
-	this.tearDown(information.getContext());
-
-	logger.endTestSuiteOutput();
+    public final void run(TestInformation information, Store store) {
+	    String fullTestName = getFullTestName(information);
+	
+		TestLogger logger = information.getLogger();
+	
+		logger.startTestSuiteOutput(this.name, fullTestName);
+	
+		/* Sorts the list so that the output is prettier. */
+		Collections.sort(testList);
+	
+		this.setUp(information.getContext());
+		
+		for (RunnableTest runnableTest : this.testList) {
+		    runnableTest.run(information.clone(),store);
+		}
+		this.tearDown(information.getContext());
+	
+		logger.endTestSuiteOutput();
     }
 
     public void setUp(TestContext context) {

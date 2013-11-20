@@ -227,7 +227,7 @@ public class FrameworkTest {
 	public void testBaseTestRunTime() {
 		TestCase fastTest = new TestCase15("OTHERNAME");
 		TestInformation testInfo = new TestInformation();
-		fastTest.run(testInfo);
+		fastTest.run(testInfo,store);
 
 		assertTrue((fastTest.getTime() / 1000000) < 1000);
 	}
@@ -236,7 +236,7 @@ public class FrameworkTest {
 	public void performanceTestFail() throws TestFailedException{
 		TestCase performanceTest = new TestCase1("PERFORMANCE");
 		TestInformation testInfo = new TestInformation();
-		performanceTest.run(testInfo);
+		performanceTest.run(testInfo,store);
 		Assert.assertPerformance(performanceTest.getTime(),1, "");
 	}
 	
@@ -244,7 +244,7 @@ public class FrameworkTest {
 	public void performanceTestSuccess() throws TestFailedException{
 		TestCase performanceTest = new TestCase1("PERFORMANCE");
 		TestInformation testInfo = new TestInformation();
-		performanceTest.run(testInfo);
+		performanceTest.run(testInfo,store);
 		Assert.assertPerformance(performanceTest.getTime(),324234234, "");
 	}
 
