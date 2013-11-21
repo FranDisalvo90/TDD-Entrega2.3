@@ -17,14 +17,14 @@ public class TestPerformance extends TestCase {
 		this.maxTimeExpected = maxTimeExpected;
 	}
 
-	@Override
 	public void runTest(TestContext context) throws Exception {
 		TestInformation testInformation = new TestInformation();
 		HashMap<String, Integer> previousResultsMap = new HashMap<String, Integer>();
 		HashMap<String, Integer> resultsMap = new HashMap<String, Integer>();
 		TestResults previousResults = testInformation.getResults();
 		addResultsToHash(previousResultsMap, previousResults);
-		//test.run(testInformation);
+		RAMStore store = new RAMStore();
+		test.run(testInformation,store);
 		long totalTimeTaken = test.getTime();
 		TestResults results = testInformation.getResults();
 		addResultsToHash(resultsMap, results);

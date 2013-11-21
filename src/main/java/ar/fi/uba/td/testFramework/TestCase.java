@@ -48,7 +48,7 @@ public abstract class TestCase implements RunnableTest {
 		this.setUp(information.getContext());
 		timer.start();
 		try {
-		    this.runTest(information.getContext());
+		    this.runTest(information.getContext());    
 		    information.getResults().addPassedTest();
 		    this.status = TestStatus.OK;
 		} catch (TestFailedException ex) {
@@ -115,7 +115,7 @@ public abstract class TestCase implements RunnableTest {
 
     public void tearDown(TestContext context) {
     }
-
+    
     public final int compareTo(RunnableTest test) {
 	return -1;
     }
