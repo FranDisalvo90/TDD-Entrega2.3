@@ -23,7 +23,7 @@ public class RAMStore extends Store {
 	
 	public boolean onStore(RunnableTest test){
 		for (StoreObject element : store) {
-			if (test.getName() == element.getName() && element.getStatus() == "[ok]")
+			if (test.getName().equals(element.getName()) && element.getStatus().equals("[ok]"))
 				return true;
 		}
 		return false;

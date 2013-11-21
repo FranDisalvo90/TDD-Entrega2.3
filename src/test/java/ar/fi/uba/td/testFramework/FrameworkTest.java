@@ -41,7 +41,6 @@ public class FrameworkTest {
 
 	@Test
 	public void unrepeatedTestBaseNames() {
-
 		TestCase createdPasses2 = new TestCaseCreatedPassesAreNotNull(
 				"TestCaseCreatedPassesAreNotNull");
 		assertFalse(testSuite.add(createdPasses2));
@@ -49,7 +48,6 @@ public class FrameworkTest {
 
 	@Test
 	public void unrepeatedTestSuiteNames() {
-
 		TestSuite testSuite2 = new TestSuite("testSuite");
 		testSuite2.add(createdPasses);
 		assertFalse(mainTest.add(testSuite2));
@@ -57,7 +55,6 @@ public class FrameworkTest {
 
 	@Test
 	public void testFailedTest() throws Exception {
-
 		TestCase failedTest = new TestCase14("Failed Test");
 		TestRunner testRunner = new TestRunner(failedTest,store);
 		testRunner.runTests(false);
@@ -74,7 +71,6 @@ public class FrameworkTest {
 
 	@Test
 	public void testSetUpBaseTest() throws Exception {
-
 		TestCase test10 = new TestCase10("test10");
 		TestRunner testRunner = new TestRunner(test10,store);
 		testRunner.runTests(false);
@@ -118,7 +114,6 @@ public class FrameworkTest {
 
 	@Test
 	public void testNameNotExists() throws Exception {
-
 		TestCase test6 = new TestCase6("my special test case ");
 		TestCase test9 = new TestCase9("a test");
 		TestSuite testSuiteA = new TestSuiteA("testSuiteA");
@@ -173,7 +168,6 @@ public class FrameworkTest {
 		testSuiteA.add(test4);
 		testSuiteA.add(test5);
 		testSuiteA.add(test6);
-
 		tags.add("DB");
 		tags.add("FAST");
 		tags.add("SMOKE");
@@ -229,7 +223,6 @@ public class FrameworkTest {
 		TestCase fastTest = new TestCase15("OTHERNAME");
 		TestInformation testInfo = new TestInformation();
 		fastTest.run(testInfo,store);
-
 		assertTrue((fastTest.getTime() / 1000000) < 1000);
 	}
 	
@@ -250,7 +243,7 @@ public class FrameworkTest {
 	}
 	
 	@Test
-	public void RAMStoreSaveTestCase() {
+	public void RamStoreSaveTestCase() {
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
 		testSuiteA.add(test5);
@@ -258,12 +251,11 @@ public class FrameworkTest {
 		RAMStore store = new RAMStore();
 		TestRunner testRunner = new TestRunner(testSuiteA,store);
 		testRunner.runTests(true);
-		
 		assertEquals(store.getStore().size(),2);
 	}
 		
 	@Test
-	public void testRunWhenStoreRamAreEmpty() throws Exception {
+	public void testRunWhenRamStoreAreEmpty() throws Exception {
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
 		testSuiteA.add(test5);
@@ -271,84 +263,75 @@ public class FrameworkTest {
 		RAMStore store = new RAMStore();
 		TestRunner testRunner = new TestRunner(testSuiteA,store);
 		testRunner.runTests(true);
-		
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
 	}
 	
 	@Test
-	public void testRunNotRunTestBecauseAllOkInStoreRam() throws Exception {
+	public void testRunNotRunTestBecauseAllOkRamStore() throws Exception {
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
 		RAMStore store = new RAMStore();
 		testSuiteA.add(test5);
 		testSuiteA.add(test6);
-		
 		TestRunner testRunner = new TestRunner(testSuiteA,store);
 		testRunner.runTests(true);
 		testRunner.runTests(true);
-		
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 0);
 	}
 	
 	@Test
-	public void testRunOnlyRunFailsOnStoreRam() throws Exception{
-		TestCase test5 = new TestCase5("testCase5");
-		TestCase test6 = new TestCase6("testCase6");
-		TestCase test14 = new TestCase6("testCase14");
-		RAMStore store = new RAMStore();
-		testSuiteA.add(test5);
-		testSuiteA.add(test6);
-		
-		TestRunner testRunner = new TestRunner(testSuiteA,store);
-		testRunner.runTests(true);
-		testSuiteA.add(test14);
-		testRunner.runTests(true);
-		
-		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
-	}
-	
-	@Test
-	public void testRunOnlyRunNewsBecauseInStoreRamAreAllOk() throws Exception{
-		TestCase test5 = new TestCase5("testCase5");
-		TestCase test6 = new TestCase6("testCase6");
-		TestCase test4 = new TestCase4("testCase4");
-		RAMStore store = new RAMStore();
-		testSuiteA.add(test5);
-		testSuiteA.add(test6);
-		
-		TestRunner testRunner = new TestRunner(testSuiteA,store);
-		testRunner.runTests(true);
-		testSuiteA.add(test4);
-		testRunner.runTests(true);
-		
-		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
-	}
-	
-	@Test
-	public void threeRunsWithOKtests() throws Exception{
-		TestCase test5 = new TestCase5("testCase5");
-		TestCase test6 = new TestCase6("testCase6");
-		TestCase test4 = new TestCase4("testCase4");
-		RAMStore store = new RAMStore();
-		testSuiteA.add(test5);
-		
-		TestRunner testRunner = new TestRunner(testSuiteA,store);
-		testRunner.runTests(true);
-		testSuiteA.add(test4);
-		testRunner.runTests(true);
-		testSuiteA.add(test6);
-		testRunner.runTests(true);
-		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
-	}
-	
-	@Test
-	public void threeRunsWithFailAndNewTesttests() throws Exception{
+	public void testRunOnlyRunFailsOnRamStore() throws Exception{
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
 		TestCase test14 = new TestCase14("testCase14");
 		RAMStore store = new RAMStore();
 		testSuiteA.add(test5);
-		
+		testSuiteA.add(test6);
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testSuiteA.add(test14);
+		testRunner.runTests(true);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
+	}
+	
+	@Test
+	public void testRunOnlyRunNewsBecauseInRamStoreAreAllOk() throws Exception{
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestCase test4 = new TestCase4("testCase4");
+		RAMStore store = new RAMStore();
+		testSuiteA.add(test5);
+		testSuiteA.add(test6);
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testSuiteA.add(test4);
+		testRunner.runTests(true);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
+	}
+	
+	@Test
+	public void threeRunsWithOKtestsOnRamStore() throws Exception{
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestCase test4 = new TestCase4("testCase4");
+		RAMStore store = new RAMStore();
+		testSuiteA.add(test5);
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testSuiteA.add(test4);
+		testRunner.runTests(true);
+		testSuiteA.add(test6);
+		testRunner.runTests(true);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
+	}
+	
+	@Test
+	public void threeRunsWithFailAndNewTestOnRamStore() throws Exception{
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestCase test14 = new TestCase14("testCase14");
+		RAMStore store = new RAMStore();
+		testSuiteA.add(test5);
 		TestRunner testRunner = new TestRunner(testSuiteA,store);
 		testRunner.runTests(true);
 		testSuiteA.add(test14);
@@ -359,20 +342,20 @@ public class FrameworkTest {
 	}
 	
 	@Test
-	public void testRunOnlyRunTestFailAndNewOnStoreRam() throws Exception{
+	public void testRunOnlyRunTestFailAndNewOnRamStore() throws Exception{
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
+		TestCase test4 = new TestCase4("testCase4");
 		TestCase test14 = new TestCase14("testCase14");
 		RAMStore store = new RAMStore();
 		testSuiteA.add(test5);
 		testSuiteA.add(test6);
 		TestRunner testRunner = new TestRunner(testSuiteA,store);
 		testRunner.runTests(true);
+		testSuiteA.add(test4);
 		testSuiteA.add(test14);
 		testRunner.runTests(true);
-
-		
-		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
 	}
 	
 	@Test
@@ -390,7 +373,7 @@ public class FrameworkTest {
 	}
 	
 	@Test
-	public void testRunWhenStoreTXTAreEmpty() throws Exception {
+	public void testRunWhenFileStoreAreEmpty() throws Exception {
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
 		testSuiteA.add(test5);
@@ -398,13 +381,11 @@ public class FrameworkTest {
 		FileBasedStore store = new FileBasedStore("file1Test");
 		TestRunner testRunner = new TestRunner(testSuiteA,store);
 		testRunner.runTests(true);
-		
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
 	}
 	
 	@Test
-	public void refreshStoreTXT() throws Exception {
-
+	public void refreshFileStore() throws Exception {
 		FileBasedStore store = new FileBasedStore("file5Test");
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
@@ -418,18 +399,96 @@ public class FrameworkTest {
 	}
 	
 	@Test
-	public void testRunNotRunTestBecauseAllOkInStoreTXT() throws Exception {
+	public void testRunNotRunTestBecauseAllOkInFileStore() throws Exception {
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
-		FileBasedStore store = new FileBasedStore("file2Test");
+		FileBasedStore store = new FileBasedStore("fileTest2");
 		TestSuite testSuiteB = new TestSuite("testSuiteB");
 		testSuiteB.add(test5);
 		testSuiteB.add(test6);
-		
 		TestRunner testRunner = new TestRunner(testSuiteB,store);
 		testRunner.runTests(true);
 		testRunner.runTests(true);
-		
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 0);
+	}
+	
+	@Test
+	public void testRunOnlyRunFailsOnFileStore() throws Exception{
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestCase test14 = new TestCase14("testCase14");
+		FileBasedStore store = new FileBasedStore("fileTest3");
+		testSuiteA.add(test5);
+		testSuiteA.add(test6);
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testSuiteA.add(test14);
+		testRunner.runTests(true);
+		testRunner.runTests(true);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
+	}
+	
+	@Test
+	public void testRunOnlyRunNewsBecauseInFileStoreAreAllOk() throws Exception{
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestCase test4 = new TestCase4("testCase4");
+		FileBasedStore store = new FileBasedStore("fileTest4");
+		testSuiteA.add(test5);
+		testSuiteA.add(test6);
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testSuiteA.add(test4);
+		testRunner.runTests(true);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
+	}
+	
+	@Test
+	public void threeRunsWithOKtestsOnFileStore() throws Exception{
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestCase test4 = new TestCase4("testCase4");
+		FileBasedStore store = new FileBasedStore("fileTest6");
+		testSuiteA.add(test5);		
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testSuiteA.add(test4);
+		testRunner.runTests(true);
+		testSuiteA.add(test6);
+		testRunner.runTests(true);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
+	}
+	
+	@Test
+	public void threeRunsWithFailAndNewTestOnFileStore() throws Exception{
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestCase test14 = new TestCase14("testCase14");
+		FileBasedStore store = new FileBasedStore("fileTest7");
+		testSuiteA.add(test5);	
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testSuiteA.add(test14);
+		testRunner.runTests(true);
+		testSuiteA.add(test6);
+		testRunner.runTests(true);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
+	}
+	
+	@Test
+	public void testRunOnlyRunTestFailAndNewOnFileStore() throws Exception{
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestCase test4 = new TestCase4("testCase4");
+		TestCase test14 = new TestCase14("testCase14");
+		FileBasedStore store = new FileBasedStore("testFile8");
+		testSuiteA.add(test5);
+		testSuiteA.add(test6);
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testSuiteA.add(test4);
+		testSuiteA.add(test14);
+		testRunner.runTests(true);
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
 	}
 }

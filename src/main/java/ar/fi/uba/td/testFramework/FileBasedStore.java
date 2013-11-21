@@ -29,7 +29,7 @@ public class FileBasedStore extends Store{
 		while (line != null) {
 			count++;
 			StoreObject element = stringToStoreObject(line);
-			if (test.getName() == element.getName() && element.getStatus() != "[ok]")
+			if (test.getName().equals(element.getName()) && element.getStatus().equals("[ok]"))
 				return true;
 			line = HandlerFileTxt.readLineOfFile(store.getName(),count);
 		}
@@ -42,7 +42,7 @@ public class FileBasedStore extends Store{
 		store.delete();
 		store = new File(nameStore);
 		for (String line : linesStore) {
-			HandlerFileTxt.writeLineOnFile(store.getName(),line);	
+			HandlerFileTxt.writeLineOnFile(nameStore,line);	
 		}
 		linesStore = new ArrayList<String>();
 	}
