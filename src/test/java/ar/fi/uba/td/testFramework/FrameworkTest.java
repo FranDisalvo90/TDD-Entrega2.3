@@ -2,6 +2,8 @@ package ar.fi.uba.td.testFramework;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -309,7 +311,7 @@ public class FrameworkTest {
 	public void testRunOnlyRunNewsBecauseInStoreRamAreAllOk() throws Exception{
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
-		TestCase test4 = new TestCase6("testCase4");
+		TestCase test4 = new TestCase4("testCase4");
 		RAMStore store = new RAMStore();
 		testSuiteA.add(test5);
 		testSuiteA.add(test6);
@@ -323,10 +325,10 @@ public class FrameworkTest {
 	}
 	
 	@Test
-	public void testRunOnlyRunNewsBecauseInStoreRamOnTwoRuns() throws Exception{
+	public void threeRunsWithOKtests() throws Exception{
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
-		TestCase test4 = new TestCase6("testCase4");
+		TestCase test4 = new TestCase4("testCase4");
 		RAMStore store = new RAMStore();
 		testSuiteA.add(test5);
 		
@@ -335,12 +337,12 @@ public class FrameworkTest {
 		testSuiteA.add(test4);
 		testRunner.runTests(true);
 		testSuiteA.add(test6);
-		
+		testRunner.runTests(true);
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
 	}
 	
 	@Test
-	public void testRunOnlyRunTestFailAndNewOnStoreRam() throws Exception{
+	public void threeRunsWithFailAndNewTesttests() throws Exception{
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
 		TestCase test14 = new TestCase14("testCase14");
@@ -353,8 +355,24 @@ public class FrameworkTest {
 		testRunner.runTests(true);
 		testSuiteA.add(test6);
 		testRunner.runTests(true);
-		
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
+	}
+	
+	@Test
+	public void testRunOnlyRunTestFailAndNewOnStoreRam() throws Exception{
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestCase test14 = new TestCase14("testCase14");
+		RAMStore store = new RAMStore();
+		testSuiteA.add(test5);
+		testSuiteA.add(test6);
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		testSuiteA.add(test14);
+		testRunner.runTests(true);
+
+		
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 1);
 	}
 	
 	@Test
@@ -369,5 +387,49 @@ public class FrameworkTest {
 		FileBasedStore store = new FileBasedStore("sixthTest.txt");
 		StoreObject element = store.stringToStoreObject("nameTest/statusTest");
 		assertEquals(element.getStatus(),"statusTest");
+	}
+	
+	@Test
+	public void testRunWhenStoreTXTAreEmpty() throws Exception {
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		testSuiteA.add(test5);
+		testSuiteA.add(test6);
+		FileBasedStore store = new FileBasedStore("file1Test");
+		TestRunner testRunner = new TestRunner(testSuiteA,store);
+		testRunner.runTests(true);
+		
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
+	}
+	
+	@Test
+	public void refreshStoreTXT() throws Exception {
+
+		FileBasedStore store = new FileBasedStore("file5Test");
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		TestSuite testSuiteB = new TestSuite("testSuiteB");
+		testSuiteB.add(test5);
+		testSuiteB.add(test6);
+		TestRunner testRunner = new TestRunner(testSuiteB,store);
+		testRunner.runTests(true);
+		String line = HandlerFileTxt.readLineOfFile("file5Test", 1);
+		assertEquals(line,"testCase6/[ok]");
+	}
+	
+	@Test
+	public void testRunNotRunTestBecauseAllOkInStoreTXT() throws Exception {
+		TestCase test5 = new TestCase5("testCase5");
+		TestCase test6 = new TestCase6("testCase6");
+		FileBasedStore store = new FileBasedStore("file2Test");
+		TestSuite testSuiteB = new TestSuite("testSuiteB");
+		testSuiteB.add(test5);
+		testSuiteB.add(test6);
+		
+		TestRunner testRunner = new TestRunner(testSuiteB,store);
+		testRunner.runTests(true);
+		testRunner.runTests(true);
+		
+		assertEquals(testRunner.getResult().getNumberOfTestRun(), 0);
 	}
 }

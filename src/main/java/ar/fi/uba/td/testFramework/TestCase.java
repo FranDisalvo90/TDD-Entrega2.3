@@ -28,12 +28,18 @@ public abstract class TestCase implements RunnableTest {
     public abstract void runTest(TestContext context) throws Exception;
 
     public void run(TestInformation information, Store store) {
-		if (!isRunnable(information) || !isRunnable(store)) {
+		if (!isRunnable(information)) {
 			information.getResults().addSkippedTest();
 			return;
 		}
-
 		
+		if (!isRunnable(store)) {
+			information.getResults().addSkippedTest();
+			store.saveInformationRun(this);
+			return;
+		}
+		
+			
 		Timer timer = new Timer();
 		TestLogger logger = information.getLogger();
 	

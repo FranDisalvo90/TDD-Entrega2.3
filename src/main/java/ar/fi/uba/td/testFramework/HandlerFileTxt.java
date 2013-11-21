@@ -41,4 +41,8 @@ public class HandlerFileTxt {
 		}
 		return line;
 	}
+	
+	static public void eraseContainer(String fileName) throws IOException {
+		BufferedWriter bw = new BufferedWriter(new FileWriter(fileName,false));
+	}
 }

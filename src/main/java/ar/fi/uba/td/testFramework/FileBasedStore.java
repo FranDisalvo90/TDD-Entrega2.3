@@ -1,24 +1,24 @@
 package ar.fi.uba.td.testFramework;
 
 import java.io.File;
+import java.util.ArrayList;
 
 
 public class FileBasedStore extends Store{
 	
-	File store;
-	String fileName;
-	File temporalStore;
+	private File store;
+	private ArrayList<String>linesStore; 
 	
 	public FileBasedStore(String nameOfFileStore) {
 		super();
 		store = new File(nameOfFileStore);
-		temporalStore = new File("store.tmp");
+		linesStore = new ArrayList<String>(); 
 	}
 
 	@Override
 	public void saveInformationRun(RunnableTest test) {
 		String lineFile = test.getName() + "/" + test.getStatus();
-		HandlerFileTxt.writeLineOnFile(temporalStore.getName(),lineFile);	
+		linesStore.add(lineFile);
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class FileBasedStore extends Store{
 		while (line != null) {
 			count++;
 			StoreObject element = stringToStoreObject(line);
-			if (test.getName() == element.getName() && element.getStatus() != "OK")
+			if (test.getName() == element.getName() && element.getStatus() != "[ok]")
 				return true;
 			line = HandlerFileTxt.readLineOfFile(store.getName(),count);
 		}
@@ -38,8 +38,13 @@ public class FileBasedStore extends Store{
 
 	@Override
 	public void refresh() {
-		store = temporalStore;
-		temporalStore = new File("store.tmp");
+		String nameStore = store.getName();
+		store.delete();
+		store = new File(nameStore);
+		for (String line : linesStore) {
+			HandlerFileTxt.writeLineOnFile(store.getName(),line);	
+		}
+		linesStore = new ArrayList<String>();
 	}
 	
 	protected StoreObject stringToStoreObject(String line) {
