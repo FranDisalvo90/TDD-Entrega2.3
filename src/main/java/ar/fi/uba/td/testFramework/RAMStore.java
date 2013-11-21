@@ -15,7 +15,7 @@ public class RAMStore extends Store {
 	}
 	
 	public void saveInformationRun(RunnableTest test) {
-		StoreObject storeElement = new StoreObject(test.getName(),test.getStatus(),test.getTime());
+		StoreObject storeElement = new StoreObject(test.getName(),test.getStatus());
 		storeAuxiliar.add(storeElement);
 	}
 	
@@ -34,7 +34,6 @@ public class RAMStore extends Store {
 		storeAuxiliar = new ArrayList<StoreObject>();
 	}
 
-	@Override
 	public ArrayList<StoreObject> getStore() {
 		return store;
 	}

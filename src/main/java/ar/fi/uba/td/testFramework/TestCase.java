@@ -1,5 +1,6 @@
 package ar.fi.uba.td.testFramework;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import ar.fi.uba.td.testFramework.output.TestLogger;
@@ -28,37 +29,45 @@ public abstract class TestCase implements RunnableTest {
     public abstract void runTest(TestContext context) throws Exception;
 
     public void run(TestInformation information, Store store) {
-	if (!isRunnable(information) || !isRunnable(store)) {
-	    information.getResults().addSkippedTest();
-	    return;
-	}
+		try {
+			if (!isRunnable(information) || !isRunnable(store)) {
+			    information.getResults().addSkippedTest();
+			    return;
+			}
+		} catch (IOException e1) {
+			System.out.println("El archivo de store no puede ser abierto o no existe");
+		}
+		
+		Timer timer = new Timer();
+		TestLogger logger = information.getLogger();
 	
-	Timer timer = new Timer();
-	TestLogger logger = information.getLogger();
-
-	logger.startTestCaseOutput(this.name);
-
-	this.setUp(information.getContext());
-	timer.start();
-	try {
-	    this.runTest(information.getContext());
-	    information.getResults().addPassedTest();
-	    this.status = TestStatus.OK;
-	} catch (TestFailedException ex) {
-	    information.getResults().addFailedTest();
-	    this.status = TestStatus.FAILED;
-	} catch (Exception ex) {
-	    information.getResults().addErrorTest();
-	    this.status = TestStatus.ERROR;
-	} finally {
-	    this.time = timer.getTotalTime();
-	}
+		logger.startTestCaseOutput(this.name);
 	
-	store.saveInformationRun(this);
-	
-	this.tearDown(information.getContext());
-	
-	logger.endTestCaseOutput(this.name, this.status, this.time);
+		this.setUp(information.getContext());
+		timer.start();
+		try {
+		    this.runTest(information.getContext());
+		    information.getResults().addPassedTest();
+		    this.status = TestStatus.OK;
+		} catch (TestFailedException ex) {
+		    information.getResults().addFailedTest();
+		    this.status = TestStatus.FAILED;
+		} catch (Exception ex) {
+		    information.getResults().addErrorTest();
+		    this.status = TestStatus.ERROR;
+		} finally {
+		    this.time = timer.getTotalTime();
+		}
+		
+		try {
+			store.saveInformationRun(this);
+		} catch (IOException e) {
+			System.out.println("El archivo de store no puede ser abierto o no existe");
+		}
+		
+		this.tearDown(information.getContext());
+		
+		logger.endTestCaseOutput(this.name, this.status, this.time);
     }
     
     
@@ -74,7 +83,7 @@ public abstract class TestCase implements RunnableTest {
 		&& !isToSkip();
     }
     
-    private boolean isRunnable(Store store) {
+    private boolean isRunnable(Store store) throws IOException {
     	if(!store.isActive())
     		return true;
     	else

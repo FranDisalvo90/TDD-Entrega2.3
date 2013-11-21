@@ -274,7 +274,7 @@ public class FrameworkTest {
 	}
 	
 	@Test
-	public void testRunNotRunTestBecauseAllOk() throws Exception {
+	public void testRunNotRunTestBecauseAllOkInStoreRam() throws Exception {
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
 		RAMStore store = new RAMStore();
@@ -289,7 +289,7 @@ public class FrameworkTest {
 	}
 	
 	@Test
-	public void testRunOnlyRunFails() throws Exception{
+	public void testRunOnlyRunFailsOnStoreRam() throws Exception{
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
 		TestCase test14 = new TestCase6("testCase14");
@@ -306,7 +306,7 @@ public class FrameworkTest {
 	}
 	
 	@Test
-	public void testRunOnlyRunNews() throws Exception{
+	public void testRunOnlyRunNewsBecauseInStoreRamAreAllOk() throws Exception{
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
 		TestCase test4 = new TestCase6("testCase4");
@@ -323,7 +323,7 @@ public class FrameworkTest {
 	}
 	
 	@Test
-	public void testRunOnlyRunNewsInTwoRuns() throws Exception{
+	public void testRunOnlyRunNewsBecauseInStoreRamOnTwoRuns() throws Exception{
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
 		TestCase test4 = new TestCase6("testCase4");
@@ -340,7 +340,7 @@ public class FrameworkTest {
 	}
 	
 	@Test
-	public void runWhen() throws Exception{
+	public void testRunOnlyRunTestFailAndNewOnStoreRam() throws Exception{
 		TestCase test5 = new TestCase5("testCase5");
 		TestCase test6 = new TestCase6("testCase6");
 		TestCase test14 = new TestCase14("testCase14");

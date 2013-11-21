@@ -1,5 +1,6 @@
 package ar.fi.uba.td.testFramework;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public abstract class Store {
@@ -10,13 +11,11 @@ public abstract class Store {
 		state = false;
 	}
 	
-	public abstract void saveInformationRun(RunnableTest test);
+	public abstract void saveInformationRun(RunnableTest test) throws IOException;
 	
-	public abstract boolean onStore(RunnableTest test);
+	public abstract boolean onStore(RunnableTest test) throws IOException;
 	
 	public abstract void refresh();
-	
-	public abstract ArrayList<StoreObject> getStore();
 	
 	public void active() {
 		state = true;

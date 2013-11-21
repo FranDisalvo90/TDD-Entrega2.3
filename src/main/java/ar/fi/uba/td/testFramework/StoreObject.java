@@ -4,12 +4,10 @@ public class StoreObject {
 	
 	private String name;
 	private String status;
-	private long time;
 	
-	public StoreObject(String name, String status, long time) {
+	public StoreObject(String name, String status) {
 		this.name = name;
 		this.status = status;
-		this.time = time;
 	}
 
 	public String getName() {
@@ -18,10 +16,6 @@ public class StoreObject {
 
 	public String getStatus() {
 		return status;
-	}
-
-	public long getTime() {
-		return time;
 	}
 	
 }
