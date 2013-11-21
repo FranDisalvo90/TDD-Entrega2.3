@@ -356,4 +356,18 @@ public class FrameworkTest {
 		
 		assertEquals(testRunner.getResult().getNumberOfTestRun(), 2);
 	}
+	
+	@Test
+	public void convertNameStringToStoreObject() throws Exception{
+		FileBasedStore store = new FileBasedStore("fifthTest.txt");
+		StoreObject element = store.stringToStoreObject("nameTest/statusTest");
+		assertEquals(element.getName(),"nameTest");
+	}
+	
+	@Test
+	public void convertStatusStringToStoreObject() throws Exception{
+		FileBasedStore store = new FileBasedStore("sixthTest.txt");
+		StoreObject element = store.stringToStoreObject("nameTest/statusTest");
+		assertEquals(element.getStatus(),"statusTest");
+	}
 }

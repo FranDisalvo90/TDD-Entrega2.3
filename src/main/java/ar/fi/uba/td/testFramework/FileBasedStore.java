@@ -2,12 +2,11 @@ package ar.fi.uba.td.testFramework;
 
 import java.io.File;
 
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class FileBasedStore extends Store{
 	
 	File store;
+	String fileName;
 	File temporalStore;
 	
 	public FileBasedStore(String nameOfFileStore) {
@@ -17,22 +16,22 @@ public class FileBasedStore extends Store{
 	}
 
 	@Override
-	public void saveInformationRun(RunnableTest test) throws IOException {
+	public void saveInformationRun(RunnableTest test) {
 		String lineFile = test.getName() + "/" + test.getStatus();
-		HandlerFileTxt.writeLineOnFile(temporalStore, lineFile);	
+		HandlerFileTxt.writeLineOnFile(temporalStore.getName(),lineFile);	
 	}
 
 	@Override
-	public boolean onStore(RunnableTest test) throws IOException {
+	public boolean onStore(RunnableTest test) {
 		String line;
 		int count = 0;
-		line = HandlerFileTxt.readLineOfFile(store,count);
+		line = HandlerFileTxt.readLineOfFile(store.getName(),count);
 		while (line != null) {
 			count++;
 			StoreObject element = stringToStoreObject(line);
 			if (test.getName() == element.getName() && element.getStatus() != "OK")
 				return true;
-			line = HandlerFileTxt.readLineOfFile(store,count);
+			line = HandlerFileTxt.readLineOfFile(store.getName(),count);
 		}
 		return false;
 	}
@@ -45,7 +44,7 @@ public class FileBasedStore extends Store{
 	
 	protected StoreObject stringToStoreObject(String line) {
 		int position = line.indexOf("/");
-		String name	= line.substring(0,position-1);
+		String name	= line.substring(0,position);
 		String status = line.substring(position+1);
 		StoreObject element = new StoreObject(name, status);
 		return element;

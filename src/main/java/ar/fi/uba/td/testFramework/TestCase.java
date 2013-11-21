@@ -1,6 +1,5 @@
 package ar.fi.uba.td.testFramework;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import ar.fi.uba.td.testFramework.output.TestLogger;
@@ -29,14 +28,11 @@ public abstract class TestCase implements RunnableTest {
     public abstract void runTest(TestContext context) throws Exception;
 
     public void run(TestInformation information, Store store) {
-		try {
-			if (!isRunnable(information) || !isRunnable(store)) {
-			    information.getResults().addSkippedTest();
-			    return;
-			}
-		} catch (IOException e1) {
-			System.out.println("El archivo de store no puede ser abierto o no existe");
+		if (!isRunnable(information) || !isRunnable(store)) {
+			information.getResults().addSkippedTest();
+			return;
 		}
+
 		
 		Timer timer = new Timer();
 		TestLogger logger = information.getLogger();
@@ -59,11 +55,7 @@ public abstract class TestCase implements RunnableTest {
 		    this.time = timer.getTotalTime();
 		}
 		
-		try {
-			store.saveInformationRun(this);
-		} catch (IOException e) {
-			System.out.println("El archivo de store no puede ser abierto o no existe");
-		}
+		store.saveInformationRun(this);
 		
 		this.tearDown(information.getContext());
 		
@@ -83,7 +75,7 @@ public abstract class TestCase implements RunnableTest {
 		&& !isToSkip();
     }
     
-    private boolean isRunnable(Store store) throws IOException {
+    private boolean isRunnable(Store store) {
     	if(!store.isActive())
     		return true;
     	else
